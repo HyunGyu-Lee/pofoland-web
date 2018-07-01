@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE logback>
 <configuration scan="true">
+    <contextListener class="com.hst.pofoland.config.logback.LoggerStartupListener"/>
+    
     <conversionRule conversionWord="highlight" converterClass="com.hst.pofoland.config.logback.HighlightCompositeConverter" />
     
     <!-- Color Console Appender -->
@@ -21,13 +23,13 @@
     
     <!-- File Appender -->
     <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/gcms.log</file>
+        <file>${LOG_HOME}/pofoland-web.log</file>
         <append>true</append>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-10.10t] %-5level %-40.40logger{39} [%-20.20(%method:%line)] %msg %n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_HOME}gcms.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}pofoland-web.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>60</maxHistory>
         </rollingPolicy>
     </appender>

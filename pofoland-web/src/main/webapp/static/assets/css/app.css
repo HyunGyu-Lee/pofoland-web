@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.errorInput {
+    border-color: #2474ed !important;
+    border-width: 2.5px !important;
+}
+
+.errMsgList {
+    background-color: #2474ed;
+    color: white;
+    font-size: 13px;
+    margin-top: 9px;
+    line-height: 2.2;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
