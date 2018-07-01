@@ -74,5 +74,7 @@
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     
         <script src="${ctx}/static/vendor/volvox/js/theme-core.js"></script>
+        
+        <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
     </body>
 </html>
