@@ -31,13 +31,13 @@
                     <div class="flexslider gallery-slider" data-transition="slide" data-autoplay="no">
                         <ul class="slides">
                             <li>
-                                <a href="${ctx}/static/vendor/volvox/img/24x.jpg' class='view'>
-                                    <img src="${ctx}/static/vendor/volvox/img/24x.jpg' width='1280' height='720' />
+                                <a href="${ctx}/static/vendor/volvox/img/24x.jpg" class="view">
+                                    <img src="${ctx}/static/vendor/volvox/img/24x.jpg" width="1280" height="720" />
                                 </a>
                             </li>
                             <li>
-                                <a href="${ctx}/static/vendor/volvox/img/23x.jpg' class='view'>
-                                    <img src="${ctx}/static/vendor/volvox/img/23x.jpg' width='1280' height='720' />
+                                <a href="${ctx}/static/vendor/volvox/img/23x.jpg" class="view">
+                                    <img src="${ctx}/static/vendor/volvox/img/23x.jpg" width="1280" height="720" />
                                 </a>
                             </li>
                         </ul>

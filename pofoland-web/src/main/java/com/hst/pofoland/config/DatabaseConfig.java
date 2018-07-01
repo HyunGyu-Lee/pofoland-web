@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.hst.pofoland.biz.delete.User;
 import com.hst.pofoland.config.properties.DatabaseProperties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -37,14 +38,6 @@ public class DatabaseConfig {
         config.setPassword(databaseProperties.getPassword());
         
         return new HikariDataSource(config);
-    }
-    
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mybatis/mappers/*.xml"));
-        
-        return sqlSessionFactoryBean.getObject();
     }
     
 }

@@ -5,9 +5,7 @@
  */
 package com.hst.pofoland.biz.delete;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
+import lombok.Data;
 
 /**
  * 클래스에 설명을 적는다.
@@ -17,9 +15,17 @@ import org.apache.ibatis.annotations.Mapper;
  * @see
  *
  */
-@Mapper
-public interface UserMapper {
+@Data
+public class User {
 
-    List<User> findAll();
+    private Integer userNo;
     
-}   
+    private String userId;
+    
+    private String userPwd;
+    
+    private String userNickNm;
+    
+    private String userJoinSeCd;
+    
+}

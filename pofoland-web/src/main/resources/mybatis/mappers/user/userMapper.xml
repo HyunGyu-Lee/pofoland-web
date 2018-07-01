@@ -5,8 +5,8 @@
     
 <mapper namespace="com.hst.pofoland.biz.delete.UserMapper">
 
-    <select id="findAll">
-    
+    <select id="findAll" resultType="User">
+        SELECT * FROM MB_USER
     </select>
 
 </mapper>
