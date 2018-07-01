@@ -1,5 +1,7 @@
 /**
- * 
+ * HST Inc. | https://www.hst.com
+ * Copyright (c)2018, HST Inc.
+ * All rights reserved.
  */
 package com.hst.pofoland.biz;
 
