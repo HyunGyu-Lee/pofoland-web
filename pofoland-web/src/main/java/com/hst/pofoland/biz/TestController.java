@@ -43,4 +43,13 @@ public class TestController extends AbstractController {
 
     }
     
+    @GetMapping("login")
+    public String login() {
+    	return "user/login";
+    }
+    
+    @GetMapping("register") 
+    public String register(){
+    	return "user/register";
+    }
 }

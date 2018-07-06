@@ -12,19 +12,32 @@
         <put-attribute name="footer" value="/WEB-INF/tiles/layout/footer.jsp" />
     </definition>
     
-    <!-- 1Depth layout -->
+    <!-- Default Layout -->
+    <definition name="loginLayout" template="/WEB-INF/tiles/layout/default.jsp">
+        <put-attribute name="title" value="Trip Store" />
+        <put-attribute name="header" value="/WEB-INF/tiles/layout/loginHeader.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/layout/footer.jsp" />
+    </definition>
+    
+    <!-- 1Depth default layout -->
     <definition name="*" extends="defaultLayout">
         <put-attribute name="body" value="/WEB-INF/view/{1}.jsp" />
     </definition>
     
-    <!-- 2Depth layout -->
+    <!-- 2Depth default layout -->
     <definition name="*/*" extends="defaultLayout">
         <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
     </definition>
     
-    <!-- 3Depth layout -->
+    <!-- 3Depth default layout -->
     <definition name="*/*/*" extends="defaultLayout">
         <put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}.jsp" />
+    </definition>
+    
+    <!-- 1Depth login layout -->
+    <definition name="*/*" extends="loginLayout">
+        <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
     </definition>
     
 </tiles-definitions>
