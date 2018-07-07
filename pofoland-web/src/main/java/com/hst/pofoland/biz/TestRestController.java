@@ -10,67 +10,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.hst.pofoland.common.components.AbstractController;
 import com.hst.pofoland.common.mvc.vo.CommonApiResponse;
 
 /**
- *  TEST
+ * 클래스에 설명을 적는다.
  *
- * @author 이현규
- * @since 2018. 6. 16.
+ * @author HG
+ * @since 2018. 7. 7.
  * @see
- * 
+ *
  */
-@Controller
-public class TestController extends AbstractController {
-
-    @GetMapping("")
-    public String root() {
-        return redirect("index");
-    }
-    
-    @GetMapping("index")
-    public String index() {
-        return "main/main";
-    }
-    
-    @GetMapping("aboutUs")
-    public String aboutUs() {
-        return "main/aboutUs";
-    }
-    
-    @GetMapping("pofolands")
-    public String pofolands(Model model) {
-        
-        return "main/pofolands";
-    }
-    
-    @GetMapping("fakelogin")
-    public void asd(HttpSession session) {
-
-    }
-    
-    @GetMapping("login")
-    public String login() {
-    	return "user/login";
-    }
-    
-    @GetMapping("register") 
-    public String register(){
-    	return "user/register";
-    }
+@RestController
+@RequestMapping("/api")
+public class TestRestController extends AbstractController {
     
     @GetMapping("testApi")
-    @ResponseBody
     public ResponseEntity<?> executeTestAPI() {
         // Sample Data 생성
         List<Map<String, Object>> dataList = new ArrayList<>();

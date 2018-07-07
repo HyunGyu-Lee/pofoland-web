@@ -36,7 +36,7 @@
     </definition>
     
     <!-- 1Depth login layout -->
-    <definition name="*/*" extends="loginLayout">
+    <definition name="login/*/*" extends="loginLayout">
         <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
     </definition>
     
