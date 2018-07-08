@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hst.pofoland.common.components.AbstractController;
+import com.hst.pofoland.common.components.CommonController;
 import com.hst.pofoland.common.mvc.vo.CommonApiResponse;
 
 /**
@@ -29,10 +28,10 @@ import com.hst.pofoland.common.mvc.vo.CommonApiResponse;
  */
 @RestController
 @RequestMapping("/api")
-public class TestRestController extends AbstractController {
+public class TestRestController extends CommonController {
     
     @GetMapping("testApi")
-    public ResponseEntity<?> executeTestAPI() {
+    public CommonApiResponse executeTestAPI() {
         // Sample Data 생성
         List<Map<String, Object>> dataList = new ArrayList<>();
         
@@ -45,10 +44,10 @@ public class TestRestController extends AbstractController {
         }
         
         // 응답
-        return buildResponseEntity(CommonApiResponse.builder()
+        return CommonApiResponse.builder()
                 .responseCode(HttpStatus.OK)
                 .payloads(dataList)
-                .message("testAPI 수행 완료").build());
+                .message("testAPI 수행 완료").build();
     }
     
 }

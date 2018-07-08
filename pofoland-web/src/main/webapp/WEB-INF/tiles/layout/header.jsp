@@ -10,7 +10,7 @@
             <!--Site Logo-->
             <div class="logo">
                 <a href="${ctx}/index">
-                    <img alt="Volvox" src="${ctx}/static/vendor/volvox/img/logo.png" data-logo-height="35">
+                    <img alt="Pofoland" src="${ctx}/static/assets/img/logo.png" data-logo-height="35">
                 </a>
             </div>
             <!--End Site Logo-->
@@ -42,8 +42,8 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">Pofolands<i class="fa fa-caret-down"></i></a>
                             <ul class="dropdown-menu">
-                                <li><a href="${ctx}/pofolands">All Portfolio</a></li>
-                                <li><a class="current" href="${ctx}/pofolands/me">My Pofoland Management</a></li>
+                                <li><a href="${ctx}/portfolio">All Portfolio</a></li>
+                                <li><a class="current" href="${ctx}/portfolio/managemet">My Pofoland Management</a></li>
                             </ul>
                         </li>
 
