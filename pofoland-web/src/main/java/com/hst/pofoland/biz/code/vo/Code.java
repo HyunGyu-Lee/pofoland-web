@@ -5,7 +5,7 @@
  */
 package com.hst.pofoland.biz.code.vo;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -54,7 +54,7 @@ public class Code {
     /**
      * 등록일시
      */
-    private Timestamp regDtm;
+    private Date regDtm;
     
     /**
      * 등록사용자번호
@@ -64,7 +64,7 @@ public class Code {
     /**
      * 수정일시
      */
-    private Timestamp updDtm;
+    private Date updDtm;
     
     /**
      * 수정사용자번호

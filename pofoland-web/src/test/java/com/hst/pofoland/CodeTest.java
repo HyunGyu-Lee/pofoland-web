@@ -20,6 +20,8 @@ import com.hst.pofoland.biz.code.service.CodeService;
 import com.hst.pofoland.biz.code.vo.Code;
 import com.hst.pofoland.biz.code.vo.GroupCode;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 공통코드 관련 테스트 케이스
  *
@@ -30,6 +32,7 @@ import com.hst.pofoland.biz.code.vo.GroupCode;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class CodeTest {
 
     @Autowired
@@ -48,12 +51,20 @@ public class CodeTest {
     }
     
     @Test
+    public void 공통코드_조회테스트() {
+        for (Code code : codeService.findByGroupCode("PF001")) {
+            log.debug("{}", code);
+        }
+    }
+    
+    @Test
     @Ignore
     public void 그룹코드_등록테스트() {
         codeService.createGroupCode(groupCode);
     }
     
     @Test
+    @Ignore
     public void 공통코드_등록테스트() {
         List<Code> codeList = new ArrayList<Code>();
         
