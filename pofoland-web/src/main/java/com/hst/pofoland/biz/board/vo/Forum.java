@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @since 2018. 7. 8.
  * @see
  */
-public class ForumVO implements Serializable {
+public class Forum implements Serializable {
 
 	/**
 	 * 

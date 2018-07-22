@@ -10,7 +10,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hst.pofoland.biz.board.vo.ForumVO;
+import com.hst.pofoland.biz.board.vo.Forum;
 
 /**
  * 커뮤니티 Dao
@@ -25,8 +25,8 @@ public class ForumDao {
 	
 	SqlSessionTemplate s;
 	
-	public List<ForumVO> selectForumList() {
-		List<ForumVO> resultList = s.selectList("selectForumList");
+	public List<Forum> selectForumList() {
+		List<Forum> resultList = s.selectList("selectForumList");
 		return resultList;
 	}
 }
