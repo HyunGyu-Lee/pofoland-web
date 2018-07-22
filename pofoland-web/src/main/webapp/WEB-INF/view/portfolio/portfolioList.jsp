@@ -11,12 +11,12 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="v-call-to-action-inner">
-                        <h1>Portfolio Four Columns</h1>
-                        <h3>This is an example of a portfolio entry.</h3>
+                        <h1>전체 포트폴리오 목록</h1>
+                        <h3>총 28495개</h3>
                     </div>
                 </div>
                 <div class="col-sm-3 ">
-                    <a class="btn v-btn v-second-dark pull-right" href="#"><i class="fa fa-cloud-download"></i><span>Buy Now</span></a>
+                    <a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolio/management"><span>내 포트폴리오</span></a>
                 </div>
             </div>
         </div>
@@ -178,11 +178,11 @@
                                 <div class="flexslider thumb-slider">
                                     <ul class="slides">
                                         <li><a href="portfolio-single-fw-slides.html" class="link-to-post">
-                                            <img src='img/static/bus-13.jpg' /></a></li>
+                                            <img src="${ctx}/static/vendor/volvox/img/static/bus-13.jpg" /></a></li>
                                         <li><a href="portfolio-single-fw-slides.html" class="link-to-post">
-                                            <img src='img/static/bus-15.jpg' /></a></li>
+                                            <img src="${ctx}/static/vendor/volvox/img/static/bus-15.jpg" /></a></li>
                                         <li><a href="portfolio-single-fw-slides.html" class="link-to-post">
-                                            <img src='img/static/bus-18.jpg' /></a></li>
+                                            <img src="${ctx}/static/vendor/volvox/img/static/bus-18.jpg" /></a></li>
                                     </ul>
                                 </div>
                             </figure>
