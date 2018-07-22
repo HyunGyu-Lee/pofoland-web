@@ -11,12 +11,12 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="v-call-to-action-inner">
-                        <h1>전체 포트폴리오 목록</h1>
-                        <h3>총 28495개</h3>
+                        <h1>내 포트폴리오 목록</h1>
+                        <h3>총 5개</h3>
                     </div>
                 </div>
                 <div class="col-sm-3 ">
-                    <a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolio/management"><span>내 포트폴리오</span></a>
+                    <a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolio/management"><span>새 포트폴리오 등록</span></a>
                 </div>
             </div>
         </div>
@@ -31,20 +31,20 @@
             <div class="col-sm-12">
 
                 <div class="v-portfolio-wrap">
+                    <!-- 포트폴리오 유형 -->
                     <div class="v-portfolio-filter-wrap row clearfix">
                         <ul class="v-portfolio-filter-nav bar-styling filtering col-sm-12 clearfix">
-                            <li class="all selected"><a data-filter="*" href="#"><span class="item-name">All</span><span class="item-count">0</span></a></li>
-                            <li><a href="#" class="beautiful" data-filter=".beautiful"><span class="item-name">Beautiful</span><span class="item-count">0</span></a></li>
-                            <li><a href="#" class="creation" data-filter=".creation"><span class="item-name">Creation</span><span class="item-count">0</span></a></li>
-                            <li><a href="#" class="business" data-filter=".business"><span class="item-name">Business</span><span class="item-count">0</span></a></li>
-                            <li><a href="#" class="nature" data-filter=".nature"><span class="item-name">Nature</span><span class="item-count">0</span></a></li>
-                            <li><a href="#" class="lifestyle" data-filter=".lifestyle"><span class="item-name">Lifestyle</span><span class="item-count">0</span></a></li>
+                            <li class="all selected" style="float: left;"><a data-filter="*" href="#"><span class="item-name">All</span><span class="item-count">0</span></a></li>
+                            
+                            <c:forEach items="${categoryList}" var="category">
+                                <li style="float: left;"><a href="#" class="${category.commCd}" data-filter=".${category.commCd}"><span class="item-name">${category.commCdNm}</span><span class="item-count">0</span></a></li>
+                            </c:forEach>
                         </ul>
                     </div>
-
+                    
+                    <!-- 포트폴리오 목록 -->
                     <ul class="v-portfolio-items v-portfolio-standard filterable-items col-4 row clearfix">
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   business">
+                        <li class="clearfix v-portfolio-item col-sm-3 standard 01">
                             <figure class="animated-overlay overlay-alt">
                                 <img src="${ctx}/static/vendor/volvox/img/static/bus-1.jpg" />
                                 <a href="portfolio-single.html" class="link-to-post"></a>
@@ -65,163 +65,9 @@
                                 <h5 class="v-portfolio-subtitle">Business</h5>
                             </div>
                         </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   lifestyle creation">
-                            <figure class="animated-overlay overlay-alt">
-                                <img src="${ctx}/static/vendor/volvox/img/static/bus-2.jpg" />
-                                <a href="portfolio-single.html" class="link-to-post"></a>
-                                <figcaption>
-                                    <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                </figcaption>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
-                                        <span class="like-count">21</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single.html" class="link-to-post">Cras Aliquam</a>
-                                </h3>
-                                <h5 class="v-portfolio-subtitle">Lifestyle</h5>
-                            </div>
-                        </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   creation">
-                            <figure class="animated-overlay overlay-alt">
-                                <img src="${ctx}/static/vendor/volvox/img/static/bus-17.jpg" />
-                                <a href="portfolio-single.html" class="link-to-post"></a>
-                                <figcaption>
-                                    <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                </figcaption>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a><span class="like-count">18</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single.html" class="link-to-post">Suspendisse Euismod</a>
-                                </h3>
-                                <h5 class="v-portfolio-subtitle">Creation</h5>
-                            </div>
-                        </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   lifestyle creation nature">
-                            <figure class="animated-overlay overlay-alt">
-                                <img src="${ctx}/static/vendor/volvox/img/static/bus-4.jpg" />
-                                <a href="portfolio-single.html" class="link-to-post"></a>
-                                <figcaption>
-                                    <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                </figcaption>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a><span class="like-count">10</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single.html" class="link-to-post">Proin Faucibus</a>
-                                </h3>
-                                <h5 class="v-portfolio-subtitle">Lifestyle</h5>
-                            </div>
-                        </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   beautiful nature">
-                            <figure class="animated-overlay overlay-alt">
-                                <img src="${ctx}/static/vendor/volvox/img/static/bus-5.jpg" />
-                                <a href="portfolio-single.html" class="link-to-post"></a>
-                                <figcaption>
-                                    <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                </figcaption>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
-                                        <span class="like-count">86</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single.html" class="link-to-post">Mauris Quis Sapien</a>
-                                </h3>
-                                <h5 class="v-portfolio-subtitle">Beautiful</h5>
-                            </div>
-                        </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   beautiful">
-                            <figure class="animated-overlay overlay-alt">
-                                <img src="${ctx}/static/vendor/volvox/img/static/bus-16.jpg" />
-                                <a href="portfolio-single.html" class="link-to-post"></a>
-                                <figcaption>
-                                    <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                </figcaption>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
-                                        <span class="like-count">67</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single.html" class="link-to-post">Faucibus Pretium</a></h3>
-                                <h5 class="v-portfolio-subtitle">Beautiful</h5>
-                            </div>
-                        </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   lifestyle creation">
-                            <figure class="animated-overlay overlay-alt">
-                                <div class="flexslider thumb-slider">
-                                    <ul class="slides">
-                                        <li><a href="portfolio-single-fw-slides.html" class="link-to-post">
-                                            <img src="${ctx}/static/vendor/volvox/img/static/bus-13.jpg" /></a></li>
-                                        <li><a href="portfolio-single-fw-slides.html" class="link-to-post">
-                                            <img src="${ctx}/static/vendor/volvox/img/static/bus-15.jpg" /></a></li>
-                                        <li><a href="portfolio-single-fw-slides.html" class="link-to-post">
-                                            <img src="${ctx}/static/vendor/volvox/img/static/bus-18.jpg" /></a></li>
-                                    </ul>
-                                </div>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a><span class="like-count">73</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single-fw-slides.html" class="link-to-post">Fringilla Suscipit</a>
-                                </h3>
-                                <h5 class="v-portfolio-subtitle">Lifestyle</h5>
-                            </div>
-                        </li>
-
-                        <li class="clearfix v-portfolio-item col-sm-3 standard   nature">
-                            <figure class="animated-overlay overlay-alt">
-                                <img src="${ctx}/static/vendor/volvox/img/static/bus-7.jpg" />
-                                <a href="portfolio-single-fw-slides.html" class="link-to-post"></a>
-                                <figcaption>
-                                    <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                </figcaption>
-                            </figure>
-                            <div class="v-portfolio-item-info">
-                                <div class="like-info">
-                                    <div class="like-info-wrap">
-                                        <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
-                                        <span class="like-count">46</span>
-                                    </div>
-                                </div>
-                                <h3 class="v-portfolio-item-title">
-                                    <a href="portfolio-single-fw-slides.html" class="link-to-post">Duis a Nisl</a>
-                                </h3>
-                                <h5 class="v-portfolio-subtitle">Nature</h5>
-                            </div>
-                        </li>
                     </ul>
-
+                    
+                    <!-- 페이지 네비게이션 -->
                     <ul class="pagination pagination-lg">
                         <li class="active"><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
@@ -229,7 +75,6 @@
                         <li><a href="#">Next <i class="fa fa-angle-right"></i></a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>

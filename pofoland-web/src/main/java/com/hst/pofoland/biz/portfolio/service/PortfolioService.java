@@ -5,7 +5,13 @@
  */
 package com.hst.pofoland.biz.portfolio.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.hst.pofoland.biz.portfolio.dao.PortfolioDAO;
+import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 
 /**
  * 포트폴리오 관리 Service
@@ -18,4 +24,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PortfolioService {
 
+    /**
+     * 포트폴리오 DAO
+     */
+    private PortfolioDAO portfolioDao;
+    
+    @Autowired
+    public PortfolioService(PortfolioDAO portfolioDao) {
+        this.portfolioDao = portfolioDao;
+    }
+    
+    public List<Portfolio> findAll(Portfolio portfolioCondition) {
+        return portfolioDao.findList(portfolioCondition);
+    }
+    
 }
