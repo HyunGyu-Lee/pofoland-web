@@ -8,11 +8,10 @@ package com.hst.pofoland.biz.board.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hst.pofoland.biz.board.dao.ForumDao;
+import com.hst.pofoland.biz.board.dao.ForumDAO;
 import com.hst.pofoland.biz.board.vo.Forum;
 
 /**
@@ -25,13 +24,13 @@ import com.hst.pofoland.biz.board.vo.Forum;
 @Service("forumService")
 public class ForumService {
 	
-	@Resource(name="forumDao")
-	ForumDao forumDao;	// 게시판 Dao
+	@Autowired
+	ForumDAO forumDao;	// 게시판 Dao
 	
 	public List<Forum> selectForumList() {
 		List<Forum> resultList = new ArrayList<Forum>();
 		
-		resultList = forumDao.selectForumList();
+		resultList = forumDao.findList();
 		
 		return resultList;
 	}

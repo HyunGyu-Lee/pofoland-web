@@ -7,10 +7,13 @@ package com.hst.pofoland.biz.board.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.hst.pofoland.biz.board.vo.Forum;
+import com.hst.pofoland.biz.code.vo.Code;
+import com.hst.pofoland.common.components.CommonDAO;
 
 /**
  * 커뮤니티 Dao
@@ -20,13 +23,14 @@ import com.hst.pofoland.biz.board.vo.Forum;
  * @see
  */
 
-@Repository("forumDao")
-public class ForumDao {
+@Mapper
+public interface ForumDAO extends CommonDAO<String, Code> {
 	
-	SqlSessionTemplate s;
-	
-	public List<Forum> selectForumList() {
-		List<Forum> resultList = s.selectList("selectForumList");
-		return resultList;
-	}
+	/**
+	 * FORUM 게시글목록 조회
+	 * 
+	 * @param : N/A
+	 * @return: List
+	 */
+	public List<Forum> findList();
 }
