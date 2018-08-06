@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.common.components;
+package com.hst.pofoland.common.mvc.dao;
 
 import java.util.List;
 

@@ -7,9 +7,9 @@ package com.hst.pofoland.biz.code.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.hst.pofoland.biz.code.vo.Code;
-import com.hst.pofoland.biz.code.vo.GroupCode;
-import com.hst.pofoland.common.components.CommonDAO;
+import com.hst.pofoland.biz.code.domain.Code;
+import com.hst.pofoland.biz.code.domain.GroupCode;
+import com.hst.pofoland.common.mvc.dao.CommonDAO;
 
 /**
  * 공통코드 관련 DAO

@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.biz.code.vo;
+package com.hst.pofoland.biz.code.domain;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.hst.pofoland.common.components;
+package com.hst.pofoland.common.mvc.web;
 
 /**
  * 포폴랜드 공통 추상 컨트롤러

@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.biz.portfolio.controller;
+package com.hst.pofoland.biz.portfolio.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hst.pofoland.biz.code.service.CodeService;
 import com.hst.pofoland.biz.portfolio.service.PortfolioService;
-import com.hst.pofoland.common.components.CommonController;
+import com.hst.pofoland.common.mvc.web.CommonController;
 
 /**
  * 포트폴리오 관리 Controller

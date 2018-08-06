@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.biz.portfolio.controller;
+package com.hst.pofoland.biz.portfolio.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

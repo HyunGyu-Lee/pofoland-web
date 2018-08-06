@@ -8,7 +8,7 @@ package com.hst.pofoland.biz.portfolio.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
-import com.hst.pofoland.common.components.CommonDAO;
+import com.hst.pofoland.common.mvc.dao.CommonDAO;
 
 /**
  * 포트폴리오 관리 DAO
