@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.menu.dao.MenuDAO;
 import com.hst.pofoland.biz.menu.domain.Menu;
+import com.hst.pofoland.common.utils.CollectionUtils;
 
 /**
  * 메뉴 서비스
@@ -37,7 +38,7 @@ public class MenuService {
     public List<Menu> findMenusHierarchy() {
         List<Menu> flatMenus = menuDAO.findList(new Menu());
         
-        return flatMenus;
+        return CollectionUtils.flatToHierarchy(flatMenus, 0, 1);
     }
     
 }

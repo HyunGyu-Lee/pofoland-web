@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <!-- Menu Attribue -->
@@ -40,9 +40,10 @@
                 <!--Main Menu-->
                 <nav class="nav-main mega-menu">
                     <ul class="nav nav-pills nav-main" id="mainMenu">
-                        <c:forEach var="menu" items="${menus}">
+                        <c:forEach var="oneDepthMenu" items="${menus}">
                             <li class="dropdown">
-                                <a class="dropdown-toggle" href="${menu.menuUrl}">${menu.menuNm}</a>
+                                <a class="dropdown-toggle" href="${oneDepthMenu.menuUrl}">${oneDepthMenu.menuNm}</a>
+                                
                             </li>
                         </c:forEach>
                         
