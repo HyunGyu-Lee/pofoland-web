@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hst.pofoland.biz.board.service.ForumService;
-import com.hst.pofoland.biz.board.vo.ForumVO;
+import com.hst.pofoland.biz.board.vo.Forum;
 
 /**
  * 커뮤니티 Controller
@@ -34,7 +34,7 @@ public class ForumController {
 	
 	@GetMapping("/selectForumList")
 	public String selectForumList(Model model) {
-		List<ForumVO> resultList = new ArrayList<ForumVO>();
+		List<Forum> resultList = new ArrayList<Forum>();
 		
 		resultList = forumService.selectForumList();
 		model.addAttribute("forumList", resultList);
