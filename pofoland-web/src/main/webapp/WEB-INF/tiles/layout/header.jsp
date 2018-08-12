@@ -51,7 +51,7 @@
                                 </ul>
                             </li>
                         </c:forEach>
-                        
+                        <li class="user-menu"><a href="/user/login">로그인</a></li>
                         <%--
                         <li class="dropdown active">
                             <a class="dropdown-toggle" href="#">Profiles</a>

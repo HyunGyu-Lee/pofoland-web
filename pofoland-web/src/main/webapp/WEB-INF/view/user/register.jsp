@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<script></
+
 <div class="padding-100 body-sign">
     <div class="container">
         <div class="row">
@@ -19,40 +23,39 @@
 
             <div class="col-sm-5">
                 <form class="signup">
+                    
                     <div class="form-group">
-                        <label>E-mail Address <span class="required">*</span></label>
-                        <input type="text" value="" placeholder="E-mail Address" maxlength="100" class="form-control" name="website" id="website">
+                        <label>이메일 <span class="required">*</span></label>
+                        <input type="text" id="website" class="form-control" name="website" value=""  placeholder="이메일을 입력하여 주세요." maxlength="100">
                     </div>
                     
-                    
-
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
-                                <label>Password <span class="required">*</span></label>
-                                <input name="pwd" type="password" placeholder="Password" class="form-control input-lg">
+                                <label>비밀번호 <span class="required">*</span></label>
+                                <input name="pwd" type="password" placeholder="비밀번호를 입력하여 주세요." class="form-control input-lg">
                             </div>
                             <div class="col-sm-6">
-                                <label>Password Confirm <span class="required">*</span></label>
-                                <input name="pwd_confirm" placeholder="Password Confirm" type="password" class="form-control input-lg">
+                                <label>비밀번호 확인 <span class="required">*</span></label>
+                                <input name="pwd_confirm" placeholder="비밀번호를 한번 더 입력하주세요." type="password" class="form-control input-lg">
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label>Nick Name <span class="required">*</span></label>
-                        <input type="text" value="" placeholder="Nick Name" maxlength="100" class="form-control" name="name" id="name">
+                        <label>닉네임<span class="required">*</span></label>
+                        <input type="text" value="" placeholder="닉네임을 입력하여 주세요." maxlength="100" class="form-control" name="name" id="name">
                     </div>
 
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="checkbox-custom checkbox-default">
                                 <input id="RememberMe" name="rememberme" type="checkbox">
-                                <label for="AgreeTerms">I agree with <a class="v-link" href="#">terms of use</a></label>
+                                <label for="RememberMe">개인정보 사용 동의하시겠습니까?</label>
                             </div>
                         </div>
                         <div class="col-sm-4 pull-right">
-                            <button type="submit" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">Sign In</button>
+                            <button type="submit" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">회원가입</button>
                         </div>
                     </div>
 
@@ -66,7 +69,7 @@
                     </div>
 
                     <p class="text-center pull-top-small">
-                        Don't have an account yet? <a href="pages-signup.html">Sign Up!</a>
+                       	 <a href="/user/login">로그인 페이지로 돌아가기</a>
                     </p>
                 </form>
             </div>
