@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- Menu Attribue -->
 <tiles:importAttribute name="menus" />
@@ -40,14 +40,20 @@
                 <!--Main Menu-->
                 <nav class="nav-main mega-menu">
                     <ul class="nav nav-pills nav-main" id="mainMenu">
+                        <!-- TODO Child메뉴 recursive하게 호출하는 방법찾아 변경할 것 -->
                         <c:forEach var="oneDepthMenu" items="${menus}">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" href="${oneDepthMenu.menuUrl}">${oneDepthMenu.menuNm}</a>
-                                
+                                <ul class="dropdown-menu">
+                                    <c:forEach var="twoDepthMenu" items="${oneDepthMenu.child}">
+                                        <li><a href="${twoDepthMenu.menuUrl}">${twoDepthMenu.menuNm}</a></li>
+                                    </c:forEach>
+                                </ul>
                             </li>
                         </c:forEach>
                         
-                        <%-- <li class="dropdown active">
+                        <%--
+                        <li class="dropdown active">
                             <a class="dropdown-toggle" href="#">Profiles</a>
                         </li>
                         <li class="dropdown">
