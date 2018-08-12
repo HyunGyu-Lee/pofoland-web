@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.hst.pofoland.biz.code.dao.CodeDAO">
+
+    <!-- 공통그룹코드 등록 -->
+    <insert id="createGroupCode">
+        INSERT INTO CO_COMM_GRP_CD (
+            COMM_GRP_CD,
+            COMM_GRP_CD_NM,
+            COMM_GRP_CD_CONT,
+            REG_DTM,
+            REG_USER_NO,
+            UPD_DTM,
+            UPD_USER_NO
+        ) VALUES (
+            #{commGrpCd},
+            #{commGrpCdNm},
+            #{commGrpCdCont},
+            NOW(),
+            #{regUserNo},
+            NOW(),
+            #{updUserNo}
+        )
+    </insert>
+
+    <!-- 공통코드 등록 -->
+    <insert id="create">
+        INSERT INTO CO_COMM_CD (
+            COMM_GRP_CD,
+            COMM_CD,
+            COMM_CD_NM,
+            COMM_CD_CONT,
+            USE_YN,
+            REG_DTM,
+            REG_USER_NO,
+            UPD_DTM,
+            UPD_USER_NO
+        ) VALUES (
+            #{commGrpCd},
+            #{commCd},
+            #{commCdNm},
+            #{commCdCont},
+            #{useYn},
+            NOW(),
+            #{regUserNo},
+            NOW(),
+            #{updUserNo}
+        )
+    </insert>
+    
+    
+    
+    <!-- 공통코드 목록 조회 -->
+    <select id="findList" resultType="Code">
+        SELECT COMM_GRP_CD,
+               COMM_CD,
+               COMM_CD_NM,
+               COMM_CD_CONT,
+               USE_YN,
+               REG_DTM,
+               REG_USER_NO,
+               UPD_DTM,
+               UPD_USER_NO
+          FROM CO_COMM_CD
+         WHERE USE_YN = 'Y'
+           <if test="commGrpCd != null and commGrpCd != ''">
+           AND COMM_GRP_CD = #{commGrpCd}
+           </if>
+    </select>
+    
+</mapper>

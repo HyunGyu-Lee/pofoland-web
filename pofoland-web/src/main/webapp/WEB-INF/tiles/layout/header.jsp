@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- Menu Attribue -->
+<tiles:importAttribute name="menus" />
 
 <!--Header-->
 <div class="header-container">
@@ -9,8 +13,8 @@
 
             <!--Site Logo-->
             <div class="logo">
-                <a href="index.html">
-                    <img alt="Volvox" src="${ctx}/static/vendor/volvox/img/logo.png" data-logo-height="35">
+                <a href="${ctx}/index">
+                    <img alt="Pofoland" src="${ctx}/static/assets/img/logo.png" data-logo-height="35">
                 </a>
             </div>
             <!--End Site Logo-->
@@ -36,155 +40,35 @@
                 <!--Main Menu-->
                 <nav class="nav-main mega-menu">
                     <ul class="nav nav-pills nav-main" id="mainMenu">
+                        <!-- TODO Child메뉴 recursive하게 호출하는 방법찾아 변경할 것 -->
+                        <c:forEach var="oneDepthMenu" items="${menus}">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="${oneDepthMenu.menuUrl}">${oneDepthMenu.menuNm}</a>
+                                <ul class="dropdown-menu">
+                                    <c:forEach var="twoDepthMenu" items="${oneDepthMenu.child}">
+                                        <li><a href="${twoDepthMenu.menuUrl}">${twoDepthMenu.menuNm}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </li>
+                        </c:forEach>
+                        
+                        <%--
                         <li class="dropdown active">
-                            <a class="dropdown-toggle" href="#">Home <i class="fa fa-caret-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">Home - Variation 1</a></li>
-                                <li><a class="current" href="index-2.html">Home - Variation 2</a></li>
-                                <li><a href="index-3.html">Home - Variation 3</a></li>
-                                <li><a href="index-4.html">Home - Variation 4</a></li>
-                                <li><a href="index-5.html">Home - Variation 5 <span class="v-menu-item-info bg-warning">Boxed</span></a></li>
-                                <li><a href="index-6.html">Home - Variation 6</a></li>
-                                <li><a href="index-7.html">Home - Variation 7</a></li>
-                                <li><a href="index-8.html">Home - Variation 8</a></li>
-                                <li><a href="index-9.html">Home - Variation 9 <span class="v-menu-item-info bg-info">Flat</span></a></li>
-                                <li><a href="index-10.html">Home - Variation 10</a></li>
-                                <li><a href="index-11.html">Home - Variation 11</a></li>
-                                <li><a href="index-12.html">Home - Variation 12</a></li>
-                                <li><a href="index-13.html">Home - Variation 13</a></li>
-                                <li><a href="index-14.html">Home - Variation 14</a></li>
-                                <li><a href="page-landing.html">Home - Variation 15 <span class="v-menu-item-info bg-success">Landing</span></a></li>
-                            </ul>
+                            <a class="dropdown-toggle" href="#">Profiles</a>
                         </li>
-                        <li class="dropdown mega-menu-item mega-menu-fullwidth">
-                            <a class="dropdown-toggle" href="#">Pages <i class="fa fa-caret-down"></i></a>
-                            <ul class="dropdown-menu three-columns">
-                                <li>
-                                    <div class="mega-menu-content">
-                                        <div class="row">
-                                            <div class="menu-logo-wrap">
-                                                <img class="menu-logo" src="${ctx}/static/vendor/volvox/img/menu-logo.png" />
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <span class="mega-menu-sub-title">Example Pages</span>
-                                                        <ul class="sub-menu">
-                                                            <li><a href="page-about-us.html">About Us</a></li>
-                                                            <li><a href="page-about-us-2.html">About Us - v2</a></li>
-                                                            <li><a href="page-about-us-3.html">About Us - v3</a></li>
-                                                            <li><a href="page-about-me.html">About Me</a></li>
-                                                            <li><a href="page-about-me-2.html">About Me - v2</a></li>
-                                                            <li><a href="page-about-me-3.html">About Me - v3</a></li>
-                                                            <li><a href="page-services.html">Service Page</a></li>
-                                                            <li><a href="page-services.html">Service Page - v2</a></li>
-
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <span class="mega-menu-sub-title">Special Pages</span>
-                                                        <ul class="sub-menu">
-                                                            <li><a href="page-careers.html">Careers Page</a></li>
-                                                            <li><a href="page-search-result.html">Search Result Page</a></li>
-                                                            <li><a href="page-landing.html">Landing Page <span class="v-menu-item-info bg-success">Hot</span></a></li>
-                                                            <li><a href="page-privacy.html">Privacy Page</a></li>
-                                                            <li><a href="page-parallax.html">Parallax Page</a></li>
-                                                            <li><a href="page-help.html">Help Page</a></li>
-                                                            <li><a href="page-author-page.html">Author Page</a></li>
-                                                            <li><a href="page-about-us-3.html">Custom Header Page</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <span class="mega-menu-sub-title">Common Pages</span>
-                                                        <ul class="sub-menu">
-                                                            <li><a href="page-faq.html">FAQ Page</a></li>
-                                                            <li><a href="page-meet-team.html">Meet The Team</a></li>
-                                                            <li><a href="page-right-sidebar.html">Right Sidebar Page</a></li>
-                                                            <li><a href="page-left-sidebar.html">Left Sidebar Page</a></li>
-                                                            <li><a href="page-full-width.html">Full width Page</a></li>
-                                                            <li><a href="page-login.html">Login Page</a></li>
-                                                            <li><a href="page-register.html">Registration Page</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <span class="mega-menu-sub-title">Other Pages</span>
-                                                        <ul class="sub-menu">
-                                                            <li><a href="contact-us.html">Contact Us</a></li>
-                                                            <li><a href="contact-us-2.html">Contact Us - v2</a></li>
-                                                            <li><a href="page-pricing.html">Page Pricing</a></li>
-                                                            <li><a href="page-pricing.html">Page Pricing v2</a></li>
-                                                            <li><a href="page-404.html">404 Error</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">Pofolands<i class="fa fa-caret-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="${ctx}/portfolio">All Portfolio</a></li>
+                                <li><a class="current" href="${ctx}/portfolio/managemet">My Pofoland Management</a></li>
                             </ul>
                         </li>
 
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="#">Features <i class="fa fa-caret-down"></i></a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
-                                    <a href="#">Sliders</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="dropdown-submenu">
-                                            <a href="portfolio-single.html">Master Slider</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="index-8.html">Full Width Slider</a></li>
-                                                <li><a href="index-12.html">Full Screen Slider</a></li>
-                                                <!--<li><a href="indexx-10.html">Boxed Slider</a></li>-->
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown-submenu">
-                                            <a href="#">Revolution Slider</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="index-12.html">Full Width Slider</a></li>
-                                                <li><a href="index-6.html">Full Screen Slider</a></li>
-                                                <li><a href="index-10.html">Boxed Slider</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Footers</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="page-404.html#footer">Footer Variation - v1</a></li>
-                                        <li><a href="page-faq.html#footer">Footer Variation - v2</a></li>
-                                        <li><a href="page-services.html#footer">Footer Variation - v3</a></li>
-                                        <li><a href="index-11.html#footer">Footer Variation - v4</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#">Headers</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index-9.html">Transparent Header</a></li>
-                                        <li><a href="index-11.html">Semi Transparent Header</a></li>
-                                        <!--<li><a href="index-7.html">Transparent With Top Header</a></li>-->
-                                        <li><a href="index-4.html">Header With Top Header</a></li>
-                                        <li><a href="index-6.html">Floating Header <span class="v-menu-item-info">Hot</span></a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="element-maps.html">Google Maps</a></li>
-                            </ul>
+                            <a class="dropdown-toggle" href="#">Jobs</a>
                         </li>
                         <li class="dropdown mega-menu-item mega-menu-fullwidth">
-                            <a class="dropdown-toggle" href="#">Elements <i class="fa fa-caret-down"></i></a>
+                            <a class="dropdown-toggle" href="#">Community<i class="fa fa-caret-down"></i></a>
                             <ul class="dropdown-menu three-columns">
                                 <li>
                                     <div class="mega-menu-content no-smx">
@@ -327,7 +211,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="contact-us.html">Contact</a>
                             <ul class="dropdown-menu">
-                                <li><a href="contact-us.html"><i class="fa fa-send-o"></i>Contact Us - v1</a></li>
+                                <li><a href="${ctx}/aboutUs"><i class="fa fa-send-o"></i>Contact Us - v1</a></li>
                                 <li><a href="contact-us-2.html"><i class="fa fa-send-o"></i>Contact Us - v2</a></li>
                             </ul>
                         </li>
@@ -337,7 +221,7 @@
                                 <li><a href="changelog.html"><i class="fa fa-terminal"></i>Changelog</a></li>
                                 <li><a href="theme-plugins.html"><i class="fa fa-star-o"></i>Theme Plugins</a></li>
                             </ul>
-                        </li>
+                        </li> --%>
 
                     </ul>
                 </nav>

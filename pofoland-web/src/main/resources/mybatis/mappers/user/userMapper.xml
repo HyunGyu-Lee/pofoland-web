@@ -5,8 +5,4 @@
     
 <mapper namespace="com.hst.pofoland.biz.delete.UserMapper">
 
-    <select id="findAll">
-    
-    </select>
-
 </mapper>
