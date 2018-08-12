@@ -51,7 +51,6 @@
                                 </ul>
                             </li>
                         </c:forEach>
-                        
                         <%--
                         <li class="dropdown active">
                             <a class="dropdown-toggle" href="#">Profiles</a>

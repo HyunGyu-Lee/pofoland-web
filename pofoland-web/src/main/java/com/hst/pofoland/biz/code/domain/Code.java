@@ -7,9 +7,11 @@ package com.hst.pofoland.biz.code.domain;
 
 import com.hst.pofoland.common.mvc.domain.BasicDomain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 공통코드 Vo
@@ -22,6 +24,8 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Code extends BasicDomain {
 
     private static final long serialVersionUID = 8656166742023128892L;

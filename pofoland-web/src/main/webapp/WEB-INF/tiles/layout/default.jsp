@@ -36,25 +36,6 @@
         
         <!-- Custom CSS -->
         <link rel="stylesheet" href="${ctx}/static/vendor/volvox/css/custom.css">
-    </head>
-    <body>
-        <div id="wrapper">
-            <!-- 페이지 헤더 -->
-            <tiles:insertAttribute name="header" />
-    
-            <div id="container">
-                <!-- 페이지 본문 -->            
-                <tiles:insertAttribute name="body" />
-            
-                <!-- 페이지 푸터 -->        
-                <tiles:insertAttribute name="footer" />
-            </div>
-            
-            <!--// BACK TO TOP //-->
-            <div id="back-to-top" class="animate-top"><i class="fa fa-angle-up"></i></div>
-        </div>
-        
-        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
         
         <!-- Libs -->
         <script src="${ctx}/static/vendor/volvox/js/jquery.min.js"></script>
@@ -76,5 +57,24 @@
         <script src="${ctx}/static/vendor/volvox/js/theme-core.js"></script>
         
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- 페이지 헤더 -->
+            <tiles:insertAttribute name="header" />
+    
+            <div id="container">
+                <!-- 페이지 본문 -->            
+                <tiles:insertAttribute name="body" />
+            
+                <!-- 페이지 푸터 -->        
+                <tiles:insertAttribute name="footer" />
+            </div>
+            
+            <!--// BACK TO TOP //-->
+            <div id="back-to-top" class="animate-top"><i class="fa fa-angle-up"></i></div>
+        </div>
+        
+        <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
     </body>
 </html>
