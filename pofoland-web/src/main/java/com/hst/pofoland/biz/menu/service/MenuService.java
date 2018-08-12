@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.menu.dao.MenuDAO;
 import com.hst.pofoland.biz.menu.domain.Menu;
+import com.hst.pofoland.common.mvc.service.CommonService;
 import com.hst.pofoland.common.utils.CollectionUtils;
 
 /**
@@ -21,7 +22,7 @@ import com.hst.pofoland.common.utils.CollectionUtils;
  *
  */
 @Service
-public class MenuService {
+public class MenuService extends CommonService {
 
     private MenuDAO menuDAO;
 

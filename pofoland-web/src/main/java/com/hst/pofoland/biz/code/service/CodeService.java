@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.hst.pofoland.biz.code.dao.CodeDAO;
 import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.code.domain.GroupCode;
+import com.hst.pofoland.common.mvc.service.CommonService;
 
 /**
  * 공통코드 서비스
@@ -23,7 +24,7 @@ import com.hst.pofoland.biz.code.domain.GroupCode;
  *
  */
 @Service
-public class CodeService {
+public class CodeService extends CommonService {
 
     private CodeDAO codeDao;
     

@@ -5,12 +5,11 @@
  */
 package com.hst.pofoland.biz.code.domain;
 
-import java.util.Date;
+import com.hst.pofoland.common.mvc.domain.BasicDomain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 /**
  * 공통코드 Vo
@@ -21,10 +20,11 @@ import lombok.NoArgsConstructor;
  *
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Code {
+public class Code extends BasicDomain {
+
+    private static final long serialVersionUID = 8656166742023128892L;
 
     /**
      * 그룹코드
@@ -50,25 +50,5 @@ public class Code {
      * 공통코드 사용여부
      */
     private String useYn;
-    
-    /**
-     * 등록일시
-     */
-    private Date regDtm;
-    
-    /**
-     * 등록사용자번호
-     */
-    private Integer regUserNo;
-    
-    /**
-     * 수정일시
-     */
-    private Date updDtm;
-    
-    /**
-     * 수정사용자번호
-     */
-    private Integer updUserNo;
     
 }
