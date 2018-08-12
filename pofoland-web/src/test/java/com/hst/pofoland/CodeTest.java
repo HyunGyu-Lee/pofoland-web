@@ -16,9 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.hst.pofoland.biz.code.domain.Code;
+import com.hst.pofoland.biz.code.domain.GroupCode;
 import com.hst.pofoland.biz.code.service.CodeService;
-import com.hst.pofoland.biz.code.vo.Code;
-import com.hst.pofoland.biz.code.vo.GroupCode;
 
 import lombok.extern.slf4j.Slf4j;
 

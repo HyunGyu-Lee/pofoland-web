@@ -1,8 +1,9 @@
-package com.hst.pofoland.config;
+package com.hst.pofoland.config.tiles;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+import org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 
@@ -14,6 +15,7 @@ public class TilesConfig {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setDefinitions("/WEB-INF/tiles/tiles-definition.xml");
         tilesConfigurer.setCheckRefresh(true);
+        tilesConfigurer.setPreparerFactoryClass(SimpleSpringPreparerFactory.class);
         
         return tilesConfigurer;
     }

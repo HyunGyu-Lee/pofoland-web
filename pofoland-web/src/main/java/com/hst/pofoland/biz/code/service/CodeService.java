@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.code.dao.CodeDAO;
-import com.hst.pofoland.biz.code.vo.Code;
-import com.hst.pofoland.biz.code.vo.GroupCode;
+import com.hst.pofoland.biz.code.domain.Code;
+import com.hst.pofoland.biz.code.domain.GroupCode;
 
 /**
  * 공통코드 서비스

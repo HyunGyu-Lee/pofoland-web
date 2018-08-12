@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.common.mvc.vo;
+package com.hst.pofoland.common.mvc.domain;
 
 import org.springframework.http.HttpStatus;
 
