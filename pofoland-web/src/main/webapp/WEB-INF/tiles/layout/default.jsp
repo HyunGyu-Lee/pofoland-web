@@ -37,6 +37,9 @@
         <!-- Custom CSS -->
         <link rel="stylesheet" href="${ctx}/static/vendor/volvox/css/custom.css">
         
+        <!-- Form Styling -->
+        <link href="${ctx}/static/vendor/volvox/css/v-form-element.css" rel="stylesheet" />
+        
         <!-- Libs -->
         <script src="${ctx}/static/vendor/volvox/js/jquery.min.js"></script>
         <script src="${ctx}/static/vendor/volvox/js/bootstrap.min.js"></script>
@@ -54,8 +57,6 @@
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     
-        <script src="${ctx}/static/vendor/volvox/js/theme-core.js"></script>
-        
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
     </head>
     <body>

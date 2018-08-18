@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hst.pofoland.biz.code.domain.Code;
-import com.hst.pofoland.biz.code.service.CodeService;
 import com.hst.pofoland.biz.portfolio.service.PortfolioService;
 import com.hst.pofoland.common.mvc.web.CommonController;
 
@@ -49,14 +48,12 @@ public class PortfolioController extends CommonController {
     
     @GetMapping("management")
     public String pofolands(Model model) {
-
-        
-        return "portfolio/portfolioList";
+        return "portfolio/list";
     }
     
-    @GetMapping("new")
+    @GetMapping("create")
     public String newPortfolio() {
-        return "portfolio/newPortfolio";
+        return "portfolio/create";
     }
     
 }
