@@ -5,9 +5,10 @@
  */
 package com.hst.pofoland.biz.code.domain;
 
-import java.util.Date;
+import com.hst.pofoland.common.mvc.domain.BasicDomain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 공통그룹코드 Vo
@@ -18,7 +19,10 @@ import lombok.Data;
  *
  */
 @Data
-public class GroupCode {
+@EqualsAndHashCode(callSuper = false)
+public class GroupCode extends BasicDomain {
+
+    private static final long serialVersionUID = -3773654902608904456L;
 
     /**
      * 공통그룹코드
@@ -34,25 +38,5 @@ public class GroupCode {
      * 공통그룹코드 설명
      */
     private String commGrpCdCont;
-    
-    /**
-     * 등록일시
-     */
-    private Date regDtm;
-    
-    /**
-     * 등록사용자번호
-     */
-    private Integer regUserNo;
-    
-    /**
-     * 수정일시
-     */
-    private Date updDtm;
-    
-    /**
-     * 수정사용자번호
-     */
-    private Integer updUserNo;
     
 }

@@ -9,7 +9,7 @@
 }) (this, function () {
     var MessageBox = {};
     
-    var title = "TripStore";
+    var title = "포폴랜드";
     var iconSuccess = '<i class="fa fa-check"></i> ';
     var iconInformation = '<i class="fa fa-info-circle text-info"></i> ';
     var iconWarning = '<i class="fa fa-exclamation-triangle text-warning"></i> ';
