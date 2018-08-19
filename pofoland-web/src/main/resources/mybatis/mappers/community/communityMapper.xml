@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.hst.pofoland.biz.community.dao.CommunityDAO">
+    
+    <!-- Community 게시글 목록 조회 -->
+    <select id="findList" resultType="Community">
+   		SELECT
+        	 T1.BOARD_NO		AS	boardNo		/* 게시글번호 */
+        	,T1.BOARD_SE_CD		AS	boardSeCd 	/* 게시글구분코드 */
+        	,T1.BOARD_TTL		AS	boardTtl	/* 게시글제목 */
+        	,T1.BOARD_CONT		AS	boardCont	/* 게시글내용 */
+        	,T1.REG_DTM			AS	regDtm		/* 등록일시 */
+        	,T1.REG_USER_NO		AS	regUserNo	/* 등록사용자번호 */
+            ,T2.USER_ID			AS	regUserId	/* 등록사용자ID */
+        	,T1.UPD_DTM			AS	updDtm		/* 수정일시 */
+        	,T1.UPD_USER_NO		AS	updUserNo	/* 수정사용자번호 */
+        	,T1.BOARD_RFNC_CNT	AS	boardRfncCnt/* 조회수 */
+        	,T1.DEL_YN			AS	delYn		/* 삭제여부 */
+         FROM
+         	CM_BOARD 	T1			/* 게시판T */
+			INNER JOIN MB_USER T2	/* 사용자T */
+            ON T1.REG_USER_NO = T2.USER_NO
+         <where>
+         	<if test='boardSeCd != null and boardSeCd != ""'>
+         	AND BOARD_SE_CD = #{boardSeCd}	/* 게시글구분코드 */
+         	</if>
+         	AND T1.DEL_YN = 'N'	/* 삭제여부 N */
+         </where> 
+    </select>
+    
+    <!-- Community 게시글 상세 조회 -->
+    <select id="findOne" parameterType="Community" resultType="Community">
+    	SELECT
+    		 T1.BOARD_NO		AS	boardNo		/* 게시글번호 */
+    		,T1.BOARD_SE_CD		AS	boardSeCd 	/* 게시글구분코드 */
+        	,T1.BOARD_TTL		AS	boardTtl	/* 게시글제목 */
+        	,T1.BOARD_CONT		AS	boardCont	/* 게시글내용 */
+        	,T1.REG_DTM			AS	regDtm		/* 등록일시 */
+        	,T1.REG_USER_NO		AS	regUserNo	/* 등록사용자번호 */
+            ,T2.USER_ID			AS	regUserId	/* 등록사용자ID */
+        	,T1.UPD_DTM			AS	updDtm		/* 수정일시 */
+        	,T1.UPD_USER_NO		AS	updUserNo	/* 수정사용자번호 */
+        	,T1.BOARD_RFNC_CNT	AS	boardRfncCnt/* 조회수 */
+        	,T1.DEL_YN			AS	delYn		/* 삭제여부 */
+        FROM
+         	CM_BOARD 	T1			/* 게시판T */
+			INNER JOIN MB_USER T2	/* 사용자T */
+            ON T1.REG_USER_NO = T2.USER_NO
+        <where>
+        	<if test='boardNo != null and boardNo != "" and boardNo > 0'>
+        	AND T1.BOARD_NO = #{boardNo}	/* 게시글번호 */
+        	</if>
+        	AND T1.DEL_YN = 'N'		/* 삭제여부 N */
+        </where>
+    </select>
+    
+</mapper>

@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.biz.board.vo;
+package com.hst.pofoland.biz.community.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Forum implements Serializable {
+public class Community implements Serializable {
 
 	/**
 	 * 
@@ -44,6 +44,8 @@ public class Forum implements Serializable {
     private Date regDtm;
     /** 등록사용자번호 */
     private Integer regUserNo;
+    /** 등록사용자ID */
+    private String regUserId;
     /** 수정일시 */
     private Date updDtm;
     /** 수정사용자번호 */
