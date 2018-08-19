@@ -64,37 +64,11 @@
                     </div>
                 </div>
             </div>
-            <!-- 한 페이지 레이아웃 템플릿 -->
-            <div id="portfolioPageTemplate" class="row" style="height: 431px;">
-                <div class="col-sm-8" style="height: 100%;">
-                    <img src="${ctx}/static/vendor/volvox/img/blog/01.jpg" style="height: 100%;">
-                </div>
-                <div class="col-sm-4" style="height: 100%;">
-                    <textarea class="form-control" placeholder="페이지 내용을 작성" style="resize: none; height: 100%;"></textarea>
-                </div>
-                <div class="col-sm-12 center">
-                    <h5>- 1 -</h5>
-                </div>
-                <div class="v-spacer col-sm-12 v-height-small"></div>
-            </div>
-            
-            <div id="portfolioPageTemplate" class="row" style="height: 431px;">
-                <div class="col-sm-8" style="height: 100%;">
-                    <img src="${ctx}/static/vendor/volvox/img/blog/02.jpg" style="height: 100%;">
-                </div>
-                <div class="col-sm-4" style="height: 100%;">
-                    <textarea class="form-control" placeholder="페이지 내용을 작성" style="resize: none; height: 100%;"></textarea>
-                </div>
-                <div class="col-sm-12 center">
-                    <h5>- 2 -</h5>
-                </div>
-                <div class="v-spacer col-sm-12 v-height-small"></div>
-            </div>
-            
+            <div id="portfolioBodyWrap" maxPage="0"></div>
             <div class="row center">
                 <div class="v-spacer col-sm-12 v-height-small"></div>
                 <div class="col-sm-12">
-                    <button type="button" class="btn btn-success">새 페이지 추가</button>
+                    <button type="button" id="btnAddPortfolioPage" class="btn btn-success">새 페이지 추가</button>
                 </div>
                 <div class="v-spacer col-sm-12 v-height-small"></div>
             </div>
@@ -102,4 +76,29 @@
     </div>
 </div>
 
-<script></script>
+<!-- Template 선언부 -->
+<div style="display: none;">
+    <!-- Page추가 레이아웃 선택 -->
+    <div id="chooseTemplate">
+        <div class="row center">
+            <div class="v-spacer col-sm-12 v-height-small"></div>
+            <div class="col-sm-4">
+                <i class="fa fa-pencil"></i>
+                <button type="button" id="btnAddPortfolioPage" class="btn btn-success">글</button>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" id="btnAddPortfolioPage" class="btn btn-success">사진</button>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" id="btnAddPortfolioPage" class="btn btn-success">동영상</button>
+            </div>
+            <div class="v-spacer col-sm-12 v-height-small"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="${ctx}/static/assets/js/portfolio/create.js"></script>
+
+<link href="${ctx}/static/vendor/summernote/summernote.css" rel="stylesheet" />
+<script src="${ctx}/static/vendor/summernote/summernote.js"></script>

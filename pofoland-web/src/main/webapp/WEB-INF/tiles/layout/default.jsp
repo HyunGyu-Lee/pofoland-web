@@ -19,7 +19,6 @@
         <!-- Vendor CSS -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,700,800,900" rel="stylesheet" type="text/css">
-        
         <link href="${ctx}/static/vendor/volvox/css/bootstrap.min.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/css/style.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/css/font-awesome.min.css" rel="stylesheet" />
@@ -33,14 +32,11 @@
         <link href="${ctx}/static/vendor/volvox/css/theme-responsive.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-        
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="${ctx}/static/vendor/volvox/css/custom.css">
-        
-        <!-- Form Styling -->
+        <link href="${ctx}/static/vendor/volvox/css/custom.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/css/v-form-element.css" rel="stylesheet" />
+        <link href="${ctx}/static/vendor/alertify/css/alertify.min.css" rel="stylesheet" />
         
-        <!-- Libs -->
+        <!-- Vendor JS -->
         <script src="${ctx}/static/vendor/volvox/js/jquery.min.js"></script>
         <script src="${ctx}/static/vendor/volvox/js/bootstrap.min.js"></script>
         <script src="${ctx}/static/vendor/volvox/js/jquery-ui-1.10.2.custom.min.js"></script>
@@ -53,11 +49,15 @@
         <script src="${ctx}/static/vendor/volvox/js/jquery.isotope.min.js"></script>
         <script src="${ctx}/static/vendor/volvox/js/imagesloaded.js"></script>
         <script src="${ctx}/static/vendor/volvox/js/view.min.js?auto"></script>
-
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
+        <script src="${ctx}/static/vendor/alertify/alertify.min.js"></script>
+        
+        <!-- App Commons -->
+        <script src="${ctx}/static/assets/js/app.js"></script>
+        <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>        
+        <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>                
     </head>
     <body>
         <div id="wrapper">
