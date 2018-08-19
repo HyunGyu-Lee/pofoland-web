@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3 ">
-                    <a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolio/management"><span>새 포트폴리오 등록</span></a>
+                    <a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolio/create"><span>새 포트폴리오 등록</span></a>
                 </div>
             </div>
         </div>

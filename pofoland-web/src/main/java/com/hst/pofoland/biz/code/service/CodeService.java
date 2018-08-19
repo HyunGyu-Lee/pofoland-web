@@ -8,11 +8,14 @@ package com.hst.pofoland.biz.code.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.code.dao.CodeDAO;
 import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.code.domain.GroupCode;
+import com.hst.pofoland.common.mvc.service.CommonService;
 
 /**
  * 공통코드 서비스
@@ -23,7 +26,7 @@ import com.hst.pofoland.biz.code.domain.GroupCode;
  *
  */
 @Service
-public class CodeService {
+public class CodeService extends CommonService {
 
     private CodeDAO codeDao;
     
@@ -37,6 +40,7 @@ public class CodeService {
      * 
      * @param groupCode
      */
+    @CacheEvict(value="codes", key="#groupCode.commGrpCd")
     public void createGroupCode(GroupCode groupCode) {
         codeDao.createGroupCode(groupCode);
     }
@@ -46,6 +50,7 @@ public class CodeService {
      * 
      * @param code
      */
+    @CacheEvict(value="codes", key="#code.commGrpCd")
     public void createCode(Code code) {
         codeDao.create(code);        
     }
@@ -56,6 +61,7 @@ public class CodeService {
      * @param commGrpCd 그룹코드
      * @return
      */
+    @Cacheable(value="codes", key="#commGrpCd")
     public List<Code> findByGroupCode(String commGrpCd) {
         return codeDao.findList(Code.builder().commGrpCd(commGrpCd).build());
     }
