@@ -81,18 +81,15 @@
     <!-- Page추가 레이아웃 선택 -->
     <div id="chooseTemplate">
         <div class="row center">
-            <div class="v-spacer col-sm-12 v-height-small"></div>
             <div class="col-sm-4">
-                <i class="fa fa-pencil"></i>
-                <button type="button" id="btnAddPortfolioPage" class="btn btn-success">글</button>
+                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-btn-default"><i class="fa fa-pencil"></i> 글</button>
             </div>
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn btn-success">사진</button>
+                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-green-sea"><i class="fa fa-camera"></i> 사진</button>
             </div>
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn btn-success">동영상</button>
+                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-peter-river"><i class="fa fa-video-camera"></i> 동영상</button>
             </div>
-            <div class="v-spacer col-sm-12 v-height-small"></div>
         </div>
     </div>
 </div>

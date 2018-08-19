@@ -6,6 +6,7 @@ package com.hst.pofoland.biz.menu.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.menu.dao.MenuDAO;
@@ -36,6 +37,7 @@ public class MenuService extends CommonService {
      * 
      * @return
      */
+    @Cacheable(value="menus")
     public List<Menu> findMenusHierarchy() {
         List<Menu> flatMenus = menuDAO.findList(new Menu());
         
