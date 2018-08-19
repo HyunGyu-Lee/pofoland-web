@@ -117,12 +117,23 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
+        
+        <!-- Apache Commons Lang -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		
+		<!-- Ehcahce -->
+		<dependency>
+		     <groupId>org.springframework.boot</groupId>
+		     <artifactId>spring-boot-starter-cache</artifactId>
+		 </dependency>
+		 <dependency>
+		     <groupId>net.sf.ehcache</groupId>
+		     <artifactId>ehcache</artifactId>
+		 </dependency>
 	</dependencies>
 
 	<build>
