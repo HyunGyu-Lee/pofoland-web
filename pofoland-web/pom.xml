@@ -117,20 +117,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-<<<<<<< HEAD
-		
-		<!-- Commons -->
-=======
-        
+
         <!-- Apache Commons Lang -->
->>>>>>> branch 'develop' of https://github.com/HyunGyu-Lee/pofoland-web.git
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
 		
-<<<<<<< HEAD
 		<!-- HTTP Client -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
@@ -140,7 +134,7 @@
 		  <groupId>org.apache.httpcomponents</groupId>
 		  <artifactId>fluent-hc</artifactId>
 		</dependency>
-=======
+
 		<!-- Ehcahce -->
 		<dependency>
 		     <groupId>org.springframework.boot</groupId>
@@ -150,7 +144,6 @@
 		     <groupId>net.sf.ehcache</groupId>
 		     <artifactId>ehcache</artifactId>
 		 </dependency>
->>>>>>> branch 'develop' of https://github.com/HyunGyu-Lee/pofoland-web.git
 	</dependencies>
 
 	<build>
