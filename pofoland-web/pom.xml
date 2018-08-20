@@ -124,7 +124,7 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-		
+
 		<!-- HTTP Client -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
