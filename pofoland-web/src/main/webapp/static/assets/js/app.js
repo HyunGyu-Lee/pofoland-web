@@ -71,3 +71,24 @@ function commonPreviewImage() {
         reader.readAsDataURL(this.files[0]);
     }
 }
+
+ // 이메일 형식 체크
+function emailFormatYn ( email ) {
+	var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	if ( reg.test(email) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// 문자가 공백일 경우 정해진 문자열로 대체
+function strNulltoReplace ( str , replaceStr ) {
+	
+	if ( str == '' || str == undefined || str == null ) {
+		return replaceStr;
+	} else {
+		return str;
+	}
+}

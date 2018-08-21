@@ -53,7 +53,7 @@
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
         <script src="${ctx}/static/vendor/alertify/alertify.min.js"></script>
-        
+        <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>
         <!-- App Commons -->
         <script src="${ctx}/static/assets/js/app.js"></script>
         <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>        
