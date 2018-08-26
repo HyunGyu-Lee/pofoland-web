@@ -64,11 +64,16 @@
                     </div>
                 </div>
             </div>
-            <div id="portfolioBodyWrap" maxPage="0"></div>
+            <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                <div class="col-sm-12">
+                    <div id="portfolioBodyWrap"></div>
+                </div>
+            </div>
             <div class="row center">
                 <div class="v-spacer col-sm-12 v-height-small"></div>
                 <div class="col-sm-12">
-                    <button type="button" id="btnAddPortfolioPage" class="btn btn-success">새 페이지 추가</button>
+                    <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-btn-default no-three-d">새 페이지 추가</button> 
+                    <button type="button" id="btnCreatePortfolio" class="btn v-btn v-nephritis no-three-d">포트폴리오 등록</button>                    
                 </div>
                 <div class="v-spacer col-sm-12 v-height-small"></div>
             </div>
@@ -80,15 +85,15 @@
 <div style="display: none;">
     <!-- Page추가 레이아웃 선택 -->
     <div id="chooseTemplate">
-        <div class="row center">
+        <div class="row center" style="height: 100%; margin-top: 10px;">
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-btn-default"><i class="fa fa-pencil"></i> 글</button>
+                <button type="button" class="btn v-btn v-btn-default no-three-d" onclick="addPortfolioPage('text');"><i class="fa fa-pencil"></i> 글</button>
             </div>
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-green-sea"><i class="fa fa-camera"></i> 사진</button>
+                <button type="button" class="btn v-btn v-green-sea no-three-d" onclick="addPortfolioPage('picture');"><i class="fa fa-camera"></i> 사진</button>
             </div>
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-peter-river"><i class="fa fa-video-camera"></i> 동영상</button>
+                <button type="button" class="btn v-btn v-peter-river no-three-d" onclick="addPortfolioPage('movie');"><i class="fa fa-video-camera"></i> 동영상</button>
             </div>
         </div>
     </div>
