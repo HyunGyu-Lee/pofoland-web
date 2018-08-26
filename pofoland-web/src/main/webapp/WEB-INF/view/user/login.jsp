@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <div class="v-page-wrap no-top-spacing padding-50 body-sign">
     <div class="container">
         <div class="v-spacer col-sm-12 v-height-small"></div>
@@ -23,24 +25,18 @@
             <div class="col-sm-5">
                 <form class="signup">
                     <div class="form-group">
-                        <label>Username <span class="required">*</span></label>
-                        <input type="text" value="" placeholder="Username" maxlength="100" class="form-control" name="name" id="name">
+                        <label>이메일 <span class="required">*</span></label>
+                        <input type="text" value="" placeholder="이메일을 입력하여 주세요." maxlength="100" class="form-control" name="name" id="name">
                     </div>
                     
                     <div class="form-group">
-                        <label>Password <span class="required">*</span></label>
-                        <input type="text" value="" placeholder="Password" maxlength="100" class="form-control" name="website" id="website">
+                        <label>비밀번호 <span class="required">*</span></label>
+                        <input type="text" value="" placeholder="비밀번호를 입력하여 주세요." maxlength="100" class="form-control" name="website" id="website">
                     </div>
                     
                     <div class="row">
-                        <div class="col-sm-8">
-                            <div class="checkbox-custom checkbox-default">
-                                <input id="RememberMe" name="rememberme" type="checkbox">
-                                <label for="RememberMe">Remember Me</label>
-                            </div>
-                        </div>
                         <div class="col-sm-4 pull-right">
-                            <button type="submit" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">Sign In</button>
+                            <button type="submit" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">로그인</button>
                         </div>
                     </div>
                     
@@ -54,7 +50,10 @@
                     </div>
 
                     <p class="text-center pull-top-small">
-                        Don't have an account yet? <a class="v-link" href="#">Sign Up!</a>
+                        	계정이 존재하지 않습니까?<a class="v-link" href="/user/register">&nbsp;회원가입</a>
+                    </p>
+                    <p class="text-center pull-top-small">
+                        	계정이 기억나지 않습니까?<a class="v-link" href="/user/register">&nbsp;아이디/비밀번호 찾기</a>
                     </p>
                 </form>
             </div>
