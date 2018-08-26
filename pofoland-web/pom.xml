@@ -118,7 +118,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		
-		<!-- Commons -->
+        <!-- Apache Commons Lang -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -134,6 +134,16 @@
 		  <groupId>org.apache.httpcomponents</groupId>
 		  <artifactId>fluent-hc</artifactId>
 		</dependency>
+		
+		<!-- Ehcahce -->
+		<dependency>
+		     <groupId>org.springframework.boot</groupId>
+		     <artifactId>spring-boot-starter-cache</artifactId>
+		 </dependency>
+		 <dependency>
+		     <groupId>net.sf.ehcache</groupId>
+		     <artifactId>ehcache</artifactId>
+		 </dependency>
 	</dependencies>
 
 	<build>
