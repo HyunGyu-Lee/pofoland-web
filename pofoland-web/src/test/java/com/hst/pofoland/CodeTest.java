@@ -43,14 +43,14 @@ public class CodeTest {
     @Before
     public void setUp() {
         groupCode = new GroupCode();
-        groupCode.setCommGrpCd("PF001");
-        groupCode.setCommGrpCdNm("포트폴리오유형구분");
-        groupCode.setCommGrpCdCont("포트폴리오의 유형을 의미하는 코드그룹");
+        groupCode.setCommGrpCd("PF002");
+        groupCode.setCommGrpCdNm("포트폴리오 페이지 유형구분");
+        groupCode.setCommGrpCdCont("포트폴리오 페이지의 유형을 의미하는 코드그룹");
     }
     
     @Test
     public void 공통코드_조회테스트() {
-        for (Code code : codeService.findByGroupCode("PF001")) {
+        for (Code code : codeService.findByGroupCode("PF002")) {
             log.debug("{}", code);
         }
     }
@@ -62,11 +62,32 @@ public class CodeTest {
     }
     
     @Test
-    @Ignore
     public void 공통코드_등록테스트() {
         List<Code> codeList = new ArrayList<Code>();
         
+        codeList.add(Code.builder()
+                .commCd("0001")
+                .commCdNm("글")
+                .commCdCont("포트폴리오 글 페이지")
+                .commGrpCd("PF002")
+                .useYn("Y")
+                .build());
         
+        codeList.add(Code.builder()
+                .commCd("0002")
+                .commCdNm("사진")
+                .commCdCont("포트폴리오 사진 페이지")
+                .commGrpCd("PF002")
+                .useYn("Y")
+                .build());
+        
+        codeList.add(Code.builder()
+                .commCd("0003")
+                .commCdNm("동영상")
+                .commCdCont("포트폴리오 동영상 페이지")
+                .commGrpCd("PF002")
+                .useYn("Y")
+                .build());
         
         for (Code code : codeList) {
             codeService.createCode(code);

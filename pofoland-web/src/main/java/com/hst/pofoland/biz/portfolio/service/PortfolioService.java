@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.portfolio.dao.PortfolioDAO;
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
+import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
+import com.hst.pofoland.biz.portfolio.domain.PortfolioPage;
+import com.hst.pofoland.biz.storage.domain.StoreResult;
+import com.hst.pofoland.common.mvc.service.CommonService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 포트폴리오 관리 Service
@@ -22,7 +28,8 @@ import com.hst.pofoland.biz.portfolio.domain.Portfolio;
  *
  */
 @Service
-public class PortfolioService {
+@Slf4j
+public class PortfolioService extends CommonService {
 
     /**
      * 포트폴리오 DAO
@@ -34,8 +41,62 @@ public class PortfolioService {
         this.portfolioDao = portfolioDao;
     }
     
+    /**
+     * 포트폴리오 목록조회
+     * 
+     * @param portfolioCondition
+     * @return
+     */
     public List<Portfolio> findAll(Portfolio portfolioCondition) {
         return portfolioDao.findList(portfolioCondition);
+    }
+
+    /**
+     * 포트폴리오 등록
+     * 
+     * @param portfolio
+     */
+    public void create(Portfolio portfolio) {
+        // 기본정보 등록
+        portfolioDao.create(portfolio);
+        
+        log.debug("{}", portfolio.getPofolNo());
+        
+        // 페이지 등록
+        for (PortfolioPage portfolioPage : portfolio.getPortfolioPages()) {
+            portfolioPage.setPofolNo(portfolio.getPofolNo());
+            
+            createPortfolioPage(portfolioPage);
+        }
+    }
+    
+    /**
+     * 포트폴리오 페이지 등록
+     * 
+     * @param portfolioPage
+     */
+    public void createPortfolioPage(PortfolioPage portfolioPage) {
+        portfolioDao.createPage(portfolioPage);
+    }
+    
+    /**
+     * 포트폴리오 파일 등록
+     * 
+     * @param pofolNo       포트폴리오 번호
+     * @param pofolPageNo   포트폴리오 페이지 번호
+     * @param result        파일 업로드 결과
+     */
+    public void createPortfolioFile(Integer pofolNo, Integer pofolPageNo, StoreResult result) {
+        PortfolioFile pfFile = new PortfolioFile();
+        pfFile.setPofolNo(pofolNo);
+        pfFile.setPofolPageNo(pofolPageNo);
+        pfFile.setPofolFilePath(result.getStoredPath());
+        pfFile.setPofolFileOrgnNm(result.getOriginalName());
+        pfFile.setPofolFileSaveNm(result.getStoredName());
+        pfFile.setPofolFileSize(Long.valueOf(result.getSize()).intValue());
+        pfFile.setPofolFileExtNm(result.getExtention());
+        
+        portfolioDao.createPortfolioFile(pfFile);
     }
     
 }
