@@ -56,4 +56,9 @@ public class PortfolioController extends CommonController {
         return "portfolio/create";
     }
     
+    @GetMapping("test")
+    public String test() {
+        return "portfolio/test";
+    }
+    
 }

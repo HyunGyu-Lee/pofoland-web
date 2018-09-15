@@ -27,6 +27,7 @@
     <div class="container">
         <!-- 포트폴리오 기본정보 입력영역 -->
         <div id="basicInformation" class="row">
+        <form id="createForm">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="v-heading-v2">
@@ -37,11 +38,11 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h5>제목</h5>
-                    <input type="text" class="form-control" placeholder="포폴제목">
+                    <input type="text" class="form-control" name="pofolNm" placeholder="포폴제목">
                 </div>
                 <div class="col-sm-6">
                     <h5>카테고리</h5>
-                    <select class="form-control">
+                    <select class="form-control" name="pofolTypeCd">
                         <c:forEach var="category" items="${categoryList}">
                             <option value="${category.commCd}">${category.commCdNm}</option>
                         </c:forEach>
@@ -51,10 +52,11 @@
             <div class="row" style="margin-top: 20px;">
                 <div class="col-sm-12">
                     <h5>개요</h5>
-                    <textarea class="form-control" rows="5" placeholder="포폴개요" style="resize: none;"></textarea>
+                    <textarea class="form-control" name="pofolDesc" rows="5" placeholder="포폴개요" style="resize: none;"></textarea>
                 </div>
             </div>
             <div class="v-spacer col-sm-12 v-height-small"></div>
+        </form>
         </div>
         <div class="row">
             <div class="row">

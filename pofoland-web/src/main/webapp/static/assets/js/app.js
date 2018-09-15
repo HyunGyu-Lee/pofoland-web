@@ -6,22 +6,11 @@ var isLogin;
     isLogin = $('meta[name="isLogin"]').attr('content');
     
     // jQuery 확장 
-    $.fn.serializeAll = function () {
-        var data = $(this).serializeArray();
-
-        $(':disabled[name]', this).each(function () { 
-            data.push({ name: this.name, value: $(this).val() });
-        });
-
-        return data;
-    }
-    
-    // jQuery 확장
-    $.fn.serializeJson = function () {
+    $.fn.serializeObject = function() {
         var o = {};
-        var a = this.serializeAll();
-
-        $.each(a, function () {
+        var a = this.serializeArray();
+        
+        $.each(a, function() {
             if (o[this.name]) {
                 if (!o[this.name].push) {
                     o[this.name] = [o[this.name]];
@@ -31,7 +20,12 @@ var isLogin;
                 o[this.name] = this.value || '';
             }
         });
+        
         return o;
+    };
+    
+    $.fn.outerHTML = function () {
+        return $(this).clone().wrapAll("<div />").parent().html();
     }
     
     // alertify 글로벌 설정
@@ -72,4 +66,12 @@ function commonPreviewImage() {
         
         reader.readAsDataURL(this.files[0]);
     }
+}
+
+function locationReload() {
+    location.reload();
+}
+
+function locationHref(url) {
+    location.href = url;
 }
