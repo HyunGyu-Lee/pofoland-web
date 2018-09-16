@@ -32,6 +32,11 @@ public class PortfolioPage {
     private String pofolPageTypeCd;
     
     /**
+     * 포트폴리오 페이지 유형명
+     */
+    private String pofolPageTypeNm;
+    
+    /**
      * 포트폴리오 페이지 내용
      */
     private String pofolPageCont;
@@ -41,4 +46,8 @@ public class PortfolioPage {
      */
     private Integer sortOrder;
     
+    /**
+     * 포트폴리오 파일번호
+     */
+    private Integer pofolFileNo;
 }

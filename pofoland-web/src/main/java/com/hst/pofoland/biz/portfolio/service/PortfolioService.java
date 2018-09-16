@@ -60,8 +60,6 @@ public class PortfolioService extends CommonService {
         // 기본정보 등록
         portfolioDao.create(portfolio);
         
-        log.debug("{}", portfolio.getPofolNo());
-        
         // 페이지 등록
         for (PortfolioPage portfolioPage : portfolio.getPortfolioPages()) {
             portfolioPage.setPofolNo(portfolio.getPofolNo());
@@ -97,6 +95,31 @@ public class PortfolioService extends CommonService {
         pfFile.setPofolFileExtNm(result.getExtention());
         
         portfolioDao.createPortfolioFile(pfFile);
+    }
+
+    /**
+     * 포트폴리오 상세 조회
+     * 
+     * @param pofolNo 포트폴리오 번호
+     * @return
+     */
+    public Portfolio findByPofolNo(Integer pofolNo) {
+        Portfolio portfolio = portfolioDao.findOne(pofolNo);
+        
+        if (portfolio != null) {
+            List<PortfolioPage> portfolioPages = portfolioDao.findPortfolioPageList(pofolNo);
+            portfolio.setPortfolioPages(portfolioPages);
+        }
+        
+        return portfolio;
+    }
+
+    /**
+     * @param pofolFileNo
+     * @return
+     */
+    public PortfolioFile findFileByPofolFileNo(Integer pofolFileNo) {
+        return portfolioDao.findPortfolioFile(pofolFileNo);
     }
     
 }

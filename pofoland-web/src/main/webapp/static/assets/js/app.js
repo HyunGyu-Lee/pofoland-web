@@ -66,6 +66,7 @@ function commonPreviewImage() {
         
         reader.readAsDataURL(this.files[0]);
     }
+<<<<<<< HEAD
 }
 
 <<<<<<< HEAD
@@ -96,5 +97,8 @@ function locationReload() {
 
 function locationHref(url) {
     location.href = url;
+}
+>>>>>>> refs/heads/HG
+=======
 }
 >>>>>>> refs/heads/HG
