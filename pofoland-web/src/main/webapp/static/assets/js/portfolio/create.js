@@ -60,6 +60,7 @@ var services = {
             var portfolioPages = [];
             var fileUploadPool = [];
             
+            // 페이지 정보 취합
             _.forEach($('.portfolioPage'), function (e, i) {
                 var type = $(e).attr('type');
                 var pageId = $(e).find('#pageId').val();
@@ -82,14 +83,18 @@ var services = {
             
             data["portfolioPages"] = portfolioPages;
             
+            // 포폴 등록
             AjaxUtils.post("/api/portfolios", data, function (response) {
+                var pofolNo = response.payloads;
+                
+                // 포폴 등록완료 시 나머지 파일들 등록
                 _.forEach(fileUploadPool, function (e, i) {
                     var uploadForm = $('<form />');
                     var formData = new FormData(uploadForm);
                     formData.append('file', e.fileData);
                     
                     $.ajax({
-                        url: '/api/portfolios/' + response.payloads + '/' + e.pageNo + '/upload',
+                        url: '/api/portfolios/' + pofolNo + '/' + e.pageNo + '/upload',
                         enctype: 'multipart/form-data',
                         processData: false,
                         contentType: false,
@@ -101,7 +106,9 @@ var services = {
                     });
                 });
                 
-                MessageBox.success("등록됌", locationReload);
+                MessageBox.success("등록됌", function () {
+                    location.href = '/portfolios/' + pofolNo;
+                });
             });
         }
 

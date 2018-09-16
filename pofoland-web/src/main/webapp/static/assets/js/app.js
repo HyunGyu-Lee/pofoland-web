@@ -67,11 +67,3 @@ function commonPreviewImage() {
         reader.readAsDataURL(this.files[0]);
     }
 }
-
-function locationReload() {
-    location.reload();
-}
-
-function locationHref(url) {
-    location.href = url;
-}
