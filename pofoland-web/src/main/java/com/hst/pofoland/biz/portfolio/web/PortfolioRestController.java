@@ -5,13 +5,12 @@
  */
 package com.hst.pofoland.biz.portfolio.web;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
-import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
+import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
 import com.hst.pofoland.biz.portfolio.service.PortfolioService;
 import com.hst.pofoland.biz.storage.domain.StoreResult;
 import com.hst.pofoland.biz.storage.service.StorageService;
@@ -52,7 +52,7 @@ public class PortfolioRestController extends CommonController {
     private StorageService storageService;
     
     /**
-     * GET + RequestParameter 이용
+     * 포트폴리오 목록 조회 API
      * 
      * @param searchCriteria
      * @return
@@ -68,7 +68,12 @@ public class PortfolioRestController extends CommonController {
         return ok(new PageInfo<Portfolio>(list));
     }
     
-    // POST + RequestParameter
+    /**
+     * 포트폴리오 기본정보 + 페이지 등록 API
+     * 
+     * @param portfolio
+     * @return
+     */
     @PostMapping
     public CommonApiResponse createPortfolio(@RequestBody Portfolio portfolio) {
         portfolioService.create(portfolio);
@@ -76,15 +81,31 @@ public class PortfolioRestController extends CommonController {
         return ok(portfolio.getPofolNo());
     }
     
-    // POST + @RequestBody 이용
+    /**
+     * 포트폴리오 파일 등록
+     * 
+     * @param pofolNo       대상 포트폴리오 번호
+     * @param pofolPageNo   포트폴리오 내 페이지 번호
+     * @param multipartFile 업로드 파일 객체
+     * @return
+     * @throws Exception
+     */
     @PostMapping("{pofolNo}/{pofolPageNo}/upload")
     public CommonApiResponse uploadFile(@PathVariable("pofolNo") Integer pofolNo,
             @PathVariable("pofolPageNo") Integer pofolPageNo, @RequestParam("file") MultipartFile multipartFile)
             throws Exception {
         // TODO 현재 포트폴리오만 저장하게 되있음, 업무영역따라 저장하게 수정필요
-        StoreResult storeResult = storageService.store(multipartFile);
+        StoreResult storeResult = storageService.store("portfolio", multipartFile);
         portfolioService.createPortfolioFile(pofolNo, pofolPageNo, storeResult);
         
         return ok();
     }
+    
+    @GetMapping(value = "images/{pofolFileNo}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] serveImage(@PathVariable("pofolFileNo") Integer pofolFileNo) throws Exception {
+        PortfolioFile portfolioFile = portfolioService.findFileByPofolFileNo(pofolFileNo);
+        
+        return storageService.getBytes(portfolioFile);
+    }
+    
 }

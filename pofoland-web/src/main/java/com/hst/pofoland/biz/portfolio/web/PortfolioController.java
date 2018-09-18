@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hst.pofoland.biz.code.domain.Code;
+import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.service.PortfolioService;
 import com.hst.pofoland.common.mvc.web.CommonController;
 
@@ -27,7 +29,7 @@ import com.hst.pofoland.common.mvc.web.CommonController;
  *
  */
 @Controller
-@RequestMapping("portfolio")
+@RequestMapping("portfolios")
 public class PortfolioController extends CommonController {
 
     /**
@@ -56,9 +58,11 @@ public class PortfolioController extends CommonController {
         return "portfolio/create";
     }
     
-    @GetMapping("test")
-    public String test() {
-        return "portfolio/test";
+    @GetMapping("{pofolNo}")
+    public String detail(@PathVariable("pofolNo") Integer pofolNo, Model model) {
+        model.addAttribute("portfolio", portfolioService.findByPofolNo(pofolNo));
+        
+        return "portfolio/detail";
     }
     
 }
