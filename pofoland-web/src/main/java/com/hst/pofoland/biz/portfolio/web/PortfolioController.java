@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.service.PortfolioService;
 import com.hst.pofoland.common.mvc.web.CommonController;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 포트폴리오 관리 Controller
@@ -49,7 +53,14 @@ public class PortfolioController extends CommonController {
     }
     
     @GetMapping("management")
-    public String pofolands(Model model) {
+    public String pofolands(Portfolio criteria, Model model) {
+        PageHelper.startPage(criteria.getPageNo(), criteria.getPageSize());
+        
+        List<Portfolio> portfolioList = portfolioService.findAll(criteria);
+        
+        model.addAttribute("portfolioList", portfolioList);
+        model.addAttribute("pageInfo", new PageInfo<>(portfolioList));
+        
         return "portfolio/list";
     }
     

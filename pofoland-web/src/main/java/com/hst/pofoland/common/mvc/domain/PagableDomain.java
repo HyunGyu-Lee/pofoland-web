@@ -16,7 +16,6 @@ import lombok.EqualsAndHashCode;
  * @see
  *
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 @SuppressWarnings("unused")
 public class PagableDomain extends BasicDomain {
@@ -26,5 +25,20 @@ public class PagableDomain extends BasicDomain {
     private int pageNo;
     
     private int pageSize;
-    
+
+    public int getPageNo() {
+        return pageNo == 0 ? 1 : pageNo;
+    }
+
+    public void setPageNo(int pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public int getPageSize() {
+        return pageSize == 0 ? 10 : pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 }

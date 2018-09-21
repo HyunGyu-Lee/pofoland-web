@@ -19,7 +19,7 @@
             this.v_Counter();
             this.v_IconBoxes();
             this.v_IntoAnimations();
-            this.v_Map.init();
+//            this.v_Map.init();
             this.v_Parallax.init();
             this.v_FlexSlider.init();
             this.v_Portfolio.init();
@@ -614,7 +614,7 @@
 
 
         //Map
-        v_Map: {
+/*        v_Map: {
             init: function () {
 
                 var maps = jQuery('.map-canvas');
@@ -772,7 +772,7 @@
                 fullscreenMap.css('margin-left', '-' + mapOffset + 'px');
 
             }
-        },
+        },*/
         //End Map
 
 
@@ -1219,7 +1219,7 @@
 
         Core.v_FlexSlider.init();
 
-        Core.v_Map.init();
+        // Core.v_Map.init();
 
         Core.v_FitVids();
 

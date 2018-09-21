@@ -5,14 +5,14 @@
 <link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
 <link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
 
-<div class="v-call-to-action no-shadow v-bg-stylish v-bg-stylish-v4" style="background-image: url(static/vendor/volvox/img/slider/geometic-bg-white-2.jpg);">
+<div class="v-call-to-action no-shadow v-bg-stylish v-bg-stylish-v4" style="background-image: url(/static/vendor/volvox/img/slider/image2.png);">
     <div class="v-call-to-action-wrap clearfix">
         <div class="container">
             <div class="row">
                 <div class="col-sm-9">
                     <div class="v-call-to-action-inner">
                         <h1>내 포트폴리오 목록</h1>
-                        <h3>총 5개</h3>
+                        <h3>총 ${pageInfo.total}개</h3>
                     </div>
                 </div>
                 <div class="col-sm-3 ">
@@ -24,27 +24,29 @@
 </div>
 
 <div class="v-page-wrap clearfix no-bottom-spacing">
-
     <div class="container">
         <div class="row">
-
             <div class="col-sm-12">
-
                 <div class="v-portfolio-wrap">
                     <!-- 포트폴리오 유형 -->
                     <div class="v-portfolio-filter-wrap row clearfix">
                         <ul class="v-portfolio-filter-nav bar-styling filtering col-sm-12 clearfix">
-                            <li class="all selected" style="float: left;"><a data-filter="*" href="#"><span class="item-name">All</span><span class="item-count">0</span></a></li>
+                            <li class="all selected"><a data-filter="*" href="#"><span class="item-name">All</span><span class="item-count">0</span></a></li>
                             
                             <c:forEach items="${categoryList}" var="category">
-                                <li style="float: left;"><a href="#" class="${category.commCd}" data-filter=".${category.commCd}"><span class="item-name">${category.commCdNm}</span><span class="item-count">0</span></a></li>
+                                 <li><a href="#" class="${category.commCd}" data-filter=".${category.commCd}"><span class="item-name">${category.commCdNm}</span><span class="item-count">0</span></a></li>
                             </c:forEach>
                         </ul>
                     </div>
                     
                     <!-- 포트폴리오 목록 -->
                     <ul class="v-portfolio-items v-portfolio-standard filterable-items col-4 row clearfix">
-                        <li class="clearfix v-portfolio-item col-sm-3 standard 01">
+                        <c:forEach var="portfolio" items="${portfolioList}">
+                            <li class="clearfix v-portfolio-item col-sm-3 standard ${portfolio.pofolTypeCd}">
+                                ${portfolio}
+                            </li>
+                        </c:forEach>
+                        <li class="clearfix v-portfolio-item col-sm-3 standard 0002">
                             <figure class="animated-overlay overlay-alt">
                                 <img src="${ctx}/static/vendor/volvox/img/static/bus-1.jpg" />
                                 <a href="portfolio-single.html" class="link-to-post"></a>
@@ -86,7 +88,7 @@
         </div>
     </div>
 
-    <div class="v-bg-stylish v-bg-stylish-v4 no-shadow padding-40" style="background-image: url(static/vendor/volvox/img/slider/geometic-bg-white-2.jpg);">
+    <div class="v-bg-stylish v-bg-stylish-v4 no-shadow padding-40" style="background-image: url(/static/vendor/volvox/img/slider/image2.png);">
         <div class="container">
 
             <div class="row center">
