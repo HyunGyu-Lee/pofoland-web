@@ -66,10 +66,8 @@ function commonPreviewImage() {
         
         reader.readAsDataURL(this.files[0]);
     }
-<<<<<<< HEAD
 }
 
-<<<<<<< HEAD
  // 이메일 형식 체크
 function emailFormatYn ( email ) {
 	var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
@@ -90,15 +88,3 @@ function strNulltoReplace ( str , replaceStr ) {
 		return str;
 	}
 }
-=======
-function locationReload() {
-    location.reload();
-}
-
-function locationHref(url) {
-    location.href = url;
-}
->>>>>>> refs/heads/HG
-=======
-}
->>>>>>> refs/heads/HG
