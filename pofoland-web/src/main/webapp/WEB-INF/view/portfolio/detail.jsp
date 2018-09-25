@@ -3,9 +3,27 @@
 
 <h1>${portfolio.pofolNm}</h1>
 <hr>
+<c:choose>
+    <c:when test="${empty portfolio.mainImageFileNo}">
+        <c:choose>
+            <c:when test="${portfolio.pofolTypeCd eq '0001'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-1.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0002'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-2.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0003'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-3.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0004'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-4.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0005'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-5.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0006'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-6.jpg"/></c:when>
+        </c:choose>
+    </c:when>
+    <c:otherwise>
+        <c:set var="mainImageUrl" value="${ctx}/api/portfolios/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
+    </c:otherwise>
+</c:choose>
+<img src="${mainImageUrl}">
+<hr>
 <h4>설명</h4>
 <P>${portfolio.pofolDesc}</p>
 <hr>
+
 <c:forEach var="page" items="${portfolio.portfolioPages}">
     <h3>${page.sortOrder} page</h3>
     <c:choose>
@@ -14,7 +32,7 @@
         </c:when>
         <c:when test="${page.pofolPageTypeCd eq '0002'}">
             ${page.pofolPageTypeNm}, ${page.sortOrder}, ${page.pofolPageCont}
-            <img src="/api/portfolios/images/${page.pofolFileNo}">
+            <img src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}">
         </c:when>
         <c:when test="${page.pofolPageTypeCd eq '0003'}">
             ${page.pofolPageTypeNm}, ${page.sortOrder}, ${page.pofolPageCont}
@@ -23,7 +41,7 @@
     <hr>
 </c:forEach>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-8">
         <figure class="media-wrap">
             <img src="img/static/portfolio-single.jpg">
@@ -82,4 +100,4 @@
         </div>
 
     </div>
-</div>
+</div> -->

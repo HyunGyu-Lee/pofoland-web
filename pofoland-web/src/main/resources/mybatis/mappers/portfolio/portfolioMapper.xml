@@ -5,20 +5,6 @@
     
 <mapper namespace="com.hst.pofoland.biz.portfolio.dao.PortfolioDAO">
 
-    <!-- 포트폴리오 목록 조회 -->
-    <select id="findList" resultType="Portfolio">
-        SELECT POFOL_NO,
-               REG_USER_NO,
-               REG_DTM,
-               UPD_USER_NO,
-               UPD_DTM,
-               POFOL_NM,
-               POFOL_DESC,
-               POFOL_TYPE_CD,
-               (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
-          FROM PF_POFOL
-    </select>
-    
     <!-- 포트폴리오 기본정보 등록 -->
     <insert id="create" useGeneratedKeys="true" keyProperty="pofolNo">
         INSERT INTO PF_POFOL (
@@ -39,6 +25,50 @@
             NOW()
         )
     </insert>
+
+    <!-- 포트폴리오 목록 조회 -->
+    <select id="findList" resultType="Portfolio">
+        SELECT POFOL_NO,
+               REG_USER_NO,
+               REG_DTM,
+               UPD_USER_NO,
+               UPD_DTM,
+               POFOL_NM,
+               POFOL_DESC,
+               POFOL_TYPE_CD,
+               MAIN_IMAGE_FILE_NO,
+               MAIN_IMAGE_AUTO_YN,
+               (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
+          FROM PF_POFOL
+      ORDER BY REG_DTM DESC    
+    </select>
+    
+    <!-- 포트폴리오 상세 조회 -->
+    <select id="findOne" resultType="Portfolio">
+        SELECT POFOL_NO,
+               REG_USER_NO,
+               REG_DTM,
+               UPD_USER_NO,
+               UPD_DTM,
+               POFOL_NM,
+               POFOL_DESC,
+               POFOL_TYPE_CD,
+               MAIN_IMAGE_FILE_NO,
+               MAIN_IMAGE_AUTO_YN,
+               (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
+          FROM PF_POFOL
+         WHERE POFOL_NO = #{pofolNo}
+    </select>
+    
+    <!-- 포트폴리오 수정 -->
+    <update id="update">
+        UPDATE PF_POFOL
+        <set >
+            <if test="mainImageFileNo != 0"> MAIN_IMAGE_FILE_NO = #{mainImageFileNo}, </if>
+            <if test="@org.apache.commons.lang3.StringUtils@isEmpty(mainImageAutoYn) == false"> MAIN_IMAGE_AUTO_YN = #{mainImageAutoYn},</if>
+        </set>
+         WHERE POFOL_NO = #{pofolNo}           
+    </update>
     
     <!-- 포트폴리오 페이지 등록 -->
     <insert id="createPage">
@@ -55,8 +85,23 @@
         )
     </insert>
     
+    <!-- 포트폴리오 페이지 목록조회 -->
+    <select id="findPortfolioPageList" resultType="PortfolioPage">
+        SELECT A.POFOL_NO,
+               A.POFOL_PAGE_NO,
+               A.POFOL_PAGE_TYPE_CD,
+               (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF002' AND COMM_CD = A.POFOL_PAGE_TYPE_CD) AS POFOL_PAGE_TYPE_NM,
+               A.POFOL_PAGE_CONT,
+               A.SORT_ORDER,
+               B.POFOL_FILE_NO
+          FROM PF_POFOL_PAGE A LEFT OUTER JOIN PF_POFOL_FILE B 
+            ON A.POFOL_NO = B.POFOL_NO AND A.SORT_ORDER = B.POFOL_PAGE_NO
+         WHERE A.POFOL_NO = #{pofolNo}
+      ORDER BY A.SORT_ORDER
+    </select>
+    
     <!-- 포트폴리오 파일 등록 -->
-    <insert id="createPortfolioFile">
+    <insert id="createPortfolioFile" useGeneratedKeys="true" keyProperty="pofolFileNo">
         INSERT INTO PF_POFOL_FILE (
             POFOL_FILE_ORGN_NM,
             POFOL_FILE_SIZE,
@@ -86,36 +131,6 @@
         )
     </insert>
     
-    <!-- 포트폴리오 상세 조회 -->
-    <select id="findOne" resultType="Portfolio">
-        SELECT POFOL_NO,
-               REG_USER_NO,
-               REG_DTM,
-               UPD_USER_NO,
-               UPD_DTM,
-               POFOL_NM,
-               POFOL_DESC,
-               POFOL_TYPE_CD,
-               (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
-          FROM PF_POFOL
-         WHERE POFOL_NO = #{pofolNo}
-    </select>
-    
-    <!-- 포트폴리오 페이지 목록조회 -->
-    <select id="findPortfolioPageList" resultType="PortfolioPage">
-        SELECT A.POFOL_NO,
-               A.POFOL_PAGE_NO,
-               A.POFOL_PAGE_TYPE_CD,
-               (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF002' AND COMM_CD = A.POFOL_PAGE_TYPE_CD) AS POFOL_PAGE_TYPE_NM,
-               A.POFOL_PAGE_CONT,
-               A.SORT_ORDER,
-               B.POFOL_FILE_NO
-          FROM PF_POFOL_PAGE A LEFT OUTER JOIN PF_POFOL_FILE B 
-            ON A.POFOL_NO = B.POFOL_NO AND A.SORT_ORDER = B.POFOL_PAGE_NO
-         WHERE A.POFOL_NO = #{pofolNo}
-      ORDER BY A.SORT_ORDER
-    </select>
-    
     <!-- 포트폴리오 파일 상세 조회 -->
     <select id="findPortfolioFile" resultType="PortfolioFile">
         SELECT POFOL_FILE_NO
@@ -132,7 +147,8 @@
                POFOL_PAGE_NO,
                POFOL_FILE_SAVE_NM
           FROM PF_POFOL_FILE
-         WHERE POFOL_FILE_NO = #{pofolFileNo}
+         WHERE POFOL_NO = #{pofolNo}
+           AND POFOL_FILE_NO = #{pofolFileNo}
     </select>
     
 </mapper>

@@ -8,6 +8,7 @@ package com.hst.pofoland.biz.portfolio.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
@@ -52,5 +53,5 @@ public interface PortfolioDAO extends CommonDAO<Integer, Portfolio> {
      * @param pofolFileNo
      * @return
      */
-    PortfolioFile findPortfolioFile(Integer pofolFileNo);
+    PortfolioFile findPortfolioFile(@Param("pofolNo") Integer pofolNo, @Param("pofolFileNo") Integer pofolFileNo);
 }

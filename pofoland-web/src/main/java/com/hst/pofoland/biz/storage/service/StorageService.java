@@ -54,7 +54,6 @@ public class StorageService extends CommonService implements InitializingBean {
      * application.properties 참조
      */
     @Value("#{${storage.biz}}")
-    
     private Map<String, String> storageBiz;
     
     @Override

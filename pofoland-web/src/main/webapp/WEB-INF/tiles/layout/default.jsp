@@ -54,6 +54,9 @@
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
         <script src="${ctx}/static/vendor/alertify/alertify.min.js"></script>
         
+        <!-- Our Custom CSS -->
+        <link href="${ctx}/static/assets/css/app.css" rel="stylesheet" />
+        
         <!-- App Commons -->
         <script src="${ctx}/static/assets/js/app.js"></script>
         <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>        

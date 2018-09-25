@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Controller
 @RequestMapping("portfolios")
+@Slf4j
 public class PortfolioController extends CommonController {
 
     /**
@@ -56,10 +57,15 @@ public class PortfolioController extends CommonController {
     public String pofolands(Portfolio criteria, Model model) {
         PageHelper.startPage(criteria.getPageNo(), criteria.getPageSize());
         
+        // TODO 사용자 정보 추가 시 아래 코드에 사용자 번호 조건 넣어줄 것
+        // criteria.setRegUserNo(1);
+        
         List<Portfolio> portfolioList = portfolioService.findAll(criteria);
         
         model.addAttribute("portfolioList", portfolioList);
         model.addAttribute("pageInfo", new PageInfo<>(portfolioList));
+        
+        portfolioList.forEach(e -> log.debug("{}", e));
         
         return "portfolio/list";
     }

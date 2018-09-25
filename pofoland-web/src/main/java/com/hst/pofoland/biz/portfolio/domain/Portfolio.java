@@ -64,7 +64,21 @@ public class Portfolio extends PagableDomain implements Serializable {
     private String pofolTypeNm;
     
     /**
+     * 포트폴리오 대표이미지 파일번호
+     */
+    private Integer mainImageFileNo;
+    
+    /**
+     * 포트폴리오 대표이미지 자동선택 여부
+     */
+    private String mainImageAutoYn;
+    
+    /**
      * 포트폴리오 페이지 목록
      */
     private List<PortfolioPage> portfolioPages;
+    
+    public Portfolio(Integer pofolNo) {
+        this.pofolNo = pofolNo;
+    }
 }
