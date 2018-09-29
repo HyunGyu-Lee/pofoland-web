@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<h1>${portfolio.pofolNm}</h1>
-<hr>
 <c:choose>
     <c:when test="${empty portfolio.mainImageFileNo}">
         <c:choose>
@@ -18,86 +16,77 @@
         <c:set var="mainImageUrl" value="${ctx}/api/portfolios/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
     </c:otherwise>
 </c:choose>
-<img src="${mainImageUrl}">
-<hr>
-<h4>설명</h4>
-<P>${portfolio.pofolDesc}</p>
-<hr>
 
-<c:forEach var="page" items="${portfolio.portfolioPages}">
-    <h3>${page.sortOrder} page</h3>
-    <c:choose>
-        <c:when test="${page.pofolPageTypeCd eq '0001'}">
-            ${page.pofolPageTypeNm}, ${page.pofolPageCont}
-        </c:when>
-        <c:when test="${page.pofolPageTypeCd eq '0002'}">
-            ${page.pofolPageTypeNm}, ${page.sortOrder}, ${page.pofolPageCont}
-            <img src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}">
-        </c:when>
-        <c:when test="${page.pofolPageTypeCd eq '0003'}">
-            ${page.pofolPageTypeNm}, ${page.sortOrder}, ${page.pofolPageCont}
-        </c:when>
-    </c:choose>
-    <hr>
-</c:forEach>
-
-<!-- <div class="row">
-    <div class="col-sm-8">
-        <figure class="media-wrap">
-            <img src="img/static/portfolio-single.jpg">
-        </figure>
+<div class="row center" style="margin-left: 45px; margin-right: 45px; margin-top: 15px;">
+    <div class="col-sm-12">
+        <div class="v-heading-v2">
+            <h1>${portfolio.pofolNm}</h1>
+        </div>
     </div>
-
-    <div class="col-sm-4">
-        <section class="article-body-wrap">
-
-            <section class="portfolio-detail-description">
-                <div class="body-text clearfix">
-                    <div class="v-heading-v3">
-                        <h2><span>Lorem Ipsum Dolor</span></h2>
-                        <div class="horizontal-break"></div>
-                    </div>
-                    <p>
-                        Vestibulum ante ipsum primis in fauc ibus orci luctus et ultrices posuere
-                        cubilia Curae; Integer in enim dui. Suspendisse potenti. Sed placerat
-                        pellentesque nibh ut varius. Morbi aliquet nulla at sem consequat eleifend.
-                    </p>
-                    <p>
-                        Sed non orci sed ante dignissim aliquam. Fusce in sapien leo. Praesent justo
-                        nibh, dapibus eu fermentum sit non eleifend eu, imperdiet gravida.
-                    </p>
+</div>
+<div class="row center" style="margin-left: 45px; margin-right: 45px;">
+    <div class="col-sm-12">
+        <img src="${mainImageUrl}">
+    </div>
+    <div class="col-sm-5">
+        <div class="tab-pane fade active in" id="tagline" style="margin-top: 20px;">
+            <div class="v-shadow-wrap">
+                <div class="v-tagline-box v-tagline-box-v1 v-box-shadow shadow-effect-2">
+                    ${portfolio.pofolDesc}
                 </div>
-            </section>
-
-            <div class="portfolio-v-blog-item-info">
-                <ul class="portfolio-categories">
-                    <li><a href="#" rel="tag">Visualisations</a></li>
-                    <li><a href="#" rel="tag">Illustration</a></li>
-                    <li><a href="#" rel="tag">Graphic Design</a></li>
-                </ul>
-            </div>
-        </section>
-
-
-        <div class="portfolio-options-bar">
-
-            <div class="share-links clearfix">
-                <ul class="bar-styling">
-                    <li class="sf-love">
-                        <div class="like-info">
-                            <div class="like-info-wrap">
-                                <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
-                                <span class="like-count">15</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li class="mail"><a href="#"><i class="fa fa-envelope-o"></i></a></li>
-                </ul>
             </div>
         </div>
-
     </div>
-</div> -->
+</div>
+<div class="row center" style="margin-left: 45px; margin-right: 45px;">
+    <c:forEach var="page" items="${portfolio.portfolioPages}">
+        <div class="row">
+            <c:choose>
+                <c:when test="${page.pofolPageTypeCd eq '0001'}">
+                    <div class="col-sm-12">
+                        ${page.pofolPageCont}
+                    </div>
+                </c:when>
+                <c:when test="${page.pofolPageTypeCd eq '0002'}">
+                    <div class="col-sm-7">
+                        <figure class="media-wrap">
+                            <img src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" style="width: 100%; height: 465px;">
+                        </figure>
+                    </div>
+                    <div class="col-sm-5">
+                        <section class="article-body-wrap">
+                            <section class="portfolio-detail-description">
+                                <div class="body-text clearfix">
+                                    ${page.pofolPageCont}
+                                </div>
+                            </section>
+                        </section>
+                        <div class="portfolio-options-bar">
+                            <div class="share-links clearfix">
+                                <ul class="bar-styling">
+                                    <li class="sf-love">
+                                        <div class="like-info">
+                                            <div class="like-info-wrap">
+                                                <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
+                                                <span class="like-count">15</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="mail"><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </c:when>
+                <c:when test="${page.pofolPageTypeCd eq '0003'}">
+                    ${page.pofolPageCont}
+                </c:when>
+            </c:choose>
+        </div>
+        <h2>- ${page.sortOrder} -</h2>
+        <hr>
+    </c:forEach>
+</div>
