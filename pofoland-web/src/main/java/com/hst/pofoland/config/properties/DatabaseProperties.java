@@ -1,5 +1,6 @@
 package com.hst.pofoland.config.properties;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import lombok.Getter;
@@ -44,5 +45,4 @@ public class DatabaseProperties {
      * 커넥션풀 최대 갯수
      */
     private int maximumPoolSize;
-    
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script></
+<script src="${ctx}/static/assets/js/user/register.js"></script>
+
 
 <div class="padding-100 body-sign">
     <div class="container">
@@ -26,36 +27,36 @@
                     
                     <div class="form-group">
                         <label>이메일 <span class="required">*</span></label>
-                        <input type="text" id="website" class="form-control" name="website" value=""  placeholder="이메일을 입력하여 주세요." maxlength="100">
+                        <input type="text" id="email" class="form-control" name="email" value=""  placeholder="이메일을 입력하여 주세요." maxlength="100" />
                     </div>
                     
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
                                 <label>비밀번호 <span class="required">*</span></label>
-                                <input name="pwd" type="password" placeholder="비밀번호를 입력하여 주세요." class="form-control input-lg">
+                                <input type="password" id="password" class="form-control input-lg" name="pwd"  placeholder="비밀번호를 입력하여 주세요." />
                             </div>
                             <div class="col-sm-6">
                                 <label>비밀번호 확인 <span class="required">*</span></label>
-                                <input name="pwd_confirm" placeholder="비밀번호를 한번 더 입력하주세요." type="password" class="form-control input-lg">
+                                <input type="password" id="passwordConfirm" class="form-control input-lg" name="pwd_confirm" placeholder="비밀번호를 한번 더 입력하주세요." />
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label>닉네임<span class="required">*</span></label>
-                        <input type="text" value="" placeholder="닉네임을 입력하여 주세요." maxlength="100" class="form-control" name="name" id="name">
+                        <input type="text" id="nickName" class="form-control" name="name" value="" placeholder="닉네임을 입력하여 주세요." maxlength="100" />
                     </div>
 
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="checkbox-custom checkbox-default">
-                                <input id="RememberMe" name="rememberme" type="checkbox">
-                                <label for="RememberMe">개인정보 사용 동의하시겠습니까?</label>
+                                <input id="userInfoCheckbox" name="userInfoCheckbox" type="checkbox">
+                                <label for="userInfoCheckbox">개인정보 사용 동의하시겠습니까?</label>
                             </div>
                         </div>
                         <div class="col-sm-4 pull-right">
-                            <button type="submit" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">회원가입</button>
+                            <button type="button" id="registerBtn" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">회원가입</button>
                         </div>
                     </div>
 

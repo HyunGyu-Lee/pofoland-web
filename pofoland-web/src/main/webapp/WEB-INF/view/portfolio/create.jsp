@@ -27,6 +27,7 @@
     <div class="container">
         <!-- 포트폴리오 기본정보 입력영역 -->
         <div id="basicInformation" class="row">
+        <form id="createForm">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="v-heading-v2">
@@ -37,11 +38,11 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h5>제목</h5>
-                    <input type="text" class="form-control" placeholder="포폴제목">
+                    <input type="text" class="form-control" name="pofolNm" placeholder="포폴제목">
                 </div>
                 <div class="col-sm-6">
                     <h5>카테고리</h5>
-                    <select class="form-control">
+                    <select class="form-control" name="pofolTypeCd">
                         <c:forEach var="category" items="${categoryList}">
                             <option value="${category.commCd}">${category.commCdNm}</option>
                         </c:forEach>
@@ -51,10 +52,23 @@
             <div class="row" style="margin-top: 20px;">
                 <div class="col-sm-12">
                     <h5>개요</h5>
-                    <textarea class="form-control" rows="5" placeholder="포폴개요" style="resize: none;"></textarea>
+                    <textarea class="form-control" name="pofolDesc" rows="5" placeholder="포폴개요" style="resize: none;"></textarea>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-sm-12">
+                    <h4>대표이미지 <small><span href="#" rel="tooltip" data-original-title="본문에서 이미지를 찾아 선택합니다. 본문에 이미지가 없을 경우, 카테고리에 따른 기본 이미지가 지정됩니다.">자동 선택 <input type="checkbox" id="mainImageAutoSelectEnable"></span></small></h4> 
+                </div>
+                <div class="col-sm-12 center">
+                    <img id ="imgPreviewMainImage" src="https://via.placeholder.com/480x360" style="width: 50%;">
+                    <input type="file" id="mainImageFile" onchange="setImagePreview(this, 'MainImage');">
+                </div>
+                <div class="col-sm-12">
+                                         
                 </div>
             </div>
             <div class="v-spacer col-sm-12 v-height-small"></div>
+        </form>
         </div>
         <div class="row">
             <div class="row">
@@ -64,11 +78,16 @@
                     </div>
                 </div>
             </div>
-            <div id="portfolioBodyWrap" maxPage="0"></div>
+            <div class="row" style="padding-left: 15px; padding-right: 15px;">
+                <div class="col-sm-12">
+                    <div id="portfolioBodyWrap"></div>
+                </div>
+            </div>
             <div class="row center">
                 <div class="v-spacer col-sm-12 v-height-small"></div>
                 <div class="col-sm-12">
-                    <button type="button" id="btnAddPortfolioPage" class="btn btn-success">새 페이지 추가</button>
+                    <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-btn-default no-three-d">새 페이지 추가</button> 
+                    <button type="button" id="btnCreatePortfolio" class="btn v-btn v-nephritis no-three-d">포트폴리오 등록</button>                    
                 </div>
                 <div class="v-spacer col-sm-12 v-height-small"></div>
             </div>
@@ -80,15 +99,15 @@
 <div style="display: none;">
     <!-- Page추가 레이아웃 선택 -->
     <div id="chooseTemplate">
-        <div class="row center">
+        <div class="row center" style="height: 100%; margin-top: 10px;">
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-btn-default"><i class="fa fa-pencil"></i> 글</button>
+                <button type="button" class="btn v-btn v-btn-default no-three-d" onclick="addPortfolioPage('text');"><i class="fa fa-pencil"></i> 글</button>
             </div>
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-green-sea"><i class="fa fa-camera"></i> 사진</button>
+                <button type="button" class="btn v-btn v-green-sea no-three-d" onclick="addPortfolioPage('picture');"><i class="fa fa-camera"></i> 사진</button>
             </div>
             <div class="col-sm-4">
-                <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-peter-river"><i class="fa fa-video-camera"></i> 동영상</button>
+                <button type="button" class="btn v-btn v-peter-river no-three-d" onclick="addPortfolioPage('movie');"><i class="fa fa-video-camera"></i> 동영상</button>
             </div>
         </div>
     </div>

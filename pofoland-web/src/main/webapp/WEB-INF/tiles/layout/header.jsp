@@ -13,7 +13,7 @@
 
             <!--Site Logo-->
             <div class="logo">
-                <a href="${ctx}/index">
+                <a href="${ctx}/">
                     <img alt="Pofoland" src="${ctx}/static/assets/img/logo.png" data-logo-height="35">
                 </a>
             </div>
@@ -51,6 +51,7 @@
                                 </ul>
                             </li>
                         </c:forEach>
+                        <li><a href="/user/login">로그인</a></li>
                         <%--
                         <li class="dropdown active">
                             <a class="dropdown-toggle" href="#">Profiles</a>

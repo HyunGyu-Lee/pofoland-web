@@ -34,10 +34,4 @@
     <definition name="*/*/*" extends="defaultLayout">
         <put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}.jsp" />
     </definition>
-    
-    <!-- 1Depth login layout -->
-    <definition name="login/*/*" extends="loginLayout">
-        <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
-    </definition>
-    
 </tiles-definitions>

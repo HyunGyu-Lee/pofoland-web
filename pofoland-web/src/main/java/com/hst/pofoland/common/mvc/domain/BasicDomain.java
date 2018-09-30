@@ -21,11 +21,23 @@ public abstract class BasicDomain implements Serializable {
 
     private static final long serialVersionUID = 7647947402474981794L;
 
+    /**
+     * 등록일시
+     */
     private Date regDtm;
     
+    /**
+     * 등록사용자번호
+     */
     private int regUserNo;
     
-    private Date modDtm;
+    /**
+     * 수정일시
+     */
+    private Date updDtm;
     
-    private int modUserNo;
+    /**
+     * 수정사용자번호
+     */
+    private int updUserNo;
 }

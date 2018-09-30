@@ -5,6 +5,10 @@
  */
 package com.hst.pofoland.common.mvc.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.hst.pofoland.biz.code.service.CodeService;
+
 /**
  * 포폴랜드 공통 추상 서비스
  *
@@ -15,4 +19,7 @@ package com.hst.pofoland.common.mvc.service;
  */
 public class CommonService {
 
+    @Autowired    
+    protected CodeService codeService;
+    
 }

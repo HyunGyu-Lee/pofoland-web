@@ -6,22 +6,11 @@ var isLogin;
     isLogin = $('meta[name="isLogin"]').attr('content');
     
     // jQuery 확장 
-    $.fn.serializeAll = function () {
-        var data = $(this).serializeArray();
-
-        $(':disabled[name]', this).each(function () { 
-            data.push({ name: this.name, value: $(this).val() });
-        });
-
-        return data;
-    }
-    
-    // jQuery 확장
-    $.fn.serializeJson = function () {
+    $.fn.serializeObject = function() {
         var o = {};
-        var a = this.serializeAll();
-
-        $.each(a, function () {
+        var a = this.serializeArray();
+        
+        $.each(a, function() {
             if (o[this.name]) {
                 if (!o[this.name].push) {
                     o[this.name] = [o[this.name]];
@@ -31,7 +20,12 @@ var isLogin;
                 o[this.name] = this.value || '';
             }
         });
+        
         return o;
+    };
+    
+    $.fn.outerHTML = function () {
+        return $(this).clone().wrapAll("<div />").parent().html();
     }
     
     // alertify 글로벌 설정
@@ -43,6 +37,8 @@ var isLogin;
     alertify.defaults.theme.ok = "btn btn-primary";
     alertify.defaults.theme.cancel = "btn btn-danger";
     alertify.defaults.theme.input = "form-control";
+    alertify.defaults.basic = false;
+    
 })($);
 
 /**
@@ -70,4 +66,25 @@ function commonPreviewImage() {
         
         reader.readAsDataURL(this.files[0]);
     }
+}
+
+ // 이메일 형식 체크
+function emailFormatYn ( email ) {
+	var reg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	
+	if ( reg.test(email) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+// 문자가 공백일 경우 정해진 문자열로 대체
+function strNulltoReplace ( str , replaceStr ) {
+	
+	if ( str == '' || str == undefined || str == null ) {
+		return replaceStr;
+	} else {
+		return str;
+	}
 }

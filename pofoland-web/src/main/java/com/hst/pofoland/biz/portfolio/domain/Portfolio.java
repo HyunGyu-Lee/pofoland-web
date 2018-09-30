@@ -6,11 +6,14 @@
 package com.hst.pofoland.biz.portfolio.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+
+import com.hst.pofoland.common.mvc.domain.PagableDomain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -25,7 +28,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Portfolio implements Serializable {
+@EqualsAndHashCode(callSuper = false)
+public class Portfolio extends PagableDomain implements Serializable {
 
     private static final long serialVersionUID = -8565583098292589199L;
 
@@ -35,24 +39,9 @@ public class Portfolio implements Serializable {
     private Integer pofolNo;
     
     /**
-     * 등록사용자번호
-     */
-    private Integer regUserNo;
-    
-    /**
      * 등록사용자명
      */
     private String regUserNm;
-    
-    /**
-     * 등록일시
-     */
-    private Date regDtm;
-    
-    /**
-     * 수정일시
-     */
-    private Date updDtm;
     
     /**
      * 포트폴리오명
@@ -74,4 +63,22 @@ public class Portfolio implements Serializable {
      */
     private String pofolTypeNm;
     
+    /**
+     * 포트폴리오 대표이미지 파일번호
+     */
+    private Integer mainImageFileNo;
+    
+    /**
+     * 포트폴리오 대표이미지 자동선택 여부
+     */
+    private String mainImageAutoYn;
+    
+    /**
+     * 포트폴리오 페이지 목록
+     */
+    private List<PortfolioPage> portfolioPages;
+    
+    public Portfolio(Integer pofolNo) {
+        this.pofolNo = pofolNo;
+    }
 }
