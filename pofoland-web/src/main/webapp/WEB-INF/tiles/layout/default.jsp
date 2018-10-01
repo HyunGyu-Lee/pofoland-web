@@ -53,6 +53,7 @@
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
         <script src="${ctx}/static/vendor/alertify/alertify.min.js"></script>
+        <script src="${ctx}/static/vendor/oLoader/js/jquery.oLoader.min.js"></script>
         
         <!-- Our Custom CSS -->
         <link href="${ctx}/static/assets/css/app.css" rel="stylesheet" />
@@ -61,6 +62,7 @@
         <script src="${ctx}/static/assets/js/app.js"></script>
         <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>        
         <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>
+        <script src="${ctx}/static/assets/js/utils/LoadingUtils.js"></script>
     </head>
     <body>
         <div id="wrapper">

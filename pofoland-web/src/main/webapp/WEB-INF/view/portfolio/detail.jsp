@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- Current Page CSS -->
+<link href="${ctx}/static/vendor/volvox/plugins/masterslider/style/masterslider.css" rel="stylesheet" />
+<link href="${ctx}/static/vendor/volvox/plugins/masterslider/skins/default/style.css" rel="stylesheet" />
+<link href="${ctx}/static/vendor/volvox/plugins/masterslider/style/ms-overlaylayers.css" rel="stylesheet" />
+<link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
+<link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
+
 <c:choose>
     <c:when test="${empty portfolio.mainImageFileNo}">
         <c:choose>
@@ -26,9 +33,9 @@
 </div>
 <div class="row center" style="margin-left: 45px; margin-right: 45px;">
     <div class="col-sm-12">
-        <img src="${mainImageUrl}">
+        <img src="${mainImageUrl}" style="width: 720px; height: 480px;">
     </div>
-    <div class="col-sm-5">
+    <div class="col-sm-12">
         <div class="tab-pane fade active in" id="tagline" style="margin-top: 20px;">
             <div class="v-shadow-wrap">
                 <div class="v-tagline-box v-tagline-box-v1 v-box-shadow shadow-effect-2">
@@ -38,6 +45,57 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="full-width-display-wrap">
+        <figure class="media-wrap fw-media-wrap">
+            <figure class="media-wrap fw-media-wrap">
+                <!-- template -->
+                <div class="ms-overlay-layers-template" id="slider1-wrapper">
+                    <!-- masterslider -->
+                    <div class="master-slider ms-skin-default" id="masterslider">
+                        <div class="ms-overlay-layers">
+                            <h3 class="ms-layer bold-text-white"
+                                data-type="text"
+                                data-ease="easeOutQuint"
+                                data-effect="top(40)"
+                                data-duration="1500"
+                                data-origin="mc"
+                                data-offset-x="0"
+                                data-offset-y="0">
+                                WE ARE CREATIVE
+                            </h3>
+                            <h3 class="ms-layer bold-text-white med-text"
+                                data-type="text"
+                                data-ease="easeOutQuint"
+                                data-effect="bottom(40)"
+                                data-hide-effect="top(40)"
+                                data-hide-duration="300"
+                                data-duration="400"
+                                data-origin="mc"
+                                data-offset-x="0"
+                                data-offset-y="50"
+                                data-show-on="slide-2"
+                                data-masked="true">
+                                This overlay and masked layer only shows in 2th slide
+                            </h3>
+                        </div>
+                        <div class="ms-slide slide-1">
+                            <img src="${ctx}/static/vendor/volvox/plugins/masterslider/style/blank.gif" data-src="img/slider/slider1.jpg" alt="lorem ipsum dolor sit" />
+                        </div>
+                        <div class="ms-slide slide-2" data-id="slide-2">
+                            <img src="${ctx}/static/vendor/volvox/plugins/masterslider/style/blank.gif" data-src="img/slider/slider2.jpg" alt="lorem ipsum dolor sit" />
+                        </div>
+                    </div>
+                    <!-- end of masterslider -->
+                </div>
+                <!-- end of template -->
+            </figure>
+        </figure>
+    </div>
+</div>
+
+
 <div class="row center" style="margin-left: 45px; margin-right: 45px;">
     <c:forEach var="page" items="${portfolio.portfolioPages}">
         <div class="row">
@@ -90,3 +148,6 @@
         <hr>
     </c:forEach>
 </div>
+
+<script src="${ctx}/static/vendor/volvox/plugins/masterslider/masterslider.min.js"></script>
+<script src="${ctx}/static/assets/js/portfolio/detail.js"></script>

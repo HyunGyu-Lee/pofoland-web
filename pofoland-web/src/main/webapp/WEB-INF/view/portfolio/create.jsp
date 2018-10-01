@@ -60,7 +60,7 @@
                     <h4>대표이미지 <small><span href="#" rel="tooltip" data-original-title="본문에서 이미지를 찾아 선택합니다. 본문에 이미지가 없을 경우, 카테고리에 따른 기본 이미지가 지정됩니다.">자동 선택 <input type="checkbox" id="mainImageAutoSelectEnable"></span></small></h4> 
                 </div>
                 <div class="col-sm-12 center">
-                    <img id ="imgPreviewMainImage" src="https://via.placeholder.com/480x360" style="width: 50%;">
+                    <img id ="imgPreviewMainImage" src="https://via.placeholder.com/720x480" style="width: 50%;">
                     <input type="file" id="mainImageFile" onchange="setImagePreview(this, 'MainImage');">
                 </div>
                 <div class="col-sm-12">

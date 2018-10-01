@@ -55,6 +55,8 @@ var portfolioBody = $("#portfolioBodyWrap");
 var services = {
         // 포트폴리오 등록 처리
         createPortfolio : function () {
+            LoadingUtils.loading();
+            
             var data = $("#createForm").serializeObject();
             
             var portfolioPages = [];
@@ -91,6 +93,8 @@ var services = {
                 
                 // 자동선택이 체크해제되어있는 경우 메인이미지 변경
                 services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
+                
+                LoadingUtils.closeLoading();
                 
                 MessageBox.success("등록됌", function () {
                     location.href = '/portfolios/' + pofolNo;
