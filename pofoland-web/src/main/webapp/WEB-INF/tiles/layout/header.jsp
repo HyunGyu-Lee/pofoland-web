@@ -13,7 +13,7 @@
 
             <!--Site Logo-->
             <div class="logo">
-                <a href="${ctx}/index">
+                <a href="${ctx}/">
                     <img alt="Pofoland" src="${ctx}/static/assets/img/logo.png" data-logo-height="35">
                 </a>
             </div>

@@ -55,6 +55,8 @@ var portfolioBody = $("#portfolioBodyWrap");
 var services = {
         // 포트폴리오 등록 처리
         createPortfolio : function () {
+            LoadingUtils.loading();
+            
             var data = $("#createForm").serializeObject();
             
             var portfolioPages = [];
@@ -83,31 +85,58 @@ var services = {
             
             data["portfolioPages"] = portfolioPages;
             
-            // 포폴 등록
+            // 포트폴리오 등록 정보 초기화
             AjaxUtils.post("/api/portfolios", data, function (response) {
                 var pofolNo = response.payloads;
                 
-                // 포폴 등록완료 시 나머지 파일들 등록
-                _.forEach(fileUploadPool, function (e, i) {
-                    var uploadForm = $('<form />');
-                    var formData = new FormData(uploadForm);
-                    formData.append('file', e.fileData);
-                    
-                    $.ajax({
-                        url: '/api/portfolios/' + pofolNo + '/' + e.pageNo + '/upload',
-                        enctype: 'multipart/form-data',
-                        processData: false,
-                        contentType: false,
-                        data: formData,
-                        type: 'POST',
-                        async: false,
-                        success: function (response) {
-                        }
-                    });
-                });
+                services.uploadPageFile(pofolNo, fileUploadPool);
+                
+                // 자동선택이 체크해제되어있는 경우 메인이미지 변경
+                services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
+                
+                LoadingUtils.closeLoading();
                 
                 MessageBox.success("등록됌", function () {
                     location.href = '/portfolios/' + pofolNo;
+                });
+            });
+        },
+        // 메인 이미지 변경
+        changeMainImage: function (pofolNo, imgFile) {
+            var uploadForm = $('<form />');
+            var formData = new FormData(uploadForm);
+            formData.append('mainImage', imgFile);
+            
+            $.ajax({
+                url: '/api/portfolios/' + pofolNo + '/main-image',
+                type: 'PUT',
+                enctype: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                data: formData,
+                async: false,
+                success: function (response) {
+                }
+            });
+        },
+        // 특정 페이지의 파일 업로드
+        uploadPageFile: function (pofolNo, fileUploadPool) {
+            // 포폴 등록완료 시 나머지 파일들 등록
+            _.forEach(fileUploadPool, function (e, i) {
+                var uploadForm = $('<form />');
+                var formData = new FormData(uploadForm);
+                formData.append('file', e.fileData);
+                
+                $.ajax({
+                    url: '/api/portfolios/' + pofolNo + '/' + e.pageNo + '/file',
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    async: false,
+                    success: function (response) {
+                    }
                 });
             });
         }

@@ -12,7 +12,7 @@
         <meta name="keywords" content="HTML5 Template" />
         <meta name="description" content="Volvox - Responsive HTML5 Template">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+        <link rel="shortcut icon" type="image/png" href="/static/vendor/volvox/img/favicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="ctx" content="${ctx}" />
         
@@ -53,11 +53,16 @@
         <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
         <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
         <script src="${ctx}/static/vendor/alertify/alertify.min.js"></script>
-        <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>
+        <script src="${ctx}/static/vendor/oLoader/js/jquery.oLoader.min.js"></script>
+        
+        <!-- Our Custom CSS -->
+        <link href="${ctx}/static/assets/css/app.css" rel="stylesheet" />
+        
         <!-- App Commons -->
         <script src="${ctx}/static/assets/js/app.js"></script>
         <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>        
-        <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>                
+        <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>
+        <script src="${ctx}/static/assets/js/utils/LoadingUtils.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -77,5 +82,8 @@
         </div>
         
         <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+        
+        <!-- Template Core -->
+        <script src="${ctx}/static/vendor/volvox/js/theme-core.js"></script>
     </body>
 </html>
