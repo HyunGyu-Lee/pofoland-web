@@ -133,8 +133,16 @@ public class PortfolioRestController extends CommonController {
     public byte[] serveImage(@PathVariable("pofolNo") Integer pofolNo, @PathVariable("pofolFileNo") Integer pofolFileNo)
             throws Exception {
         PortfolioFile portfolioFile = portfolioService.findFileByPofolFileNo(pofolNo, pofolFileNo);
-
-        return storageService.getBytes(portfolioFile);
+        
+        byte[] imageData = null;
+        
+        try {
+            imageData = storageService.getBytes(portfolioFile);
+        } catch (Exception e) {
+            log.error("PortfolioFile {} not found ", portfolioFile);
+        }
+        
+        return imageData;
     }
     
 }

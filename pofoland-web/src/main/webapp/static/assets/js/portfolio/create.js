@@ -47,7 +47,20 @@ var pageTemplateBundle = {
                                  </div>\
                                  <div class="v-divider standard col-sm-12"></div>\
                              </div>'),
-        movie: '<h1>동영상 템플릿</h1>'
+        movie: _.template('<div class="row portfolioPage" type="' + MOVIE_TYPE + '">\
+                               <input type="hidden" id ="pageId" value="<%= pageId%>">\
+                               <div class="col-sm-7" style="height: 100%; padding-left: 0">\
+                                   <video id="imgPreview<%= pageId %>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">\
+                                   <input type="file" onchange="setImagePreview(this, <%= pageId %>);"></input>\
+                               </div>\
+                               <div class="col-sm-5" style="height: 100%; padding-right: 0">\
+                                   <div id="pageContentEditor<%= pageId %>"></div>\
+                               </div>\
+                               <div class="col-sm-12 center">\
+                                   <h5>- <span id="pageNo"><%= pageNo %></span> -</h5>\
+                               </div>\
+                               <div class="v-divider standard col-sm-12"></div>\
+                           </div>')
 };
 
 var portfolioBody = $("#portfolioBodyWrap");
