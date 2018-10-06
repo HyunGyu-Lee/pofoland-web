@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-<a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolios/create"><span>새 포트폴리오 등록</span></a>
+<%-- <a class="btn v-btn v-second-dark pull-right" href="${ctx}/portfolios/create"><span>새 포트폴리오 등록</span></a> --%>
 <div class="v-page-wrap clearfix no-bottom-spacing">
     <div class="container">
         <div class="row">
