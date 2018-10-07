@@ -39,6 +39,13 @@ var isLogin;
     alertify.defaults.theme.input = "form-control";
     alertify.defaults.basic = false;
     
+    // lodash template 설정
+    _.templateSettings = {
+        interpolate: /\<\@\=(.+?)\@\>/gim,
+        evaluate: /\<\@([\s\S]+?)\@\>/gim,
+        escape: /\<\@\-(.+?)\@\>/gim
+    };
+    
 })($);
 
 /**

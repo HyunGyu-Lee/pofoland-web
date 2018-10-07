@@ -47,7 +47,7 @@
 </div>
 
 <div class="container">
-    <div class="carousel-wrap">
+    <div class="carousel-wrap" style="border: 1px solid black;">
         <div class="owl-carousel" data-plugin-options='{"items": 1, "singleItem": false, "navigation": true, "pagination": false}'>
             <c:forEach var="page" items="${portfolio.portfolioPages}">
                 <div class="item">
@@ -75,7 +75,7 @@
                     <!-- 페이지 번호 -->
                     <div class="row center">
                         <div class="col-sm-12">
-                            <h2>- ${page.sortOrder} -</h2>
+                            <h5>- ${page.sortOrder} -</h5>
                         </div>
                     </div>
                 </div>

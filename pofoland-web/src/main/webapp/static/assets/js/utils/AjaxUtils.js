@@ -14,18 +14,14 @@
     // Default 에러 처리기
     var ErrorHandlerModules = {
         400: function (error) {
-            var errorData = error.responseJSON;
-            
-            if (!_.isUndefined(targetForm)) {
-                if (_.has(errorData, "data")) {
-                    var errMsgArea = targetForm.find("#errMsgArea");
-                    
-                    _.forEach(errorData.data, function (v, k) {
-                        targetForm.find("#" + k).addClass('errorInput');
-                        errMsgArea.append("<li>" + v + "</li>");
-                    });
-                }
-            }
+            MessageBox.danger('요청형식이 알맞지 않습니다.', function () {
+                LoadingUtils.closeLoading();
+            });
+        },
+        500: function (error) {
+            MessageBox.danger('요청을 처리하던 중 문제가 발생하였습니다.', function () {
+                LoadingUtils.closeLoading();
+            });
         }
     };
     

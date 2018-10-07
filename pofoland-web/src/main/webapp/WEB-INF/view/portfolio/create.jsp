@@ -1,28 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%-- <!-- 포트폴리오 등록 페이지 Header -->
-<div class="v-bg-stylish v-portfolio-single-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="portfolio-title">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h2 class="portfolio-caption">새 포트폴리오 등록</h2>
-                        </div>
-                        <!-- 화면 이동 컨트롤러 버튼 -->
-                        <div class="portfolio-nav col-md-2">
-                            <a href="portfolio-single-fw.html" class="portfolio-nav-prev" rel="tooltip" data-original-title="이전 포트폴리오"><i class="icon-arrow-65"></i></a>
-                            <a href="${ctx}/portfolio/management" rel="tooltip" data-original-title="목록으로"><i class="icon-thumbnails-2"></i></a>
-                            <a href="portfolio-single-fw.html" class="portfolio-nav-next" rel="tooltip" data-original-title="다음 포트폴리오"><i class="icon-arrow-66"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --%>
 <div class="v-page-wrap no-bottom-spacing">
     <div class="container">
         <!-- 포트폴리오 기본정보 입력영역 -->
@@ -113,6 +91,59 @@
     </div>
 </div>
 
+<!-- 포트폴리오 글 페이지 템플릿 -->
+<script id="textTemplate" type="text/template">
+    <div id="text">
+        <div class="row portfolioPage" type="0001">
+            <input type="hidden" id ="pageId" value="<@= pageId@>">
+            <div id="pageContentEditor<@= pageId @>"></div>
+            <div class="col-sm-12 center">
+                <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
+            </div>
+            <div class="v-divider standard col-sm-12"></div>
+        </div>
+    </div>
+</script>
+
+<!-- 포트폴리오 사진 페이지 템플릿 -->
+<script id="pictureTemplate" type="text/template">
+    <div id="picture">
+        <div class="row portfolioPage" type="0002">
+            <input type="hidden" id ="pageId" value="<@= pageId@>">
+            <div class="col-sm-7" style="height: 100%; padding-left: 0">
+                <img id="imgPreview<@= pageId @>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
+                <input type="file" onchange="setImagePreview(this, <@= pageId @>);"></input>
+            </div>
+            <div class="col-sm-5" style="height: 100%; padding-right: 0">
+                <div id="pageContentEditor<@= pageId @>"></div>
+            </div>
+            <div class="col-sm-12 center">
+                <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
+            </div>
+            <div class="v-divider standard col-sm-12"></div>
+        </div>
+    </div>
+</script>
+
+<!-- 포트폴리오 사진 페이지 템플릿 -->
+<script id="movieTemplate" type="text/template">
+    <div class="row portfolioPage" type="0003">
+        <input type="hidden" id ="pageId" value="<@= pageId@>">
+        <div class="col-sm-7" style="height: 100%; padding-left: 0">
+            <video id="videoPreview<@= pageId @>" width="100%" height="450" controls>
+                video태그를 지원하지 않는 브라우저입니다.
+            </video>
+            <input type="file" onchange="setVideoPreview(this, <@= pageId @>);"></input>
+        </div>
+        <div class="col-sm-5" style="height: 100%; padding-right: 0">
+            <div id="pageContentEditor<@= pageId @>"></div>
+        </div>
+        <div class="col-sm-12 center">
+            <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
+        </div>
+        <div class="v-divider standard col-sm-12"></div>
+    </div>
+</script>
 
 <script src="${ctx}/static/assets/js/portfolio/create.js"></script>
 

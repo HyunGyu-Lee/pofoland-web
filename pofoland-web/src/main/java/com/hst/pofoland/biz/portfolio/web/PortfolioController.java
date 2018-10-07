@@ -65,8 +65,6 @@ public class PortfolioController extends CommonController {
         model.addAttribute("portfolioList", portfolioList);
         model.addAttribute("pageInfo", new PageInfo<>(portfolioList));
         
-        portfolioList.forEach(e -> log.debug("{}", e));
-        
         return "portfolio/list";
     }
     
