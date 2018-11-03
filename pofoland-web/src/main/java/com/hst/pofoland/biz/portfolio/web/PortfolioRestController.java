@@ -140,6 +140,7 @@ public class PortfolioRestController extends CommonController {
             imageData = storageService.getBytes(portfolioFile);
         } catch (Exception e) {
             log.error("PortfolioFile {} not found ", portfolioFile);
+            // throw new Exception(e);
         }
         
         return imageData;

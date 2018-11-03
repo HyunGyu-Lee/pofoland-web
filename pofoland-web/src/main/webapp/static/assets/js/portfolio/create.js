@@ -66,7 +66,7 @@ var services = {
         data["portfolioPages"] = portfolioPages;
         
         // 포트폴리오 등록
-        AjaxUtils.post("/api/portfolios", data, function (response) {
+        AjaxUtils.post('/api/portfolios', data, function (response) {
             var pofolNo = response.payloads;
             
             services.uploadPageFile(pofolNo, fileUploadPool);
