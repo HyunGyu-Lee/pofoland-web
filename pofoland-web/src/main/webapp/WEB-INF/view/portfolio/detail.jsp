@@ -33,7 +33,7 @@
 </div>
 <div class="row center" style="margin-left: 45px; margin-right: 45px;">
     <div class="col-sm-12">
-        <img src="${mainImageUrl}" style="width: 720px; height: 480px;">
+        <img src="${mainImageUrl}" style="width: 720px; height: 480px;" onerror="setErrorImage(this);">
     </div>
     <div class="col-sm-12">
         <div class="tab-pane fade active in" id="tagline" style="margin-top: 20px;">
@@ -61,7 +61,7 @@
                             </c:when>
                             <c:when test="${page.pofolPageTypeCd eq '0002'}">
                                 <div class="col-sm-7">
-                                    <img class="img-responsive" src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" />
+                                    <img class="img-responsive" src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" />
                                 </div>
                                 <div class="col-sm-5">
                                     ${page.pofolPageCont}
