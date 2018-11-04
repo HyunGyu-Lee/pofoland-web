@@ -37,8 +37,10 @@
                 <div class="col-sm-12">
                     <h4>대표이미지 <small><span href="#" rel="tooltip" data-original-title="본문에서 이미지를 찾아 선택합니다. 본문에 이미지가 없을 경우, 카테고리에 따른 기본 이미지가 지정됩니다.">자동 선택 <input type="checkbox" id="mainImageAutoSelectEnable"></span></small></h4> 
                 </div>
-                <div class="col-sm-12 center">
-                    <img id ="imgPreviewMainImage" src="https://via.placeholder.com/720x480" style="width: 50%;">
+                <div class="col-sm-12 center image-selector">
+                    <label for="mainImageFile">
+                        <img id ="imgPreviewMainImage" src="https://via.placeholder.com/720x480">
+                    </label>
                     <input type="file" id="mainImageFile" onchange="setImagePreview(this, 'MainImage');">
                 </div>
                 <div class="col-sm-12">
@@ -110,9 +112,11 @@
     <div id="picture">
         <div class="row portfolioPage" type="0002">
             <input type="hidden" id ="pageId" value="<@= pageId@>">
-            <div class="col-sm-7" style="height: 100%; padding-left: 0">
-                <img id="imgPreview<@= pageId @>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
-                <input type="file" onchange="setImagePreview(this, <@= pageId @>);"></input>
+            <div class="col-sm-7 center image-selector" style="height: 100%; padding-left: 0">
+                <label for="fileSelector<@= pageId@>">
+                    <img id="imgPreview<@= pageId @>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
+                </label>
+                <input type="file" id="fileSelector<@= pageId@>" onchange="setImagePreview(this, <@= pageId @>);"></input>
             </div>
             <div class="col-sm-5" style="height: 100%; padding-right: 0">
                 <div id="pageContentEditor<@= pageId @>"></div>
@@ -125,7 +129,7 @@
     </div>
 </script>
 
-<!-- 포트폴리오 사진 페이지 템플릿 -->
+<!-- 포트폴리오 동영상 페이지 템플릿 -->
 <script id="movieTemplate" type="text/template">
     <div class="row portfolioPage" type="0003">
         <input type="hidden" id ="pageId" value="<@= pageId@>">

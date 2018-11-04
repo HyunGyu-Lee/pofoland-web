@@ -48,7 +48,8 @@
 
 <div class="container">
     <div class="carousel-wrap" style="border: 1px solid black;">
-        <div class="owl-carousel" data-plugin-options='{"items": 1, "singleItem": false, "navigation": true, "pagination": false}'>
+        <div class="owl-carousel" data-plugin-options='{"items": 1, "singleItem": false, "navigation": true, "pagination": false, "margin": 10}'>
+            <div class="item-video" data-merge="3"><a class="owl-video" href="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}"></a></div>
             <c:forEach var="page" items="${portfolio.portfolioPages}">
                 <div class="item">
                     <!-- 페이지 내용 -->
@@ -68,7 +69,14 @@
                                 </div>
                             </c:when>
                             <c:when test="${page.pofolPageTypeCd eq '0003'}">
-                                ${page.pofolPageCont}
+                                <div class="col-sm-7">
+                                    <video width="100%" height="450" controls>
+                                        <source src="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}" type="video/mp4"></source>
+                                    </video>
+                                </div>
+                                <div class="col-sm-5">
+                                    ${page.pofolPageCont}
+                                </div>
                             </c:when>
                         </c:choose>
                     </div>
