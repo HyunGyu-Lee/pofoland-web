@@ -5,14 +5,15 @@
  */
 package com.hst.pofoland.config;
 
+import org.springframework.batch.core.configuration.annotation.DefaultBatchConfigurer;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.SimpleJobLauncher;
-import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean;
-import org.springframework.batch.support.transaction.ResourcelessTransactionManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 배치 설정
@@ -24,30 +25,25 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  */
 @Configuration
 @EnableBatchProcessing
-@EnableScheduling
-public class BatchJobConfig {
+@Slf4j
+public class BatchJobConfig extends DefaultBatchConfigurer {
 
     @Bean
-    public ResourcelessTransactionManager transactionManager() {
-        return new ResourcelessTransactionManager();
-    }
-
-    @Bean
-    public MapJobRepositoryFactoryBean mapJobRepositoryFactory(ResourcelessTransactionManager txManager)
-            throws Exception {
-        return new MapJobRepositoryFactoryBean(txManager);
-    }
-
-    @Bean
-    public JobRepository jobRepository(MapJobRepositoryFactoryBean factory) throws Exception {
-        return factory.getObject();
-    }
-
-    @Bean
-    public SimpleJobLauncher jobLauncher(JobRepository jobRepository) {
-        SimpleJobLauncher launcher = new SimpleJobLauncher();
-        launcher.setJobRepository(jobRepository);
-        return launcher;
+    public ThreadPoolTaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(10);
+        taskExecutor.setMaxPoolSize(25);
+        taskExecutor.setQueueCapacity(30);
+        
+        return taskExecutor;
+    } 
+    
+    @Override
+    protected JobLauncher createJobLauncher() throws Exception {
+        SimpleJobLauncher jobLauncher = (SimpleJobLauncher) super.createJobLauncher();
+        jobLauncher.setTaskExecutor(taskExecutor());
+        
+        return jobLauncher;
     }
 
 }

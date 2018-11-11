@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Controller
-@RequestMapping("portfolios")
+@RequestMapping("/portfolios")
 @Slf4j
 public class PortfolioController extends CommonController {
 

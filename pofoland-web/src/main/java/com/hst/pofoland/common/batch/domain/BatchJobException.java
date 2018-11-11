@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.common.batch;
+package com.hst.pofoland.common.batch.domain;
 
 /**
  * 클래스에 설명을 적는다.
