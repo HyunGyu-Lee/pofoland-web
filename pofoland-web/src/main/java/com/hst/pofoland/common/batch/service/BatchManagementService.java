@@ -12,7 +12,7 @@ import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hst.pofoland.common.batch.jobs.AbstractBatch;
+import com.hst.pofoland.common.batch.jobs.JobConfigurer;
 import com.hst.pofoland.common.mvc.service.CommonService;
 
 /**
@@ -32,7 +32,7 @@ public class BatchManagementService extends CommonService {
     /**
      * @param batchJob
      */
-    public void launch(AbstractBatch batchJob) {
+    public void launch(JobConfigurer batchJob) {
         boolean s = true;
         if (s) {
             return;

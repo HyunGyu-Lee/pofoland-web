@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hst.pofoland.common.batch.jobs.AbstractBatch;
+import com.hst.pofoland.common.batch.jobs.JobConfigurer;
 import com.hst.pofoland.common.batch.service.BatchManagementService;
 import com.hst.pofoland.common.mvc.domain.CommonApiResponse;
 import com.hst.pofoland.common.mvc.web.CommonController;
@@ -42,11 +42,11 @@ public class BatchManagementController extends CommonController {
         try {
             Class<?> jobClass = Class.forName(jobClassStr);
             
-            if (jobClass.isAssignableFrom(AbstractBatch.class)) {
+            if (jobClass.isAssignableFrom(JobConfigurer.class)) {
                 return badRequest("not applicable class type " + jobClassStr, null);
             }
             
-            AbstractBatch batchJob = (AbstractBatch) contextProvider.getApplicationContext().getBean(jobClass);
+            JobConfigurer batchJob = (JobConfigurer) contextProvider.getApplicationContext().getBean(jobClass);
 
             batchManagementService.launch(batchJob);
         } catch (ClassNotFoundException e) {

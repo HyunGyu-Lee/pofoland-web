@@ -12,6 +12,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 /**
  * Batch Job 추상 클래스
@@ -21,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @see
  *
  */
-public abstract class AbstractBatch implements InitializingBean {
+public abstract class JobConfigurer implements InitializingBean {
 
     @Autowired
     protected JobBuilderFactory jobBuilderFactory;
@@ -29,6 +30,7 @@ public abstract class AbstractBatch implements InitializingBean {
     @Autowired
     protected StepBuilderFactory stepBuilderFactory;
 
+    
     /**
      * 수행할 Job
      */
@@ -70,6 +72,7 @@ public abstract class AbstractBatch implements InitializingBean {
      * @param stepBuilderFactory
      * @return
      */
+    @Bean
     protected abstract Job buildBatchJob(JobBuilderFactory jobBuilderFactory, StepBuilderFactory stepBuilderFactory);
 
     /**
@@ -79,5 +82,4 @@ public abstract class AbstractBatch implements InitializingBean {
      * @return
      */
     protected abstract JobParameters buildBatchParameters(JobParametersBuilder jobParameterBuilder);
-    
 }
