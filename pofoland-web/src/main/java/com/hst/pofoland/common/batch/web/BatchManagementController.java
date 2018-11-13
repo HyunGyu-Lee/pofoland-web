@@ -5,14 +5,13 @@
  */
 package com.hst.pofoland.common.batch.web;
 
-import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hst.pofoland.common.batch.jobs.JobConfigurer;
 import com.hst.pofoland.common.batch.service.BatchManagementService;
 import com.hst.pofoland.common.mvc.domain.CommonApiResponse;
 import com.hst.pofoland.common.mvc.web.CommonController;
@@ -36,22 +35,10 @@ public class BatchManagementController extends CommonController {
     private BatchManagementService batchManagementService;
     
     @GetMapping("/launch")
-    public CommonApiResponse runTestJob(@RequestParam String jobClassStr) {
-        log.debug("request batch : {}", jobClassStr);
+    public CommonApiResponse runTestJob(@RequestParam String jobName) {
+        Job batchJob = contextProvider.getApplicationContext().getBean("jobName", Job.class);
         
-        try {
-            Class<?> jobClass = Class.forName(jobClassStr);
-            
-            if (jobClass.isAssignableFrom(JobConfigurer.class)) {
-                return badRequest("not applicable class type " + jobClassStr, null);
-            }
-            
-            JobConfigurer batchJob = (JobConfigurer) contextProvider.getApplicationContext().getBean(jobClass);
-
-            batchManagementService.launch(batchJob);
-        } catch (ClassNotFoundException e) {
-            return badRequest(e.getMessage(), null);
-        }
+        log.debug("getBean {} - {}", jobName, batchJob);
         
         return ok("launch success", null);
     }

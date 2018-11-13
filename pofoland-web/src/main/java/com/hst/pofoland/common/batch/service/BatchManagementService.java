@@ -3,16 +3,8 @@
  */
 package com.hst.pofoland.common.batch.service;
 
-import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParametersInvalidException;
-import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hst.pofoland.common.batch.jobs.JobConfigurer;
 import com.hst.pofoland.common.mvc.service.CommonService;
 
 /**
@@ -26,29 +18,6 @@ import com.hst.pofoland.common.mvc.service.CommonService;
 @Service
 public class BatchManagementService extends CommonService {
 
-    @Autowired
-    private JobLauncher jobLauncher;
-    
-    /**
-     * @param batchJob
-     */
-    public void launch(JobConfigurer batchJob) {
-        boolean s = true;
-        if (s) {
-            return;
-        }
-        
-        try {
-            JobExecution e = jobLauncher.run(batchJob.getJob(), batchJob.getParameters());
-        } catch (JobExecutionAlreadyRunningException e) {
-            e.printStackTrace();
-        } catch (JobRestartException e) {
-            e.printStackTrace();
-        } catch (JobInstanceAlreadyCompleteException e) {
-            e.printStackTrace();
-        } catch (JobParametersInvalidException e) {
-            e.printStackTrace();
-        }
-    }
+    // TODO 배치 정보 조회 등 기능 추가
 
 }
