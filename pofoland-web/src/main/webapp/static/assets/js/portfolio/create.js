@@ -27,7 +27,8 @@ const summernoteSettings = {
 const pageTemplateBundle = {
         text: _.template($('#textTemplate').html()),
         picture: _.template($('#pictureTemplate').html()),
-        movie: _.template($('#movieTemplate').html())
+        movie: _.template($('#movieTemplate').html()),
+        controls: _.template($('#pageControls').html())
 };
 
 var portfolioBody = $("#portfolioBodyWrap");
@@ -158,11 +159,15 @@ function initChooser() {
  * 포트폴리오 페이지 추가 
  */
 function addPortfolioPage(pageType) {
-    var pageNo = refreshPageNo();
-    var pageId = generatePageId();
+    var pageData = {pageId: generatePageId(), pageNo: refreshPageNo()};
     
-    $("#portfolioBodyWrap").append(pageTemplateBundle[pageType]({pageId: pageId, pageNo: pageNo}));
-    getPageEditor(pageId).summernote(summernoteSettings);
+    var singlePageWrap = $('<div id="pageHolder' + pageData.pageNo + '" class="singlePageWrap"/>');
+    
+    singlePageWrap.append(pageTemplateBundle['controls'](pageData));
+    singlePageWrap.append(pageTemplateBundle[pageType](pageData));
+    
+    $("#portfolioBodyWrap").append(singlePageWrap);
+    getPageEditor(pageData.pageId).summernote(summernoteSettings);
 
     alertify.closeAll();
 }
@@ -210,4 +215,9 @@ function setVideoPreview(input, pageId) {
         
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function deletePage(pageNo) {
+    $('#pageHolder' + pageNo).remove();
+    refreshPageNo();
 }

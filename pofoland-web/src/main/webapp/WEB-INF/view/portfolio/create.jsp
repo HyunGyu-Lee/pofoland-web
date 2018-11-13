@@ -93,39 +93,43 @@
     </div>
 </div>
 
+<!-- 포트폴리오 페이지 컨트롤 템플릿 -->
+<script id="pageControls" type="text/template">
+    <div class="pull-right" style="margin-bottom: 10px;">
+        <button class="btn btn-danger" onclick="deletePage(<@=pageNo@>);">X</button>
+    </div>
+    <div class="clearfix"></div>
+</script>
+
 <!-- 포트폴리오 글 페이지 템플릿 -->
 <script id="textTemplate" type="text/template">
-    <div id="text">
-        <div class="row portfolioPage" type="0001">
-            <input type="hidden" id ="pageId" value="<@= pageId@>">
-            <div id="pageContentEditor<@= pageId @>"></div>
-            <div class="col-sm-12 center">
-                <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
-            </div>
-            <div class="v-divider standard col-sm-12"></div>
+    <div class="row portfolioPage" type="0001">
+        <input type="hidden" id ="pageId" value="<@= pageId@>">
+        <div id="pageContentEditor<@= pageId @>"></div>
+        <div class="col-sm-12 center">
+            <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
         </div>
+        <div class="v-divider standard col-sm-12"></div>
     </div>
 </script>
 
 <!-- 포트폴리오 사진 페이지 템플릿 -->
 <script id="pictureTemplate" type="text/template">
-    <div id="picture">
-        <div class="row portfolioPage" type="0002">
-            <input type="hidden" id ="pageId" value="<@= pageId@>">
-            <div class="col-sm-7 center image-selector" style="height: 100%; padding-left: 0">
-                <label for="fileSelector<@= pageId@>">
-                    <img id="imgPreview<@= pageId @>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
-                </label>
-                <input type="file" id="fileSelector<@= pageId@>" onchange="setImagePreview(this, <@= pageId @>);"></input>
-            </div>
-            <div class="col-sm-5" style="height: 100%; padding-right: 0">
-                <div id="pageContentEditor<@= pageId @>"></div>
-            </div>
-            <div class="col-sm-12 center">
-                <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
-            </div>
-            <div class="v-divider standard col-sm-12"></div>
+    <div class="row portfolioPage" type="0002">
+        <input type="hidden" id ="pageId" value="<@= pageId@>">
+        <div class="col-sm-7 center image-selector" style="height: 100%; padding-left: 0">
+            <label for="fileSelector<@= pageId@>">
+                <img id="imgPreview<@= pageId @>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
+            </label>
+            <input type="file" id="fileSelector<@= pageId@>" onchange="setImagePreview(this, <@= pageId @>);"></input>
         </div>
+        <div class="col-sm-5" style="height: 100%; padding-right: 0">
+            <div id="pageContentEditor<@= pageId @>"></div>
+        </div>
+        <div class="col-sm-12 center">
+            <h5>- <span id="pageNo"><@= pageNo @></span> -</h5>
+        </div>
+        <div class="v-divider standard col-sm-12"></div>
     </div>
 </script>
 

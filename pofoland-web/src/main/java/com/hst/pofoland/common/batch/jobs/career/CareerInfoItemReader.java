@@ -9,6 +9,7 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.NonTransientResourceException;
 import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
+import org.springframework.stereotype.Component;
 
 /**
  * 클래스에 설명을 적는다.
@@ -18,6 +19,7 @@ import org.springframework.batch.item.UnexpectedInputException;
  * @see
  *
  */
+@Component
 public class CareerInfoItemReader implements ItemReader<Object> {
 
     private boolean stopSignal = false;

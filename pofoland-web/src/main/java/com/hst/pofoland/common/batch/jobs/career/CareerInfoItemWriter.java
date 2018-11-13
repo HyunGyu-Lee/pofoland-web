@@ -8,6 +8,7 @@ package com.hst.pofoland.common.batch.jobs.career;
 import java.util.List;
 
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.stereotype.Component;
 
 /**
  * 클래스에 설명을 적는다.
@@ -17,6 +18,7 @@ import org.springframework.batch.item.ItemWriter;
  * @see
  *
  */
+@Component
 public class CareerInfoItemWriter implements ItemWriter<Object> {
 
     @Override

@@ -48,45 +48,56 @@
 
 <div class="container">
     <div class="carousel-wrap" style="border: 1px solid black;">
-        <div class="owl-carousel" data-plugin-options='{"items": 1, "singleItem": false, "navigation": true, "pagination": false, "margin": 10}'>
-            <div class="item-video" data-merge="3"><a class="owl-video" href="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}"></a></div>
+        <div class="owl-carousel" data-plugin-options='{"singleItem": true, video:true}'>
             <c:forEach var="page" items="${portfolio.portfolioPages}">
-                <div class="item">
-                    <!-- 페이지 내용 -->
-                    <div class="row">
-                        <c:choose>
-                            <c:when test="${page.pofolPageTypeCd eq '0001'}">
+                <c:choose>
+                    <c:when test="${page.pofolPageTypeCd eq '0001'}">
+                        <div class="item">
+                            <div>
+                                ${page.pofolPageCont}
+                            </div>
+                            <div class="row center">
                                 <div class="col-sm-12">
-                                    ${page.pofolPageCont}
+                                    <h5>- ${page.sortOrder} -</h5>
                                 </div>
-                            </c:when>
-                            <c:when test="${page.pofolPageTypeCd eq '0002'}">
-                                <div class="col-sm-7">
-                                    <img class="img-responsive" src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" />
-                                </div>
-                                <div class="col-sm-5">
-                                    ${page.pofolPageCont}
-                                </div>
-                            </c:when>
-                            <c:when test="${page.pofolPageTypeCd eq '0003'}">
-                                <div class="col-sm-7">
-                                    <video width="100%" height="450" controls>
-                                        <source src="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}" type="video/mp4"></source>
-                                    </video>
-                                </div>
-                                <div class="col-sm-5">
-                                    ${page.pofolPageCont}
-                                </div>
-                            </c:when>
-                        </c:choose>
-                    </div>
-                    <!-- 페이지 번호 -->
-                    <div class="row center">
-                        <div class="col-sm-12">
-                            <h5>- ${page.sortOrder} -</h5>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </c:when>
+                    <c:when test="${page.pofolPageTypeCd eq '0002'}">
+                        <div class="item">
+                            <div class="pull-left">
+                                <img class="img-responsive" src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" />
+                            </div>
+                            <div class="pull-right">
+                                ${page.pofolPageCont}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row center">
+                                <div class="col-sm-12">
+                                    <h5>- ${page.sortOrder} -</h5>
+                                </div>
+                            </div>                            
+                        </div>
+                    </c:when>
+                    <c:when test="${page.pofolPageTypeCd eq '0003'}">
+                        <div class="item-video">
+                            <div class="pull-left">
+                                <video width="100%" height="450" controls>
+                                    <source src="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}" type="video/mp4"></source>
+                                </video>
+                            </div>
+                            <div class="pull-right">
+                                ${page.pofolPageCont}
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row center">
+                                <div class="col-sm-12">
+                                    <h5>- ${page.sortOrder} -</h5>
+                                </div>
+                            </div>                            
+                        </div>
+                    </c:when>
+                </c:choose>
             </c:forEach>
         </div>
     </div>
