@@ -48,11 +48,9 @@
                         </section>
                         <div class="portfolio-v-blog-item-info">
                             <ul class="portfolio-categories">
-                                <li><a href="#" rel="tag">Visualisations</a></li>
-                                <li><a href="#" rel="tag">Illustration</a></li>
-                                <li><a href="#" rel="tag">Graphic Design</a></li>
-                                <li><a href="#" rel="tag">Graphic Design</a></li>
-                                <li><a href="#" rel="tag">Graphic Design</a></li>
+                                <c:forEach var="hashTag" items="${portfolio.portfolioHashTags}">
+                                    <li><a href="/hashtags/${hashTag.tagNm}" rel="tag">${hashTag.tagNm}</a></li>
+                                </c:forEach>
                             </ul>
                         </div>
                     </section>

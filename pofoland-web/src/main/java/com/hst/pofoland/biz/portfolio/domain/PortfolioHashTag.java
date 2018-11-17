@@ -5,6 +5,8 @@
  */
 package com.hst.pofoland.biz.portfolio.domain;
 
+import lombok.Data;
+
 /**
  * 포트폴리오 해시태그
  *
@@ -13,6 +15,7 @@ package com.hst.pofoland.biz.portfolio.domain;
  * @see
  *
  */
+@Data
 public class PortfolioHashTag {
 
     /**

@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
+import com.hst.pofoland.biz.portfolio.domain.PortfolioHashTag;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioPage;
 import com.hst.pofoland.common.mvc.dao.CommonDAO;
 
@@ -27,6 +28,13 @@ import com.hst.pofoland.common.mvc.dao.CommonDAO;
 public interface PortfolioDAO extends CommonDAO<Integer, Portfolio> {
 
     /**
+     * 포트폴리오 해시태그 등록
+     * 
+     * @param tag
+     */
+    void createHashTag(PortfolioHashTag tag);
+    
+    /**
      * 포트폴리오 페이지 등록
      * 
      * @param portfolioPage
@@ -39,6 +47,15 @@ public interface PortfolioDAO extends CommonDAO<Integer, Portfolio> {
      * @param pfFile
      */
     void createPortfolioFile(PortfolioFile pfFile);
+    
+    /**
+     * 포트폴리오 해시태그 조회
+     * 
+     * @param pofolNo
+     * @return
+     */
+    List<PortfolioHashTag> findPortfolioHashTags(Integer pofolNo);
+
     
     /**
      * 포트폴리오 페이지 목록 조회
@@ -54,4 +71,5 @@ public interface PortfolioDAO extends CommonDAO<Integer, Portfolio> {
      * @return
      */
     PortfolioFile findPortfolioFile(@Param("pofolNo") Integer pofolNo, @Param("pofolFileNo") Integer pofolFileNo);
+
 }

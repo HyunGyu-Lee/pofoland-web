@@ -78,6 +78,11 @@ public class Portfolio extends PagableDomain implements Serializable {
      */
     private List<PortfolioPage> portfolioPages;
     
+    /**
+     * 포트폴리오 해시태그 목록
+     */
+    private List<PortfolioHashTag> portfolioHashTags;
+    
     public Portfolio(Integer pofolNo) {
         this.pofolNo = pofolNo;
     }

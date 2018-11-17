@@ -28,7 +28,8 @@ const pageTemplateBundle = {
         text: _.template($('#textTemplate').html()),
         picture: _.template($('#pictureTemplate').html()),
         movie: _.template($('#movieTemplate').html()),
-        controls: _.template($('#pageControls').html())
+        controls: _.template($('#pageControls').html()),
+        tag: _.template('<a class="tags" href="#" rel="tag" tagNm="<@= tagNm @>">#<@= tagNm @> </span>')
 };
 
 var portfolioBody = $("#portfolioBodyWrap");
@@ -40,8 +41,16 @@ var services = {
         
         var data = $("#createForm").serializeObject();
         
+        var portfolioHashTags = [];
         var portfolioPages = [];
         var fileUploadPool = [];
+        
+        // 태그 정보 취합
+        _.forEach($('#hashTagListArea').find('.tags'), function (e, i) {
+            portfolioHashTags.push({
+                tagNm: $(e).attr('tagNm')
+            });
+        });
         
         // 페이지 정보 취합
         _.forEach($('.portfolioPage'), function (e, i) {
@@ -64,6 +73,7 @@ var services = {
             });
         });
         
+        data["portfolioHashTags"] = portfolioHashTags;
         data["portfolioPages"] = portfolioPages;
         
         // 포트폴리오 등록
@@ -235,5 +245,5 @@ function deletePage(pageNo) {
 }
 
 function addHashTag(tagName) {
-    $('#hashTagListArea').append('<a class="tags" href="#" rel="tag">#' + tagName + '</span>');
+    $('#hashTagListArea').append(pageTemplateBundle['tag']({tagNm: tagName}));
 }
