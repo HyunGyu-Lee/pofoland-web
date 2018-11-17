@@ -5,6 +5,7 @@
  */
 package com.hst.pofoland;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.test.JobLauncherTestUtils;
@@ -39,6 +40,7 @@ public class BatchTest {
     private JobLauncherTestUtils jobLauncherTestUtils;
     
     @Test
+    @Ignore
     public void 직업정보_수집배치_테스트() {
         try {
             jobLauncherTestUtils.launchJob();

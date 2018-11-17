@@ -1,4 +1,4 @@
-﻿/* Info
+/* Info
 ================================================== 
      Author: www.master-themes.com 
      Version: 1.0
@@ -484,6 +484,7 @@ ul.v-portfolio-items.col-3 .v-portfolio-item {
 }
 
 .v-portfolio-item-content {
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 

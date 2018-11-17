@@ -130,6 +130,18 @@ $(function () {
     });
     
     $("#btnCreatePortfolio").on("click", services.createPortfolio);
+    
+    $("#inputHashTag").on("keydown", function(e) {
+        if (e.keyCode == 13) {
+            addHashTag($(this).val());
+            $(this).val('');
+        }
+    });
+    
+    $("#btnAddHashTag").on("click", function () {
+        addHashTag($("#inputHashTag").val());
+        $("#inputHashTag").val('');
+    });
 });
 
 // alertify chooser 초기화
@@ -220,4 +232,8 @@ function setVideoPreview(input, pageId) {
 function deletePage(pageNo) {
     $('#pageHolder' + pageNo).remove();
     refreshPageNo();
+}
+
+function addHashTag(tagName) {
+    $('#hashTagListArea').append('<a class="tags" href="#" rel="tag">#' + tagName + '</span>');
 }

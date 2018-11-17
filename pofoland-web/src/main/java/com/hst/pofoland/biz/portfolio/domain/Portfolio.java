@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
  * @see
  *
  */
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class Portfolio extends PagableDomain implements Serializable {
 

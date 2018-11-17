@@ -4,16 +4,16 @@
 <div class="v-page-wrap no-bottom-spacing">
     <div class="container">
         <!-- 포트폴리오 기본정보 입력영역 -->
-        <div id="basicInformation" class="row">
+        <div id="basicInformation">
         <form id="createForm">
-            <div class="">
+            <div class="row">
                 <div class="col-sm-12">
                     <div class="v-heading-v2">
                         <h3>포트폴리오 개요 및 기본정보</h3>
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="row">
                 <div class="col-sm-6">
                     <h5>제목</h5>
                     <input type="text" class="form-control" name="pofolNm" placeholder="포폴제목">
@@ -27,13 +27,23 @@
                     </select>
                 </div>
             </div>
-            <div style="margin-top: 20px;">
-                <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
                     <h5>개요</h5>
                     <textarea class="form-control" name="pofolDesc" rows="5" placeholder="포폴개요" style="resize: none;"></textarea>
                 </div>
+                <div class="col-sm-6">
+                    <h5>해시태그</h5>
+                    <div class="input-group mb-md">
+                        <input type="text" id="inputHashTag" class="form-control" placeholder="#태그">
+                        <span class="input-group-btn">
+                            <button id="btnAddHashTag" class="btn btn-success" type="button">추가</button>
+                        </span>
+                    </div>
+                    <div id="hashTagListArea" class="tags-wrap"></div>
+                </div>
             </div>
-            <div style="margin-top: 20px;">
+            <div class="row">
                 <div class="col-sm-12">
                     <h4>대표이미지 <small><span href="#" rel="tooltip" data-original-title="본문에서 이미지를 찾아 선택합니다. 본문에 이미지가 없을 경우, 카테고리에 따른 기본 이미지가 지정됩니다.">자동 선택 <input type="checkbox" id="mainImageAutoSelectEnable"></span></small></h4> 
                 </div>
@@ -50,14 +60,18 @@
             <div class="v-spacer col-sm-12 v-height-small"></div>
         </form>
         </div>
-        <div class="col-sm-12">
-            <div class="v-heading-v2">
-                <h3>포트폴리오 본문</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="v-heading-v2">
+                    <h3>포트폴리오 본문</h3>
+                </div>
             </div>
         </div>
         <!-- TODO Summernote영역 넘치는 문제 해결봐야함.. -->
-        <div id="portfolioBodyWrap" style="border: 1px solid black"></div>
-        <div class="center">
+        <div class="row">
+            <div id="portfolioBodyWrap" style="border: 1px solid black"></div>
+        </div>
+        <div class="row center">
             <div class="v-spacer col-sm-12 v-height-small"></div>
             <div class="col-sm-12">
                 <button type="button" id="btnAddPortfolioPage" class="btn v-btn v-btn-default no-three-d">새 페이지 추가</button> 

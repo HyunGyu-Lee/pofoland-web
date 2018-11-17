@@ -6,7 +6,7 @@
 	<groupId>com.hst</groupId>
 	<artifactId>pofoland-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>pofoland-web</name>
 	<description>Pofoland Web Project</description>

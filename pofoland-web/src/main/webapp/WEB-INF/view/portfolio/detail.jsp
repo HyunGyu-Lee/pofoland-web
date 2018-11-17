@@ -24,155 +24,104 @@
         <c:set var="mainImageUrl" value="${ctx}/api/portfolios/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
     </c:otherwise>
 </c:choose>
-<div class="row center" style="margin-left: 45px; margin-right: 45px; margin-top: 15px;">
-    <div class="col-sm-12">
-        <div class="v-heading-v2">
-            <h1>${portfolio.pofolNm}</h1>
-        </div>
-    </div>
-</div>
-<div class="row center" style="margin-left: 45px; margin-right: 45px;">
-    <div class="col-sm-12">
-        <img src="${mainImageUrl}" style="height: 480px;" onerror="setErrorImage(this);">
-    </div>
-    <div class="col-sm-12">
-        <div class="tab-pane fade active in" id="tagline" style="margin-top: 20px;">
-            <div class="v-shadow-wrap">
-                <div class="v-tagline-box v-tagline-box-v1 v-box-shadow shadow-effect-2">
-                    ${portfolio.pofolDesc}
+<div style="background-color: #eeeeee">
+    <div class="container">
+        <div class="v-portfolio-item-content panel panel-default">
+            <div class="row panel-body">
+                <div class="col-sm-8 center">
+                    <figure class="media-wrap">
+                        <img src="${mainImageUrl}" style="height: 480px !important; width: auto !important;" onerror="setErrorImage(this);"/>
+                    </figure>
+                </div>
+                <div class="col-sm-4">
+                    <section class="article-body-wrap">
+                        <section class="portfolio-detail-description">
+                            <div class="body-text clearfix">
+                                <div class="v-heading-v3">
+                                    <h2><span>${portfolio.pofolNm}</span></h2>
+                                    <div class="horizontal-break"></div>
+                                </div>
+                                <p>
+                                    ${portfolio.pofolDesc}
+                                </p>
+                            </div>
+                        </section>
+                        <div class="portfolio-v-blog-item-info">
+                            <ul class="portfolio-categories">
+                                <li><a href="#" rel="tag">Visualisations</a></li>
+                                <li><a href="#" rel="tag">Illustration</a></li>
+                                <li><a href="#" rel="tag">Graphic Design</a></li>
+                                <li><a href="#" rel="tag">Graphic Design</a></li>
+                                <li><a href="#" rel="tag">Graphic Design</a></li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div class="portfolio-options-bar">
+                        <div class="share-links clearfix">
+                            <ul class="bar-styling">
+                                <!-- <li class="sf-love">
+                                    <div class="like-info">
+                                        <div class="like-info-wrap">
+                                            <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
+                                            <span class="like-count">15</span>
+                                        </div>
+                                    </div>
+                                </li> -->
+                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="mail"><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="carousel-wrap no-padding" style="border: 1px solid black;">
-        <div class="owl-carousel" data-plugin-options='{"singleItem": true, video:true}'>
-            <c:forEach var="page" items="${portfolio.portfolioPages}">
-                <c:choose>
-                    <c:when test="${page.pofolPageTypeCd eq '0001'}">
-                        <div class="item">
+        <div class="carousel-wrap no-padding panel panel-default">
+            <div class="owl-carousel" data-plugin-options='{"singleItem": true, video:true}'>
+                <c:forEach var="page" items="${portfolio.portfolioPages}">
+                <div class="<c:out value="${page.pofolPageTypeCd eq '0003' ? 'item-video' : 'item'} panel-body"></c:out>">
+                    <c:choose>
+                        <c:when test="${page.pofolPageTypeCd eq '0001'}">
                             <div class="pageContentWrap">
                                 ${page.pofolPageCont}
                             </div>
-                            <div class="pageFooterWrap">
-                                <div class="center">
-                                    <h5>- ${page.sortOrder} -</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </c:when>
-                    <c:when test="${page.pofolPageTypeCd eq '0002'}">
-                        <div class="item">
+                        </c:when>
+                        <c:when test="${page.pofolPageTypeCd eq '0002'}">
                             <div class="pageContentWrap">
                                 <div class="leftContent center pull-left">
                                     <img src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" style="height: 100%;"/>
                                 </div>
-                                <div class="rightContent center pull-right">
+                                <div class="rightContent pull-right">
                                     ${page.pofolPageCont}
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="pageFooterWrap">
-                                <div class="center">
-                                    <h5>- ${page.sortOrder} -</h5>
-                                </div>
-                            </div>                            
-                        </div>
-                    </c:when>
-                    <c:when test="${page.pofolPageTypeCd eq '0003'}">
-                        <div class="item-video">
+                        </c:when>
+                        <c:when test="${page.pofolPageTypeCd eq '0003'}">
                             <div class="pageContentWrap">
                                 <div class="leftContent center pull-left">
                                     <video width="100%" height="450" controls>
                                         <source src="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}" type="video/mp4"></source>
                                     </video>
                                 </div>
-                                <div class="rightContent center pull-right">
+                                <div class="rightContent pull-right">
                                     ${page.pofolPageCont}
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="pageFooterWrap">
-                                <div class="center">
-                                    <h5>- ${page.sortOrder} -</h5>
-                                </div>
-                            </div>                            
+                        </c:when>
+                    </c:choose>
+                    <div class="pageFooterWrap">
+                        <div class="center">
+                            <h5>- ${page.sortOrder} -</h5>
                         </div>
-                    </c:when>
-                </c:choose>
-            </c:forEach>
-        </div>
-    </div>
-</div>
-
-<%-- <div class="ms-layers-template">
-    <div class="master-slider ms-skin-black-2 round-skin" id="masterslider">
-        <div class="ms-slide slide-1" style="z-index: 10">
-            <img src="/static/vendor/volvox/plugins/masterslider/blank.gif" data-src="/static/vendor/volvox/img/master-layers/bg.jpg" alt="lorem ipsum dolor sit" />
-
-            <img src="/static/vendor/volvox/plugins/masterslider/blank.gif" data-src="/static/vendor/volvox/img/master-layers/bm.png" alt="layer" class="ms-layer"
-                 style="bottom: 0; left: 100px"
-                 data-effect="left(40)"
-                 data-type="image" />
-
-            <div class="ms-layer text-box" style="left: 514px; top: 184px"
-                 data-effect="rotatebottom(40,250,c)"
-                 data-duration="3500"
-                 data-delay="900"
-                 data-ease="easeOutExpo">
+                    </div>                            
+                </div>
+                </c:forEach>
             </div>
-
-            <h3 class="ms-layer bold-title" style="left: 535px; top: 204px"
-                data-effect="right(250)"
-                data-duration="3500"
-                data-delay="1500"
-                data-ease="easeOutExpo">
-                LOREM IPSUM
-            </h3>
-
-            <h3 class="ms-layer light-title" style="left: 532px; top: 235px"
-                data-effect="left(short)"
-                data-duration="3500"
-                data-delay="2100"
-                data-ease="easeOutExpo">
-                DOLOR SIT AMET
-            </h3>
-
-            <p class="ms-layer normal-desc" style="left: 535px; top: 287px"
-               data-effect="bottom(40)"
-               data-duration="3500"
-               data-delay="3000"
-               data-ease="easeOutExpo">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.
-            </p>
-
-            <img src="/static/vendor/volvox/plugins/masterslider/blank.gif" data-src="/static/vendor/volvox/img/master-layers/btn.gif" alt="layer" class="ms-layer"
-                 style="left: 535px; top: 338px"
-                 data-effect="rotateright(20,120,br)"
-                 data-duration="3500"
-                 data-delay="3600"
-                 data-ease="easeOutExpo"
-                 data-type="image" />
         </div>
     </div>
 </div>
 
-<script src="${vendorPath}/volvox/plugins/masterslider/masterslider.min.js"></script>
-<script type="text/javascript">
-    var slider = new MasterSlider();
-    slider.setup('masterslider', {
-        width: 1024,
-        height: 580,
-        space: 1,
-        fullwidth: true,
-        centerControls: false,
-        //speed: 18,
-        loop: true,
-        autoplay: true
-    });
-    //slider.control('arrows');
-    slider.control('timebar', { insertTo: '#masterslider' });
-    slider.control('bullets', { autohide: false });
-</script> --%>
 <script src="${assetPath}/js/portfolio/detail.js"></script>
