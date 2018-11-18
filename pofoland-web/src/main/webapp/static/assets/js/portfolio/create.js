@@ -23,66 +23,22 @@ const summernoteSettings = {
     ]
 }
 
-// Portfolio Page template
-const pageTemplateBundle = {
-        text: _.template($('#textTemplate').html()),
-        picture: _.template($('#pictureTemplate').html()),
-        movie: _.template($('#movieTemplate').html()),
-        controls: _.template($('#pageControls').html()),
-        tag: _.template('<a class="tags" href="#" rel="tag" tagNm="<@= tagNm @>">#<@= tagNm @> </span>')
-};
-
-var portfolioBody = $("#portfolioBodyWrap");
-
 var services = {
-    // 포트폴리오 등록 처리
+    // 포트폴리오 등록
     createPortfolio : function () {
         LoadingUtils.loading();
         
+        var pageInfo = gatheringPageInfo();
+        
         var data = $("#createForm").serializeObject();
+        data["portfolioHashTags"] = gatheringHashTagInfo();
+        data["portfolioPages"] = pageInfo.pages;
         
-        var portfolioHashTags = [];
-        var portfolioPages = [];
-        var fileUploadPool = [];
-        
-        // 태그 정보 취합
-        _.forEach($('#hashTagListArea').find('.tags'), function (e, i) {
-            portfolioHashTags.push({
-                tagNm: $(e).attr('tagNm')
-            });
-        });
-        
-        // 페이지 정보 취합
-        _.forEach($('.portfolioPage'), function (e, i) {
-            var type = $(e).attr('type');
-            var pageId = $(e).find('#pageId').val();
-            var content = getPageEditor(pageId).summernote('code');
-            var pageNo = i + 1;
-            
-            if (type != TEXT_TYPE) {
-                fileUploadPool.push({
-                    pageNo: pageNo,
-                    fileData: $(e).find('input[type=file]')[0].files[0]
-                });
-            }
-            
-            portfolioPages.push({
-                sortOrder: pageNo,
-                pofolPageTypeCd: type,
-                pofolPageCont: content
-            });
-        });
-        
-        data["portfolioHashTags"] = portfolioHashTags;
-        data["portfolioPages"] = portfolioPages;
-        
-        // 포트폴리오 등록
         AjaxUtils.post('/api/portfolios', data, function (response) {
             var pofolNo = response.payloads;
             
-            services.uploadPageFile(pofolNo, fileUploadPool);
+            services.uploadPageFile(pofolNo, pageInfo.files);
             
-            // 자동선택이 체크해제되어있는 경우 메인이미지 변경
             services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
             
             MessageBox.success("등록됌", function () {
@@ -91,7 +47,7 @@ var services = {
             });
         });
     },
-    // 메인 이미지 변경
+    // 포트폴리오 메인 이미지 변경
     changeMainImage: function (pofolNo, imgFile) {
         var uploadForm = $('<form />');
         var formData = new FormData(uploadForm);
@@ -109,16 +65,15 @@ var services = {
             }
         });
     },
-    // 특정 페이지의 파일 업로드
-    uploadPageFile: function (pofolNo, fileUploadPool) {
-        // 포폴 등록완료 시 나머지 파일들 등록
-        _.forEach(fileUploadPool, function (e, i) {
+    // 페이지의 파일 업로드
+    uploadPageFile: function (pofolNo, pofolPageFileList) {
+        _.forEach(pofolPageFileList, function (pageFileInfo, idx) {
             var uploadForm = $('<form />');
             var formData = new FormData(uploadForm);
-            formData.append('file', e.fileData);
+            formData.append('file', pageFileInfo.fileData);
             
             $.ajax({
-                url: '/api/portfolios/' + pofolNo + '/' + e.pageNo + '/file',
+                url: '/api/portfolios/' + pofolNo + '/' + pageFileInfo.pageNo + '/file',
                 type: 'POST',
                 enctype: 'multipart/form-data',
                 processData: false,
@@ -133,7 +88,9 @@ var services = {
 }
 
 $(function () {
-    initChooser();
+    TemplateUtils.load();
+    
+    initPageTypeChooser();
     
     $("#btnAddPortfolioPage").on("click", function () {
         alertify.chooser($("#chooseTemplate").html());
@@ -154,8 +111,8 @@ $(function () {
     });
 });
 
-// alertify chooser 초기화
-function initChooser() {
+// 페이지 유형 선택창 초기화
+function initPageTypeChooser() {
     alertify.dialog('chooser',function factory() {
         return {
             main: function (content) {
@@ -183,10 +140,10 @@ function initChooser() {
 function addPortfolioPage(pageType) {
     var pageData = {pageId: generatePageId(), pageNo: refreshPageNo()};
     
-    var singlePageWrap = $('<div id="pageHolder' + pageData.pageNo + '" class="singlePageWrap"/>');
+    var singlePageWrap = $('<div id="pageHolder' + pageData.pageId + '" class="singlePageWrap"/>');
     
-    singlePageWrap.append(pageTemplateBundle['controls'](pageData));
-    singlePageWrap.append(pageTemplateBundle[pageType](pageData));
+    singlePageWrap.append(TemplateUtils.generate('pageControls', pageData));
+    singlePageWrap.append(TemplateUtils.generate(pageType + 'Template', pageData));
     
     $("#portfolioBodyWrap").append(singlePageWrap);
     getPageEditor(pageData.pageId).summernote(summernoteSettings);
@@ -194,11 +151,13 @@ function addPortfolioPage(pageType) {
     alertify.closeAll();
 }
 
+/**
+ * 포트폴리오 페이지 번호 redraw 및 새 페이지 번호 반환 
+ */
 function refreshPageNo() {
-    var pageList = $("#portfolioBodyWrap").find(".portfolioPage");
     var pageNo = 1;
     
-    _.forEach(pageList, function (page) {
+    _.forEach(getPortfolioPageList(), function (page) {
         $(page).find("#pageNo").text(pageNo);
         pageNo++;
     });
@@ -206,44 +165,127 @@ function refreshPageNo() {
     return pageNo;
 }
 
+/**
+ * internal 페이지ID 생성 (view에서만 사용되는 ID) 
+ */
 function generatePageId() {
     return PAGE_ID_GENERATOR++;
 }
 
+/**
+ * pageId의 summernote에티더 object 반환
+ */
 function getPageEditor(pageId) {
     return $("#pageContentEditor" + pageId);
 }
 
-function setImagePreview(input, pageId) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        
-        reader.onload = function (e) {
-            $('#imgPreview' + pageId).attr('src', e.target.result);
-        }
-        
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function setVideoPreview(input, pageId) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        
-        reader.onload = function (e) {
-            // #videoPreview + pageId
-            $('#videoPreview' + pageId).attr('src', e.target.result);
-        }
-        
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function deletePage(pageNo) {
-    $('#pageHolder' + pageNo).remove();
+/**
+ * pageId의 summernote에티더 object 반환
+ */
+function deletePage(pageId) {
+    $('#pageHolder' + pageId).remove();
     refreshPageNo();
 }
 
+/**
+ * 포트폴리오 페이지 목록 반환 
+ */
+function getPortfolioPageList() {
+    return $('#portfolioBodyWrap').find('.portfolioPage');
+}
+
+/**
+ * 해시태그 목록 반환 
+ */
+function getHashTagList() {
+    return $('#hashTagListArea').find('.tags');
+}
+
+/**
+ * 해시태그 추가 
+ */
 function addHashTag(tagName) {
-    $('#hashTagListArea').append(pageTemplateBundle['tag']({tagNm: tagName}));
+    var tagList = getHashTagList();
+    
+    if (tagList.length == 5) {
+        MessageBox.warning('태그는 최대 5개까지만 등록이 가능합니다.');
+        return;
+    }
+    
+    var isValid = true;
+    
+    _.forEach(tagList, function (tag, idx) {
+        if ($(tag).attr('tagNm') == tagName) {
+            MessageBox.warning('동일한 태그가 존재합니다.');
+            isValid = false;
+            return false;
+        }
+    });
+    
+    if (isValid) {
+        $('#hashTagListArea').append(TemplateUtils.generate('hashTagTemplate', {tagNm: tagName}));
+    }
+}
+
+/**
+ * 해시태그 삭제 
+ */
+function deleteTag(tagName) {
+    var tagList = getHashTagList();
+    _.forEach(tagList, function (tag, idx) {
+        if ($(tag).attr('tagNm') == tagName) {
+            $(tag).remove();
+            return false;
+        }
+    });
+}
+
+/**
+ * 해시태그 정보 취합 
+ */
+function gatheringHashTagInfo() {
+    var tags = [];
+    var tagOrder = 1;
+    
+    _.forEach(getHashTagList(), function (tag, i) {
+        tags.push({
+            tagNm: $(tag).attr('tagNm'),
+            tagOrder: tagOrder++
+        });
+    });
+    
+    return tags;
+}
+
+/**
+ * 포트폴리오 페이지 정보 취합
+ * 
+ *  pages : 포트폴리오 각 페이지
+ *  files : 업로드할 사진/동영상 파일 정보
+ */
+function gatheringPageInfo() {
+    var pages = [];
+    var files = [];
+    
+    _.forEach(getPortfolioPageList(), function (page, i) {
+        var type = $(page).attr('type');
+        var pageId = $(page).find('#pageId').val();
+        var content = getPageEditor(pageId).summernote('code');
+        var pageNo = i + 1;
+        
+        if (type != TEXT_TYPE) {
+            files.push({
+                pageNo: pageNo,
+                fileData: $(page).find('input[type=file]')[0].files[0]
+            });
+        }
+        
+        pages.push({
+            sortOrder: pageNo,
+            pofolPageTypeCd: type,
+            pofolPageCont: content
+        });
+    });
+    
+    return {pages: pages, files, files};
 }

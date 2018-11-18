@@ -40,7 +40,7 @@
                             <button id="btnAddHashTag" class="btn btn-success" type="button">추가</button>
                         </span>
                     </div>
-                    <div id="hashTagListArea" class="tags-wrap"></div>
+                    <div id="hashTagListArea" class="tags-wrap well" style="margin-top: 10px; height: 54px; padding-top: 11px;"></div>
                 </div>
             </div>
             <div class="row">
@@ -49,9 +49,9 @@
                 </div>
                 <div class="col-sm-12 center image-selector">
                     <label for="mainImageFile">
-                        <img id ="imgPreviewMainImage" src="https://via.placeholder.com/360x480?text=Main+Image">
+                        <img id ="mainImageFilePreview" src="https://via.placeholder.com/360x480?text=Main+Image">
                     </label>
-                    <input type="file" id="mainImageFile" onchange="setImagePreview(this, 'MainImage');">
+                    <input type="file" id="mainImageFile" onchange="commonPreview(this, 'mainImage');">
                 </div>
                 <div class="col-sm-12">
                                          
@@ -103,7 +103,7 @@
 <!-- 포트폴리오 페이지 컨트롤 템플릿 -->
 <script id="pageControls" type="text/template">
     <div class="pull-right" style="margin-bottom: 10px;">
-        <button class="btn btn-danger" onclick="deletePage(<@=pageNo@>);">X</button>
+        <button class="btn btn-danger" onclick="deletePage(<@=pageId@>);">X</button>
     </div>
     <div class="clearfix"></div>
 </script>
@@ -126,9 +126,9 @@
         <input type="hidden" id ="pageId" value="<@= pageId@>">
         <div class="col-sm-7 center image-selector" style="height: 100%; padding-left: 0">
             <label for="fileSelector<@= pageId@>">
-                <img id="imgPreview<@= pageId @>" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
+                <img id="fileSelector<@= pageId@>Preview" src="https://via.placeholder.com/480x360" style="width: 100%; height: 465px;">
             </label>
-            <input type="file" id="fileSelector<@= pageId@>" onchange="setImagePreview(this, <@= pageId @>);"></input>
+            <input type="file" id="fileSelector<@= pageId@>" onchange="commonPreview(this);"></input>
         </div>
         <div class="col-sm-5" style="height: 100%; padding-right: 0">
             <div id="pageContentEditor<@= pageId @>"></div>
@@ -145,10 +145,10 @@
     <div class="row portfolioPage" type="0003">
         <input type="hidden" id ="pageId" value="<@= pageId@>">
         <div class="col-sm-7" style="height: 100%; padding-left: 0">
-            <video id="videoPreview<@= pageId @>" width="100%" height="450" controls>
+            <video id="<@= pageId @>Preview" width="100%" height="450" controls>
                 video태그를 지원하지 않는 브라우저입니다.
             </video>
-            <input type="file" onchange="setVideoPreview(this, <@= pageId @>);"></input>
+            <input type="file" id="<@= pageId @>" onchange="commonPreview(this);"></input>
         </div>
         <div class="col-sm-5" style="height: 100%; padding-right: 0">
             <div id="pageContentEditor<@= pageId @>"></div>
@@ -160,7 +160,15 @@
     </div>
 </script>
 
-<script src="${assetPath}/js/portfolio/create.js"></script>
+<!-- 해시태그 템플릿 -->
+<script id="hashTagTemplate" type="text/template">
+    <span class="label label-success tags" style="margin-right: 8px;" tagNm="<@= tagNm @>">
+        #<@= tagNm @>&nbsp;&nbsp;&nbsp;
+        <span onclick="deleteTag('<@= tagNm@>');" style="cursor: pointer">X</span>
+    </span>
+</script>
 
+<script src="${assetPath}/js/utils/TemplateUtils.js"></script>
+<script src="${assetPath}/js/portfolio/create.js"></script>
 <link href="${vendorPath}/summernote/summernote.css" rel="stylesheet" />
 <script src="${vendorPath}/summernote/summernote.js"></script>

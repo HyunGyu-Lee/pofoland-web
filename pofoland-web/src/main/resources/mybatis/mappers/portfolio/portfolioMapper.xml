@@ -74,10 +74,12 @@
     <insert id="createHashTag">
         INSERT INTO PF_POFOL_HASH_TAG (
             POFOL_NO,
-            TAG_NM
+            TAG_NM,
+            TAG_ORDER
         ) VALUES (
             #{pofolNo},
-            #{tagNm}
+            #{tagNm},
+            #{tagOrder}
         )
     </insert>
     
@@ -102,6 +104,7 @@
                TAG_NM
           FROM PF_POFOL_HASH_TAG
          WHERE POFOL_NO = #{pofolNo}
+      ORDER BY TAG_ORDER ASC
     </select>
     
     <!-- 포트폴리오 페이지 목록조회 -->

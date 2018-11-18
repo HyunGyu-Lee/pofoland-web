@@ -62,16 +62,16 @@ function ctxUrl(url) {
 
 // Image 미리보기 이벤트
 // input file태그 change이벤트에 걸어주면되고, 미리보기 영역은 태그ID + Preview임
-function commonPreviewImage() {
-    if (this.files && this.files[0]) {
-        var previewArea = "#" + this.id + "Preview";
+function commonPreview(fileInput) {
+    if (fileInput.files && fileInput.files[0]) {
+        var previewArea = "#" + $(fileInput).attr('id') + "Preview";
         var reader = new FileReader();
         
         reader.onload = function (e) {
             $(previewArea).attr("src", e.target.result);
         }
         
-        reader.readAsDataURL(this.files[0]);
+        reader.readAsDataURL(fileInput.files[0]);
     }
 }
 

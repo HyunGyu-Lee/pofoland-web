@@ -28,4 +28,9 @@ public class PortfolioHashTag {
      */
     private String tagNm;
     
+    /**
+     * 태그 정렬순서
+     */
+    private Integer tagOrder;
+    
 }
