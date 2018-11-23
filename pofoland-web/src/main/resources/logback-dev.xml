@@ -9,6 +9,6 @@
     <logger name="com.hst.pofoland" level="DEBUG"  />
 
     <root level="INFO">
-        <appender-ref ref="COLOR_CONSOLE" />
+        <appender-ref ref="CONSOLE" />
     </root>
 </included>

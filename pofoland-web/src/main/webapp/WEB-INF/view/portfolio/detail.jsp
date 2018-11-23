@@ -2,86 +2,124 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- Current Page CSS -->
-<link href="${ctx}/static/vendor/volvox/plugins/masterslider/style/masterslider.css" rel="stylesheet" />
-<link href="${ctx}/static/vendor/volvox/plugins/masterslider/skins/default/style.css" rel="stylesheet" />
-<link href="${ctx}/static/vendor/volvox/plugins/masterslider/style/ms-overlaylayers.css" rel="stylesheet" />
-<link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
-<link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
+<link href="${vendorPath}/volvox/plugins/masterslider/style/masterslider.css" rel="stylesheet" />
+<link href="${vendorPath}/volvox/plugins/masterslider/skins/default/style.css" rel="stylesheet" />
+<link href="${vendorPath}/volvox/plugins/masterslider/style/ms-overlaylayers.css" rel="stylesheet" />
+<link href="${vendorPath}/volvox/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
+<link href="${vendorPath}/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
+<link href="${vendorPath}/volvox/plugins/masterslider/skins/black-2/style.css" rel="stylesheet" />
 
 <c:choose>
     <c:when test="${empty portfolio.mainImageFileNo}">
         <c:choose>
-            <c:when test="${portfolio.pofolTypeCd eq '0001'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-1.jpg"/></c:when>
-            <c:when test="${portfolio.pofolTypeCd eq '0002'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-2.jpg"/></c:when>
-            <c:when test="${portfolio.pofolTypeCd eq '0003'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-3.jpg"/></c:when>
-            <c:when test="${portfolio.pofolTypeCd eq '0004'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-4.jpg"/></c:when>
-            <c:when test="${portfolio.pofolTypeCd eq '0005'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-5.jpg"/></c:when>
-            <c:when test="${portfolio.pofolTypeCd eq '0006'}"><c:set var="mainImageUrl" value="${ctx}/static/vendor/volvox/img/static/bus-6.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0001'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-1.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0002'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-2.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0003'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-3.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0004'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-4.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0005'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-5.jpg"/></c:when>
+            <c:when test="${portfolio.pofolTypeCd eq '0006'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-6.jpg"/></c:when>
         </c:choose>
     </c:when>
     <c:otherwise>
         <c:set var="mainImageUrl" value="${ctx}/api/portfolios/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
     </c:otherwise>
 </c:choose>
-
-<div class="row center" style="margin-left: 45px; margin-right: 45px; margin-top: 15px;">
-    <div class="col-sm-12">
-        <div class="v-heading-v2">
-            <h1>${portfolio.pofolNm}</h1>
-        </div>
-    </div>
-</div>
-<div class="row center" style="margin-left: 45px; margin-right: 45px;">
-    <div class="col-sm-12">
-        <img src="${mainImageUrl}" style="width: 720px; height: 480px;" onerror="setErrorImage(this);">
-    </div>
-    <div class="col-sm-12">
-        <div class="tab-pane fade active in" id="tagline" style="margin-top: 20px;">
-            <div class="v-shadow-wrap">
-                <div class="v-tagline-box v-tagline-box-v1 v-box-shadow shadow-effect-2">
-                    ${portfolio.pofolDesc}
+<div style="background-color: #eeeeee">
+    <div class="container">
+        <div class="v-portfolio-item-content panel panel-default">
+            <div class="row panel-body">
+                <div class="col-sm-8 center">
+                    <figure class="media-wrap">
+                        <img src="${mainImageUrl}" style="height: 480px !important; width: auto !important;" onerror="setErrorImage(this);"/>
+                    </figure>
                 </div>
+                <div class="col-sm-4">
+                    <section class="article-body-wrap">
+                        <section class="portfolio-detail-description">
+                            <div class="body-text clearfix">
+                                <div class="v-heading-v3">
+                                    <h2><span>${portfolio.pofolNm}</span></h2>
+                                    <div class="horizontal-break"></div>
+                                </div>
+                                <p>
+                                    ${portfolio.pofolDesc}
+                                </p>
+                            </div>
+                        </section>
+                        <div class="portfolio-v-blog-item-info">
+                            <ul class="portfolio-categories">
+                                <c:forEach var="hashTag" items="${portfolio.portfolioHashTags}">
+                                    <li><a href="/hashtags/${hashTag.tagNm}" rel="tag">${hashTag.tagNm}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </section>
+                    <div class="portfolio-options-bar">
+                        <div class="share-links clearfix">
+                            <ul class="bar-styling">
+                                <!-- <li class="sf-love">
+                                    <div class="like-info">
+                                        <div class="like-info-wrap">
+                                            <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
+                                            <span class="like-count">15</span>
+                                        </div>
+                                    </div>
+                                </li> -->
+                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li class="mail"><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-wrap no-padding panel panel-default">
+            <div class="owl-carousel" data-plugin-options='{"singleItem": true, video:true}'>
+                <c:forEach var="page" items="${portfolio.portfolioPages}">
+                <div class="<c:out value="${page.pofolPageTypeCd eq '0003' ? 'item-video' : 'item'} panel-body"></c:out>">
+                    <c:choose>
+                        <c:when test="${page.pofolPageTypeCd eq '0001'}">
+                            <div class="pageContentWrap">
+                                ${page.pofolPageCont}
+                            </div>
+                        </c:when>
+                        <c:when test="${page.pofolPageTypeCd eq '0002'}">
+                            <div class="pageContentWrap">
+                                <div class="leftContent center pull-left">
+                                    <img src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" style="height: 100%;"/>
+                                </div>
+                                <div class="rightContent pull-right">
+                                    ${page.pofolPageCont}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </c:when>
+                        <c:when test="${page.pofolPageTypeCd eq '0003'}">
+                            <div class="pageContentWrap">
+                                <div class="leftContent center pull-left">
+                                    <video width="100%" height="450" controls>
+                                        <source src="/api/portfolios/${portfolio.pofolNo}/videos/${page.pofolFileNo}" type="video/mp4"></source>
+                                    </video>
+                                </div>
+                                <div class="rightContent pull-right">
+                                    ${page.pofolPageCont}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </c:when>
+                    </c:choose>
+                    <div class="pageFooterWrap">
+                        <div class="center">
+                            <h5>- ${page.sortOrder} -</h5>
+                        </div>
+                    </div>                            
+                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="carousel-wrap" style="border: 1px solid black;">
-        <div class="owl-carousel" data-plugin-options='{"items": 1, "singleItem": false, "navigation": true, "pagination": false}'>
-            <c:forEach var="page" items="${portfolio.portfolioPages}">
-                <div class="item">
-                    <!-- 페이지 내용 -->
-                    <div class="row">
-                        <c:choose>
-                            <c:when test="${page.pofolPageTypeCd eq '0001'}">
-                                <div class="col-sm-12">
-                                    ${page.pofolPageCont}
-                                </div>
-                            </c:when>
-                            <c:when test="${page.pofolPageTypeCd eq '0002'}">
-                                <div class="col-sm-7">
-                                    <img class="img-responsive" src="/api/portfolios/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" />
-                                </div>
-                                <div class="col-sm-5">
-                                    ${page.pofolPageCont}
-                                </div>
-                            </c:when>
-                            <c:when test="${page.pofolPageTypeCd eq '0003'}">
-                                ${page.pofolPageCont}
-                            </c:when>
-                        </c:choose>
-                    </div>
-                    <!-- 페이지 번호 -->
-                    <div class="row center">
-                        <div class="col-sm-12">
-                            <h5>- ${page.sortOrder} -</h5>
-                        </div>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
-    </div>
-</div>
-
-<script src="${ctx}/static/assets/js/portfolio/detail.js"></script>
+<script src="${assetPath}/js/portfolio/detail.js"></script>
