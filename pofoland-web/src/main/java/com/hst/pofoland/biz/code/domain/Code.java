@@ -21,11 +21,11 @@ import lombok.NoArgsConstructor;
  * @see
  *
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Code extends HierarchyDomain<String, Code> {
 
     private static final long serialVersionUID = 8656166742023128892L;

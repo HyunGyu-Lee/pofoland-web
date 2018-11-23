@@ -61,15 +61,12 @@
         </form>
         </div>
         <div class="row">
-            <div class="col-sm-12">
-                <div class="v-heading-v2">
-                    <h3>포트폴리오 본문</h3>
-                </div>
+            <div class="v-heading-v2">
+                <h3>포트폴리오 본문</h3>
             </div>
         </div>
-        <!-- TODO Summernote영역 넘치는 문제 해결봐야함.. -->
         <div class="row">
-            <div id="portfolioBodyWrap" style="border: 1px solid black"></div>
+            <div id="portfolioBodyWrap" style="/* border: 1px solid black */"></div>
         </div>
         <div class="row center">
             <div class="v-spacer col-sm-12 v-height-small"></div>
@@ -110,7 +107,7 @@
 
 <!-- 포트폴리오 글 페이지 템플릿 -->
 <script id="textTemplate" type="text/template">
-    <div class="row portfolioPage" type="0001">
+    <div class="portfolioPage" type="0001">
         <input type="hidden" id ="pageId" value="<@= pageId@>">
         <div id="pageContentEditor<@= pageId @>"></div>
         <div class="col-sm-12 center">
@@ -122,7 +119,7 @@
 
 <!-- 포트폴리오 사진 페이지 템플릿 -->
 <script id="pictureTemplate" type="text/template">
-    <div class="row portfolioPage" type="0002">
+    <div class="portfolioPage" type="0002">
         <input type="hidden" id ="pageId" value="<@= pageId@>">
         <div class="col-sm-7 center image-selector" style="height: 100%; padding-left: 0">
             <label for="fileSelector<@= pageId@>">
@@ -142,7 +139,7 @@
 
 <!-- 포트폴리오 동영상 페이지 템플릿 -->
 <script id="movieTemplate" type="text/template">
-    <div class="row portfolioPage" type="0003">
+    <div class="portfolioPage" type="0003">
         <input type="hidden" id ="pageId" value="<@= pageId@>">
         <div class="col-sm-7" style="height: 100%; padding-left: 0">
             <video id="<@= pageId @>Preview" width="100%" height="450" controls>

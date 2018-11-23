@@ -22,6 +22,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.hst.pofoland.biz.career.domain.CareerSearch;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@UtilityClass
 public class HttpUtils {
 
     private static final String DEFAULT_CHARSET = "UTF-8";

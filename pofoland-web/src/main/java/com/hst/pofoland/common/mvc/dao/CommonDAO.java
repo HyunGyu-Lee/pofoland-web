@@ -7,6 +7,9 @@ package com.hst.pofoland.common.mvc.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * 추상 DAO 인터페이스
  * 
