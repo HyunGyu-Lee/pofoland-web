@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -167,6 +168,19 @@ public class StorageService extends CommonService implements InitializingBean {
     
     public byte[] getBytes(StorableDomain storableDomain) throws IOException {
         return IOUtils.toByteArray(getResourceAsStream(storableDomain));
+    }
+
+    /**
+     * StoragleDomain streaming
+     * 
+     * @param portfolioFile
+     * @param out
+     * @throws IOException 
+     */
+    public void streaming(StorableDomain storableDomain, OutputStream out) throws IOException {
+        InputStream in = getResourceAsStream(storableDomain);
+        
+        IOUtils.copy(in, out);
     }
     
 }

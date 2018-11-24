@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.hst.pofoland.biz.menu.domain.Menu;
 import com.hst.pofoland.biz.menu.service.MenuService;
+import com.hst.pofoland.common.mvc.domain.HierarchyDomain;
 import com.hst.pofoland.common.utils.CollectionUtils;
 
 import lombok.extern.slf4j.Slf4j;

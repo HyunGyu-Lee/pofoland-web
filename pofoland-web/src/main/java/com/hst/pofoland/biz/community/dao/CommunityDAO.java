@@ -38,4 +38,18 @@ public interface CommunityDAO extends CommonDAO<Integer, Community> {
 	 * @return: Community
 	 */
 	public Community findOne(Community community);
+	
+	/**
+	 * 게시글 등록
+	 * @param community
+	 * @return boardNo
+	 */
+	public int createContent(Community community);
+	
+	/**
+	 * 조회수 증가
+	 * @param community
+	 * @return Integer
+	 */
+	public int boardRfncCnt(Community community);
 }

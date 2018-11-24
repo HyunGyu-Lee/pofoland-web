@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <section class="widget">
-                        <img alt="Volvox" src="${ctx}/static/vendor/volvox/img/logo-white.png" style="height: 40px; margin-bottom: 20px;">
+                        <img alt="Volvox" src="${vendorPath}/volvox/img/logo-white.png" style="height: 40px; margin-bottom: 20px;">
                         <p class="pull-bottom-small">
                             Donec quam felis, ultricies nec, pellen tesqueeu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel aliquet nec, vulputate eget aliquet nec, arcu.
                         </p>
@@ -75,37 +75,37 @@
                         <ul class="portfolio-grid">
                             <li>
                                 <a href="portfolio-single.html" class="grid-img-wrap">
-                                    <img src="${ctx}/static/vendor/volvox/img/thumbs/project-1.jpg" />
+                                    <img src="${vendorPath}/volvox/img/thumbs/project-1.jpg" />
                                     <span class="tooltip">Phasellus enim libero<span class="arrow"></span></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="portfolio-single.html" class="grid-img-wrap">
-                                    <img src="${ctx}/static/vendor/volvox/img/thumbs/project-2.jpg" />
+                                    <img src="${vendorPath}/volvox/img/thumbs/project-2.jpg" />
                                     <span class="tooltip">Phasellus enim libero<span class="arrow"></span></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="portfolio-single.html" class="grid-img-wrap">
-                                    <img src="${ctx}/static/vendor/volvox/img/thumbs/project-3.jpg" />
+                                    <img src="${vendorPath}/volvox/img/thumbs/project-3.jpg" />
                                     <span class="tooltip">Phasellus enim<span class="arrow"></span></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="portfolio-single.html" class="grid-img-wrap">
-                                    <img src="${ctx}/static/vendor/volvox/img/thumbs/project-4.png" />
+                                    <img src="${vendorPath}/volvox/img/thumbs/project-4.png" />
                                     <span class="tooltip">Lorem Imput<span class="arrow"></span></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="portfolio-single.html" class="grid-img-wrap">
-                                    <img src="${ctx}/static/vendor/volvox/img/thumbs/project-5.jpg" />
+                                    <img src="${vendorPath}/volvox/img/thumbs/project-5.jpg" />
                                     <span class="tooltip">Phasellus Enim libero<span class="arrow"></span></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="portfolio-single.html" class="grid-img-wrap">
-                                    <img src="${ctx}/static/vendor/volvox/img/thumbs/project-6.jpg" />
+                                    <img src="${vendorPath}/volvox/img/thumbs/project-6.jpg" />
                                     <span class="tooltip">Phasellus Enim<span class="arrow"></span></span>
                                 </a>
                             </li>

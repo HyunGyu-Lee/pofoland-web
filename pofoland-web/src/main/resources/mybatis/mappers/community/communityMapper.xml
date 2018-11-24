@@ -14,7 +14,7 @@
         	,T1.BOARD_CONT		AS	boardCont	/* 게시글내용 */
         	,T1.REG_DTM			AS	regDtm		/* 등록일시 */
         	,T1.REG_USER_NO		AS	regUserNo	/* 등록사용자번호 */
-            ,T2.USER_ID			AS	regUserId	/* 등록사용자ID */
+            ,T2.USER_EMAIL		AS	regUserId	/* 등록사용자ID */
         	,T1.UPD_DTM			AS	updDtm		/* 수정일시 */
         	,T1.UPD_USER_NO		AS	updUserNo	/* 수정사용자번호 */
         	,T1.BOARD_RFNC_CNT	AS	boardRfncCnt/* 조회수 */
@@ -40,7 +40,7 @@
         	,T1.BOARD_CONT		AS	boardCont	/* 게시글내용 */
         	,T1.REG_DTM			AS	regDtm		/* 등록일시 */
         	,T1.REG_USER_NO		AS	regUserNo	/* 등록사용자번호 */
-            ,T2.USER_ID			AS	regUserId	/* 등록사용자ID */
+            ,T2.USER_EMAIL		AS	regUserId	/* 등록사용자ID */
         	,T1.UPD_DTM			AS	updDtm		/* 수정일시 */
         	,T1.UPD_USER_NO		AS	updUserNo	/* 수정사용자번호 */
         	,T1.BOARD_RFNC_CNT	AS	boardRfncCnt/* 조회수 */
@@ -55,6 +55,63 @@
         	</if>
         	AND T1.DEL_YN = 'N'		/* 삭제여부 N */
         </where>
+    </select>
+    
+    <insert id="createContent" parameterType="Community" useGeneratedKeys="true" keyProperty="boardNo">
+    	INSERT INTO CM_BOARD 
+    	(
+    		 BOARD_SE_CD		/* 게시판유형 */
+    		,BOARD_TTL			/* 제목 */
+    		,BOARD_CONT			/* 내용 */
+    		,REG_DTM			/* 등록일시 */
+    		,REG_USER_NO		/* 등록사용자번호 */
+    		,UPD_DTM			/* 수정일시 */
+    		,UPD_USER_NO		/* 수정사용자번호 */
+    		,BOARD_RFNC_CNT		/* 조회수 */
+    		,DEL_YN				/* 삭제여부 */
+    	) 
+    	VALUES 
+ 		(
+ 			 #{boardSeCd}
+ 			,#{boardTtl}
+ 			,#{boardCont}
+ 			,NOW()
+ 			,#{regUserNo}
+ 			,NOW()
+ 			,#{updUserNo}
+ 			,0
+ 			,'N'
+    	)
+    </insert>
+    
+    <update id="boardRfncCnt" parameterType="Community">
+    UPDATE
+    	CM_BOARD
+    SET
+    	BOARD_RFNC_CNT = BOARD_RFNC_CNT+1
+    <where>
+    	AND BOARD_NO = #{boardNo}
+    </where>
+    </update>
+    
+    <select id="selectReplyList" parameterType="Community">
+    SELECT 
+		T1.REPLY_NO		AS	replyNo
+	    ,T1.UP_REPLY_NO	AS	upReplyNo
+	    ,T1.BOARD_NO		AS	boardNo
+	    ,T1.REPLY_CONT		AS	replyCont
+	    ,T1.REG_DTM		AS	regDtm
+	    ,T2.USER_EMAIL	AS	regUserEmail
+	FROM 
+		CM_REPLY	T1			/* 댓글T */
+			JOIN CM_USER	T2	/* 사용자T */
+			ON T1.REG_USER_NO = T2.USER_NO
+	<where>
+		AND BOARD_NO = #{boardNo}
+	    AND DEL_YN = 'N'	/* 삭제여부 N */
+	</where>
+	GROUP BY UP_REPLY_NO, REPLY_NO
+	ORDER BY REPLY_NO
     </select>
     
 </mapper>

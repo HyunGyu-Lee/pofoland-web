@@ -40,3 +40,11 @@
     cursor: not-allowed;
     pointer-events: none;
 }
+
+.image-selector > input {
+    display: none;
+}
+
+.image-selector img {
+    cursor: pointer;
+}
