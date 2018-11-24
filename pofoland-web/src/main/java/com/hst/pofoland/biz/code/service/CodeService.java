@@ -16,6 +16,7 @@ import com.hst.pofoland.biz.code.dao.CodeDAO;
 import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.code.domain.GroupCode;
 import com.hst.pofoland.common.mvc.service.CommonService;
+import com.hst.pofoland.common.utils.CollectionUtils;
 
 /**
  * 공통코드 서비스
@@ -63,7 +64,7 @@ public class CodeService extends CommonService {
      */
     @Cacheable(value="codes", key="#commGrpCd")
     public List<Code> findByGroupCode(String commGrpCd) {
-        return codeDao.findList(Code.builder().commGrpCd(commGrpCd).build());
+        return CollectionUtils.flatToHierarchy(codeDao.findList(Code.builder().commGrpCd(commGrpCd).build()), null, 1);
     }
     
 }

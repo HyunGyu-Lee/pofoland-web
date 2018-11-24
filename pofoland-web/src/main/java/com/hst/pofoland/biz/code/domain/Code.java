@@ -5,7 +5,7 @@
  */
 package com.hst.pofoland.biz.code.domain;
 
-import com.hst.pofoland.common.mvc.domain.BasicDomain;
+import com.hst.pofoland.common.mvc.domain.HierarchyDomain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,12 +21,12 @@ import lombok.NoArgsConstructor;
  * @see
  *
  */
-@Data
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Code extends BasicDomain {
+@Data
+public class Code extends HierarchyDomain<String, Code> {
 
     private static final long serialVersionUID = 8656166742023128892L;
 
@@ -39,6 +39,11 @@ public class Code extends BasicDomain {
      * 공통코드
      */
     private String commCd;
+    
+    /**
+     * 상위공통코드
+     */
+    private String upCommCd;
     
     /**
      * 공통코드명
@@ -54,5 +59,15 @@ public class Code extends BasicDomain {
      * 공통코드 사용여부
      */
     private String useYn;
+
+    @Override
+    public String getKey() {
+        return this.commCd;
+    }
+
+    @Override
+    public String getParentKey() {
+        return this.upCommCd;
+    }
     
 }

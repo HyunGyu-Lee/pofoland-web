@@ -5,9 +5,12 @@ package com.hst.pofoland.common.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.hst.pofoland.common.mvc.domain.BasicDomain;
 import com.hst.pofoland.common.mvc.domain.HierarchyDomain;
+
+import lombok.experimental.UtilityClass;
 
 /**
  * Collection 관련 유틸리티 클래스 (Apache Collection 유틸 확장)
@@ -18,6 +21,7 @@ import com.hst.pofoland.common.mvc.domain.HierarchyDomain;
  *
  */
 @SuppressWarnings({"rawtypes", "unused", "unchecked"})
+@UtilityClass
 public class CollectionUtils extends org.apache.commons.collections.CollectionUtils {
     
     /**
@@ -34,7 +38,7 @@ public class CollectionUtils extends org.apache.commons.collections.CollectionUt
     
     private static <E extends HierarchyDomain> List<E> flatToHierarchyCore(List<E> result, List<E> source, Object startWith, int startLevel) {
         for (E e : source) {
-            if (e.getParentKey() == startWith) {
+            if (Objects.equals(e.getParentKey(), startWith)) {
                 flatToHierarchyCore(e.getChild(), source, e.getKey(), startLevel + 1);
 
                 e.setLevel(startLevel);

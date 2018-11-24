@@ -303,14 +303,14 @@
 
                 var defaults = {
                     // Most important owl features
-                    items: 5,
+                    items: 1,
                     itemsCustom: false,
                     itemsDesktop: [1199, 4],
                     itemsDesktopSmall: [980, 3],
                     itemsTablet: [768, 2],
                     itemsTabletSmall: false,
                     itemsMobile: [479, 1],
-                    singleItem: false,
+                    singleItem: true,
                     itemsScaleUp: false,
 
                     //Basic Speeds
@@ -323,7 +323,7 @@
                     stopOnHover: false,
 
                     // Navigation
-                    navigation: false,
+                    navigation: true,
                     navigationText: ["<i class=\"fa fa-chevron-left\"></i>", "<i class=\"fa fa-chevron-right\"></i>"],
                     rewindNav: true,
                     scrollPerPage: false,
@@ -347,7 +347,7 @@
                     lazyEffect: "fade",
 
                     //Auto height
-                    autoHeight: false,
+                    autoHeight: true,
 
                     //JSON 
                     jsonPath: false,
@@ -373,7 +373,7 @@
                     afterMove: false,
                     afterAction: false,
                     startDragging: false,
-                    afterLazyLoad: false
+                    afterLazyLoad: false,
                 }
 
                 var config = $.extend({}, defaults, options, slider.data("plugin-options"));

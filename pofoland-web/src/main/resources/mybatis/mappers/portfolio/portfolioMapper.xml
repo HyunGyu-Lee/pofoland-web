@@ -70,6 +70,19 @@
          WHERE POFOL_NO = #{pofolNo}           
     </update>
     
+    <!-- 포트폴리오 해시태그 등록 -->
+    <insert id="createHashTag">
+        INSERT INTO PF_POFOL_HASH_TAG (
+            POFOL_NO,
+            TAG_NM,
+            TAG_ORDER
+        ) VALUES (
+            #{pofolNo},
+            #{tagNm},
+            #{tagOrder}
+        )
+    </insert>
+    
     <!-- 포트폴리오 페이지 등록 -->
     <insert id="createPage">
         INSERT INTO PF_POFOL_PAGE (
@@ -84,6 +97,15 @@
             #{sortOrder}
         )
     </insert>
+    
+    <!-- 포트폴리오 해시태그 조회 -->
+    <select id="findPortfolioHashTags" resultType="PortfolioHashTag">
+        SELECT POFOL_NO,
+               TAG_NM
+          FROM PF_POFOL_HASH_TAG
+         WHERE POFOL_NO = #{pofolNo}
+      ORDER BY TAG_ORDER ASC
+    </select>
     
     <!-- 포트폴리오 페이지 목록조회 -->
     <select id="findPortfolioPageList" resultType="PortfolioPage">

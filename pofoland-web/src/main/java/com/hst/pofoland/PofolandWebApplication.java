@@ -14,7 +14,7 @@ import com.hst.pofoland.config.properties.DatabaseProperties;
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = { DataSourceTransactionManagerAutoConfiguration.class, 
                                      DataSourceAutoConfiguration.class })
-@EnableConfigurationProperties(value = {DatabaseProperties.class})
+@EnableConfigurationProperties({ DatabaseProperties.class })
 @ComponentScan(basePackages = "com.hst.pofoland")
 @EnableCaching
 public class PofolandWebApplication {

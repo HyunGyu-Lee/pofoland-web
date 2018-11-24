@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -133,8 +134,46 @@ public class PortfolioRestController extends CommonController {
     public byte[] serveImage(@PathVariable("pofolNo") Integer pofolNo, @PathVariable("pofolFileNo") Integer pofolFileNo)
             throws Exception {
         PortfolioFile portfolioFile = portfolioService.findFileByPofolFileNo(pofolNo, pofolFileNo);
+        
+        byte[] imageData = null;
+        
+        try {
+            imageData = storageService.getBytes(portfolioFile);
+        } catch (Exception e) {
+            log.error("PortfolioFile {} not found ", portfolioFile);
+            // throw new Exception(e);
+        }
+        
+        return imageData;
+    }
 
-        return storageService.getBytes(portfolioFile);
+    @GetMapping(value = "{pofolNo}/videos/{pofolFileNo}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] serveVideo(@PathVariable("pofolNo") Integer pofolNo, @PathVariable("pofolFileNo") Integer pofolFileNo)
+            throws Exception {
+        PortfolioFile portfolioFile = portfolioService.findFileByPofolFileNo(pofolNo, pofolFileNo);
+        
+        byte[] videoData = null;
+        
+        try {
+            videoData = storageService.getBytes(portfolioFile);
+        } catch (Exception e) {
+            log.error("PortfolioFile {} not found ", portfolioFile);
+            // throw new Exception(e);
+        }
+        
+        return videoData;
+    }
+    
+    @GetMapping(value = "{pofolNo}/videos/{pofolFileNo}/streaming")
+    public StreamingResponseBody streaming(@PathVariable("pofolNo") Integer pofolNo, @PathVariable("pofolFileNo") Integer pofolFileNo)
+            throws Exception {
+        PortfolioFile portfolioFile = portfolioService.findFileByPofolFileNo(pofolNo, pofolFileNo);
+        
+        storageService.getResourceAsStream(portfolioFile);
+        
+        return outputStream -> {
+            storageService.streaming(portfolioFile, outputStream);
+        };
     }
     
 }
