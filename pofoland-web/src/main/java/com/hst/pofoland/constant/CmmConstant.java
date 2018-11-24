@@ -20,6 +20,8 @@ public final class CmmConstant {
     
     /** 게시판구분(CM001) */
     public final class BoardSeCd {
+    	/** 공통그룹코드 */
+    	public static final String COMM_GRP_CD = "CM001";
         /** 공지사항 */
         public static final String NOTI = "0001";
         /** Q&A */
