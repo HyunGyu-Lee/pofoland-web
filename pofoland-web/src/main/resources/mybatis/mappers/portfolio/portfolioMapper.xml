@@ -40,11 +40,23 @@
                MAIN_IMAGE_AUTO_YN,
                (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
           FROM PF_POFOL
-      ORDER BY REG_DTM DESC    
+       <where>
+           <if test="@com.hst.pofoland.common.utils.StringUtils@isNotEmpty(pofolTypeCd)">
+	           <choose>
+	               <when test="rangeSearch == true">
+                       AND POFOL_TYPE_CD IN (SELECT COMM_CD FROM CO_COMM_CD WHERE UP_COMM_CD = #{pofolTypeCd})
+	               </when>
+	               <when test="rangeSearch == false">
+                       AND POFOL_TYPE_CD = #{pofolTypeCd}
+	               </when>
+	           </choose>
+           </if>
+       </where>   
+      ORDER BY REG_DTM DESC
     </select>
     
     <!-- 포트폴리오 상세 조회 -->
-    <select id="findOne" resultType="Portfolio">
+    <select id="findOne"  resultType="Portfolio">
         SELECT POFOL_NO,
                REG_USER_NO,
                REG_DTM,

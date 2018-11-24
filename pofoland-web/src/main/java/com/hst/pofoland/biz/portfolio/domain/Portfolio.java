@@ -74,6 +74,11 @@ public class Portfolio extends PagableDomain implements Serializable {
     private String mainImageAutoYn;
     
     /**
+     * 포트폴리오 유형 범위검색
+     */
+    private Boolean rangeSearch;
+    
+    /**
      * 포트폴리오 페이지 목록
      */
     private List<PortfolioPage> portfolioPages;
