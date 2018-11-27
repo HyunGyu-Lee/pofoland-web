@@ -108,3 +108,11 @@ function strNulltoReplace ( str , replaceStr ) {
 		return str;
 	}
 }
+
+function locationReload() {
+    location.reload();
+}
+
+function locationHref(url) {
+    location.href = url;
+}

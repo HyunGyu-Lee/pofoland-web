@@ -6,6 +6,7 @@ import java.io.StringReader;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -23,7 +24,7 @@ public class CareerService {
 	public CareerSearch careerSearch(String keywords) throws Exception {
 		 CloseableHttpClient httpclient = HttpClients.createDefault();
 	        try {
-	            HttpGet httpget = new HttpGet("http://api.saramin.co.kr/job-search?keywords="+keywords);
+	            HttpGet httpget = new HttpGet("http://api.saramin.co.kr/job-search?keywords="+StringUtils.defaultString(keywords));
 	            
 	            System.out.println("Executing request " + httpget.getRequestLine());
 

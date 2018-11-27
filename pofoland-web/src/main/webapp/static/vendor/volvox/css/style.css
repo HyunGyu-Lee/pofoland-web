@@ -2933,7 +2933,7 @@ h4.v-line-heading:before {
     padding: 0;
 }
 
-.v-search-widget form:after {
+/* .v-search-widget form:after {
     font-weight: normal;
     font-style: normal;
     display: inline-block;
@@ -2948,8 +2948,7 @@ h4.v-line-heading:before {
     content: "\f002";
     cursor: pointer;
     font-family: "FontAwesome";
-}
-
+}*/
 
 
 

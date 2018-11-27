@@ -7,6 +7,9 @@
 <c:set var="assetPath" value="${ctx}/static/assets" scope="application"></c:set>
 <c:set var="vendorPath" value="${ctx}/static/vendor" scope="application"></c:set>
  
+<!-- UI 테스트용 변수 --> 
+ <c:set var="containerOption" value="container" scope="application"></c:set>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -37,6 +40,7 @@
         <link href="${vendorPath}/volvox/css/custom.css" rel="stylesheet" />
         <link href="${vendorPath}/volvox/css/v-form-element.css" rel="stylesheet" />
         <link href="${vendorPath}/alertify/css/alertify.min.css" rel="stylesheet" />
+        <link href="${vendorPath}/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
         
         <!-- Vendor JS -->
         <script src="${vendorPath}/volvox/js/jquery.min.js"></script>
@@ -56,6 +60,7 @@
         <script src="${vendorPath}/lodash/lodash.min.js"></script>
         <script src="${vendorPath}/alertify/alertify.min.js"></script>
         <script src="${vendorPath}/oLoader/js/jquery.oLoader.min.js"></script>
+        <script src="${vendorPath}/bootstrap-select/js/bootstrap-select.min.js"></script>
         
         <!-- Our Custom CSS -->
         <link href="${assetPath}/css/app.css" rel="stylesheet" />

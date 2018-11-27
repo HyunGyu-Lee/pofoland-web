@@ -66,14 +66,10 @@
 	                                </li>
 	                            </c:forEach>
                             </ul>
-
-                            <ul class="pagination pagination-lg">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">Next <i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-
+							<!-- 페이지 네비게이션 -->
+							<div id="paginationInfo">
+								<%@include file="/WEB-INF/view/utils/pagination.jsp"%>
+                			</div>
                         </div>
                     </div>
                 </div>
@@ -248,3 +244,5 @@
             <!--End Sidebar-->
         </div>
     </div>
+<script src="${ctx}/static/assets/js/community/communityConstant.js"></script>
+<%-- <script src="${ctx}/static/assets/js/community/selectList.js"></script> --%>

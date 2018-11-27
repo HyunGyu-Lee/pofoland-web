@@ -34,7 +34,7 @@ var services = {
         data["portfolioHashTags"] = gatheringHashTagInfo();
         data["portfolioPages"] = pageInfo.pages;
         
-        AjaxUtils.post('/api/portfolios', data, function (response) {
+        AjaxUtils.post('/api/portfolio', data, function (response) {
             var pofolNo = response.payloads;
             
             services.uploadPageFile(pofolNo, pageInfo.files);
@@ -43,7 +43,7 @@ var services = {
             
             MessageBox.success("등록됌", function () {
                 LoadingUtils.closeLoading();
-                location.href = '/portfolios/' + pofolNo;
+                location.href = ctx + '/portfolio/' + pofolNo;
             });
         });
     },
@@ -54,7 +54,7 @@ var services = {
         formData.append('mainImage', imgFile);
         
         $.ajax({
-            url: '/api/portfolios/' + pofolNo + '/main-image',
+            url: '/api/portfolio/' + pofolNo + '/main-image',
             type: 'PUT',
             enctype: 'multipart/form-data',
             processData: false,
@@ -73,7 +73,7 @@ var services = {
             formData.append('file', pageFileInfo.fileData);
             
             $.ajax({
-                url: '/api/portfolios/' + pofolNo + '/' + pageFileInfo.pageNo + '/file',
+                url: '/api/portfolio/' + pofolNo + '/' + pageFileInfo.pageNo + '/file',
                 type: 'POST',
                 enctype: 'multipart/form-data',
                 processData: false,

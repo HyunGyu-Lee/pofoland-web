@@ -6,7 +6,7 @@
 
 <div class="header-container">
     <header class="header fixed clearfix">
-        <div class="container">
+        <div class="${containerOption}">
             <!--Site Logo-->
             <div class="logo">
                 <a href="${ctx}/">

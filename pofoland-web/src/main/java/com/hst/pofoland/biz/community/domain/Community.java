@@ -8,6 +8,8 @@ package com.hst.pofoland.biz.community.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.hst.pofoland.common.mvc.domain.PagableDomain;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Community implements Serializable {
+public class Community extends PagableDomain implements Serializable {
 
 	/**
 	 * 
@@ -42,14 +44,10 @@ public class Community implements Serializable {
     private String boardCont;
     /** 등록일시 */
     private Date regDtm;
-    /** 등록사용자번호 */
-    private Integer regUserNo;
     /** 등록사용자ID */
     private String regUserId;
     /** 수정일시 */
     private Date updDtm;
-    /** 수정사용자번호 */
-    private Integer updUserNo;
     /** 조회수 */
     private Integer boardRfncCnt;
     /** 삭제여부 */

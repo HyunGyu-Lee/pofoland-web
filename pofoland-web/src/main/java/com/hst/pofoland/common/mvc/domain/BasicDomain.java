@@ -20,7 +20,7 @@ import lombok.Data;
 public abstract class BasicDomain implements Serializable {
 
     private static final long serialVersionUID = 7647947402474981794L;
-
+    
     /**
      * 등록일시
      */

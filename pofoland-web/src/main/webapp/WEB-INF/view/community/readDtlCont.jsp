@@ -126,65 +126,6 @@
                     </div>
                 </section>
 
-                <div class="related-wrap">
-                    <h3 class="v-heading"><span>Related Articles</span></h3>
-                    <div class="row clearfix">
-                        <ul class="related-items">
-                            <li class="related-item col-sm-3 clearfix">
-                                <figure class="animated-overlay overlay-alt">
-                                    <img src="img/static/bus-1.jpg" />
-                                    <a href="blog-standard-post.html"></a>
-                                    <figcaption>
-                                        <div class="thumb-info thumb-info-v2">
-                                            <i class="fa fa-angle-right"></i>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                                <h5><a href="blog-standard-post.html" rel="bookmark">Amazing Standard Post</a></h5>
-                            </li>
-
-                            <li class="related-item col-sm-3 clearfix">
-                                <figure class="animated-overlay overlay-alt">
-                                    <img src="img/static/bus-2.jpg" />
-                                    <a href="blog-full-width-post.html"></a>
-                                    <figcaption>
-                                        <div class="thumb-info thumb-info-v2">
-                                            <i class="fa fa-angle-right"></i>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                                <h5><a href="blog-full-width-post.html" rel="bookmark">Full Width Media Post</a></h5>
-                            </li>
-
-                            <li class="related-item col-sm-3 clearfix">
-                                <figure class="animated-overlay overlay-alt">
-                                    <img src="img/static/bus-5.jpg" />
-                                    <a href="blog-slideshow-post.html"></a>
-                                    <figcaption>
-                                        <div class="thumb-info thumb-info-v2">
-                                            <i class="fa fa-angle-right"></i>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                                <h5><a href="blog-slideshow-post.html" rel="bookmark">Amazing Slideshow post</a></h5>
-                            </li>
-
-                            <li class="related-item col-sm-3 clearfix">
-                                <figure class="animated-overlay overlay-alt">
-                                    <img src="img/static/bus-16.jpg" />
-                                    <a href="blog-standard-post.html"></a>
-                                    <figcaption>
-                                        <div class="thumb-info thumb-info-v2">
-                                            <i class="fa fa-angle-right"></i>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                                <h5><a href="blog-standard-post.html" rel="bookmark">Perfect Video Post</a></h5>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
                 <div class="comments-wrap">
 
                     <h3 class="v-heading"><span>3 Comments</span></h3>

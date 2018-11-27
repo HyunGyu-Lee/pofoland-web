@@ -21,6 +21,7 @@ import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.service.PortfolioService;
 import com.hst.pofoland.common.mvc.web.CommonController;
+import com.hst.pofoland.constant.CmmConstant;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Controller
-@RequestMapping("/portfolios")
+@RequestMapping("/portfolio")
 @Slf4j
 public class PortfolioController extends CommonController {
 
@@ -50,21 +51,28 @@ public class PortfolioController extends CommonController {
      */
     @ModelAttribute("categoryList")
     public List<Code> categoryList() {
-        return codeService.findByGroupCode("PF001");
+        return codeService.findByGroupCode(CmmConstant.PortfolioTypeCd.COMM_GRP_CD);
     }
     
-    @GetMapping("management")
-    public String pofolands(Portfolio criteria, Model model) {
-        PageHelper.startPage(criteria.getPageNo(), criteria.getPageSize());
+    /**
+     * 포트폴리오 목록 페이지
+     * 
+     * @param searchCondition
+     * @param model
+     * @return
+     */
+    @GetMapping("/portfolios")
+    public String portfolios(@ModelAttribute("searchCondition") Portfolio searchCondition, Model model) {
+        PageHelper.startPage(searchCondition.getPageNo(), searchCondition.getPageSize());
         
         // TODO 사용자 정보 추가 시 아래 코드에 사용자 번호 조건 넣어줄 것
         // criteria.setRegUserNo(1);
         
-        List<Portfolio> portfolioList = portfolioService.findAll(criteria);
+        List<Portfolio> portfolioList = portfolioService.findAll(searchCondition);
         
         model.addAttribute("portfolioList", portfolioList);
         model.addAttribute("pageInfo", new PageInfo<>(portfolioList));
-        
+        model.addAttribute("categoryPath", portfolioService.getCategoryCodeList(searchCondition.getPofolTypeCd()));
         return "portfolio/list";
     }
     

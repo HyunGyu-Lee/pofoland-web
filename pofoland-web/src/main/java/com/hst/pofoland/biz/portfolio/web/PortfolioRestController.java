@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @RestController
-@RequestMapping("/api/portfolios")
+@RequestMapping("/api/portfolio")
 @Slf4j
 public class PortfolioRestController extends CommonController {
 
