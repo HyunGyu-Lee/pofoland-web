@@ -29,10 +29,6 @@
     <!-- 이하 메뉴 출력 -->
     <ul class="dropdown-menu">
         <c:forEach var="menuItem" items="${menuList}">
-            <c:if test="${requestScope['javax.servlet.forward.request_uri'] eq menuItem.menuUrl}">
-                <c:set var="currentOneDepth" value="${menuItem.menuNm}" scope="request"/>
-                <c:set var="currentTwoDepth" value="${menuItem.menuNm}" scope="request"/>
-            </c:if>
             <li><a href="${menuItem.menuUrl}">${menuItem.menuNm}</a></li>
         </c:forEach>
     </ul>
