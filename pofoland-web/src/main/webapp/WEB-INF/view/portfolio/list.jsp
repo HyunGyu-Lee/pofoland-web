@@ -17,7 +17,7 @@
 <!-- Style -->
 <style>
     .category-item { padding: 5px; }
-    .category-item a.on { color: green; text-decoration: underline !important; font-weight: bolder; }
+    .category-item a.on { color: green; text-decoration: underline !important; font-weight: dbolder; }
     .category-item[data-depth="1"] { border-bottom: 2px solid #CECECE; margin-bottom: 3px; height: 35px; }
     .category-item[data-depth="2"] { border-bottom: 1px solid #DBDBDB; margin-top: 6px; height: 30px; }
     .category-item[data-depth="1"] a { border-bottom: 0 !important; font-size: 14px !important;}
@@ -48,53 +48,63 @@
                         </c:if>
                         <c:if test="${not empty categoryPath}">
                             <h1>
-                                <a href="${ctx}/portfolio/portfolios?pofolTypeCd=${categoryPath[0].commCd}&rangeSearch=true">${categoryPath[0].commCdNm}</a>
+                                <a href="${ctx}/portfolio/portfolios?pofolTypeCd=${categoryPath[0].commCd}&rangeSearch=true"
+                                   style="margin-right: 15px;">
+                                    ${categoryPath[0].commCdNm}
+                                </a>
                                 <small><a href="${ctx}/portfolio/portfolios?pofolTypeCd=${categoryPath[1].commCd}&rangeSearch=false">${categoryPath[1].commCdNm}</a></small>
                             </h1>
                         </c:if>
                     </div>
-                    <!-- 포트폴리오 목록 -->
-                    <ul class="v-portfolio-items v-portfolio-standard filterable-items col-4 row clearfix">
-                        <c:forEach var="portfolio" items="${portfolioList}">
-                            <!-- 대표이미지 선택 -->
-                            <c:choose>
-                                <c:when test="${empty portfolio.mainImageFileNo}">
-                                    <c:choose>
-                                        <c:when test="${portfolio.pofolTypeCd eq '0001'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-1.jpg"/></c:when>
-                                        <c:when test="${portfolio.pofolTypeCd eq '0002'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-2.jpg"/></c:when>
-                                        <c:when test="${portfolio.pofolTypeCd eq '0003'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-3.jpg"/></c:when>
-                                        <c:when test="${portfolio.pofolTypeCd eq '0004'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-4.jpg"/></c:when>
-                                        <c:when test="${portfolio.pofolTypeCd eq '0005'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-5.jpg"/></c:when>
-                                        <c:when test="${portfolio.pofolTypeCd eq '0006'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-6.jpg"/></c:when>
-                                    </c:choose>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:set var="mainImageUrl" value="${ctx}/api/portfolio/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
-                                </c:otherwise>
-                            </c:choose>
-                            <li class="clearfix v-portfolio-item col-sm-3 standard ${portfolio.pofolTypeCd}">
-                                <figure class="animated-overlay overlay-alt">
-                                    <img src="${mainImageUrl}" class="attachment-full" style="width: 100%; height: 135px;" onerror="setErrorImage(this);" />
-                                    <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post"></a>
-                                    <figcaption>
-                                        <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
-                                    </figcaption>
-                                </figure>
-                                <div class="v-portfolio-item-info">
-                                    <div class="like-info">
-                                        <div class="like-info-wrap">
-                                            <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
-                                            <span class="like-count">0</span>
+                    <c:if test="${empty portfolioList}">
+                        <div class="center">
+                            <h5>조회된 포트폴리오가 없습니다.</h5>
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty portfolioList}">
+                        <!-- 포트폴리오 목록 -->
+                        <ul class="v-portfolio-items v-portfolio-standard filterable-items col-4 row clearfix">
+                            <c:forEach var="portfolio" items="${portfolioList}">
+                                <!-- 대표이미지 선택 -->
+                                <c:choose>
+                                    <c:when test="${empty portfolio.mainImageFileNo}">
+                                        <c:choose>
+                                            <c:when test="${portfolio.pofolTypeCd eq '0001'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-1.jpg"/></c:when>
+                                            <c:when test="${portfolio.pofolTypeCd eq '0002'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-2.jpg"/></c:when>
+                                            <c:when test="${portfolio.pofolTypeCd eq '0003'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-3.jpg"/></c:when>
+                                            <c:when test="${portfolio.pofolTypeCd eq '0004'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-4.jpg"/></c:when>
+                                            <c:when test="${portfolio.pofolTypeCd eq '0005'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-5.jpg"/></c:when>
+                                            <c:when test="${portfolio.pofolTypeCd eq '0006'}"><c:set var="mainImageUrl" value="${vendorPath}/volvox/img/static/bus-6.jpg"/></c:when>
+                                        </c:choose>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:set var="mainImageUrl" value="${ctx}/api/portfolio/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
+                                    </c:otherwise>
+                                </c:choose>
+                                <li class="clearfix v-portfolio-item col-sm-3 standard ${portfolio.pofolTypeCd}">
+                                    <figure class="animated-overlay overlay-alt">
+                                        <img src="${mainImageUrl}" class="attachment-full" style="width: 100%; height: 135px;" onerror="setErrorImage(this);" />
+                                        <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post"></a>
+                                        <figcaption>
+                                            <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>
+                                        </figcaption>
+                                    </figure>
+                                    <div class="v-portfolio-item-info">
+                                        <div class="like-info">
+                                            <div class="like-info-wrap">
+                                                <a href="#" class="like-info-inner"><i class="fa fa-heart-o"></i></a>
+                                                <span class="like-count">0</span>
+                                            </div>
                                         </div>
+                                        <h3 class="v-portfolio-item-title">
+                                            <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post">${portfolio.pofolNm}</a>
+                                        </h3>
+                                        <h5 class="v-portfolio-subtitle">${portfolio.pofolTypeNm}</h5>
                                     </div>
-                                    <h3 class="v-portfolio-item-title">
-                                        <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post">${portfolio.pofolNm}</a>
-                                    </h3>
-                                    <h5 class="v-portfolio-subtitle">${portfolio.pofolTypeNm}</h5>
-                                </div>
-                            </li>
-                        </c:forEach>
-                    </ul>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:if>
                 </div>    
             </div>
             <aside class="sidebar left-sidebar col-sm-3">
@@ -165,7 +175,7 @@
                 </section>
                 <section class="widget v-tag-cloud-widget clearfix">
                     <div class="widget-heading clearfix">
-                        <h4 class="v-heading"><span>태그</span></h4>
+                        <h4 class="v-heading"><span>인기태그</span></h4>
                     </div>
                     <div class="tagcloud">
                         <ul class='wp-tag-cloud'>
