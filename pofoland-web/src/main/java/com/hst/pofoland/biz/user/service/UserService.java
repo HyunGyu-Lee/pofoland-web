@@ -44,4 +44,8 @@ public class UserService {
 		
 		return userDAO.create(user);
 	}
+	
+	public User getUserInfo(User user) {
+	    return userDAO.findUserInfo(user);
+	}
 }

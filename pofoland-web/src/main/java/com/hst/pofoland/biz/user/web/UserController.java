@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hst.pofoland.biz.portfolio.web.PortfolioController;
 import com.hst.pofoland.biz.user.domain.User;
+import com.hst.pofoland.common.constant.CommonConstant;
 import com.hst.pofoland.common.mvc.domain.CommonApiResponse;
 import com.hst.pofoland.common.mvc.web.CommonController;
 
@@ -38,8 +40,12 @@ public class UserController extends CommonController {
 	 * @return
 	 */
 	@GetMapping("login")
-	public String login() {
-		return "user/login";
+	public ModelAndView login() {
+	    ModelAndView modelAndView = new ModelAndView("user/login");
+	    
+	    modelAndView.addObject("userJoinSeCd", CommonConstant.User.JoinCode.GENERAL);
+	    
+		return modelAndView;
 	}
 	
 	/**
@@ -48,8 +54,12 @@ public class UserController extends CommonController {
 	 * @return
 	 */
 	@GetMapping("register")
-	public String register() {
-		return "user/register";
+	public ModelAndView register() {
+	    ModelAndView modelAndView = new ModelAndView("user/register");
+	    
+	    modelAndView.addObject("userJoinSeCd", CommonConstant.User.JoinCode.GENERAL);
+	    
+		return modelAndView;
 	}
 	
 

@@ -1,8 +1,9 @@
-$(document).ready(function(){
-    
-})
-
 var registerData = {}
+
+$(document).ready(function(){
+    // 가입 경로 설정
+    registerData.userJoinSeCd = userJoinSeCd;
+})
 
 var service = {
     

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script src="${ctx}/static/assets/js/user/login.js"></script>
+<script>
+    let userJoinSeCd = '${userJoinSeCd}';
+</script>
 
 <div class="v-page-wrap no-top-spacing padding-50 body-sign">
     <div class="container">
@@ -28,12 +31,12 @@
                 <form class="signup">
                     <div class="form-group">
                         <label>이메일 <span class="required">*</span></label>
-                        <input type="text" value="" placeholder="이메일을 입력하여 주세요." maxlength="100" class="form-control" name="name" id="name">
+                        <input type="text" id=userEmail value="" placeholder="이메일을 입력하여 주세요." maxlength="100" class="form-control">
                     </div>
                     
                     <div class="form-group">
                         <label>비밀번호 <span class="required">*</span></label>
-                        <input type="text" value="" placeholder="비밀번호를 입력하여 주세요." maxlength="100" class="form-control" name="website" id="website">
+                        <input type="password" id="password" value="" placeholder="비밀번호를 입력하여 주세요." maxlength="100" class="form-control">
                     </div>
                     
                     <div class="row">

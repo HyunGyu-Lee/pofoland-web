@@ -34,8 +34,8 @@ public class UserRestController extends CommonController {
      */
     @PostMapping
     public CommonApiResponse createUser(@RequestBody User user) {
-    
-        user.setUserJoinSeCd(CommonConstant.User.JoinCode.GENERAL);
+        
+        // 회원 상태 저장
         user.setUserSttCd(CommonConstant.User.SttsCode.NOMAL);
         
         int result = userService.create(user);
@@ -47,17 +47,17 @@ public class UserRestController extends CommonController {
         }
     }
     
-//    /**
-//     * 유저 로그인
-//     * 
-//     * @param user
-//     * @return CommonApiResponse
-//     */
-//    @PostMapping(value = "login")
-//    public CommonApiResponse loginUser(@RequestBody User user) {
-//        
-//        
-//        
-//        return ok(user);
-//    }
+    /**
+     * 유저 로그인
+     * 
+     * @param user
+     * @return CommonApiResponse
+     */
+    @PostMapping(value = "login")
+    public CommonApiResponse loginUser(@RequestBody User user) {
+        
+        
+        
+        return ok(user);
+    }
 }

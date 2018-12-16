@@ -20,4 +20,11 @@ import com.hst.pofoland.common.mvc.dao.CommonDAO;
 @Mapper
 public interface UserDAO extends CommonDAO<String, User> {
 	
+    /**
+     * 유저 정보 조회
+     * 
+     * @param user (유저 정보)
+     * @return
+     */
+    public User findUserInfo(User user);
 }

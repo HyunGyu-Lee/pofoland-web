@@ -5,7 +5,7 @@
 
 <mapper namespace="com.hst.pofoland.biz.user.dao.UserDAO">
 
-    <!-- 포트폴리오 기본정보 등록 -->
+    <!-- 유저 회원가입  -->
     <insert id="create" useGeneratedKeys="true" keyProperty="userNo">
         INSERT INTO MB_USER (
             USER_EMAIL,
@@ -25,4 +25,10 @@
             NOW()
         )
     </insert>
+    
+    <!-- 유저 정보 조회  -->
+    <select id="findUserInfo" resultType="User">
+        SELECT *
+          FROM MB_USER
+    </select>
 </mapper>
