@@ -83,7 +83,7 @@
                                 </c:choose>
                                 <li class="clearfix v-portfolio-item col-sm-3 standard ${portfolio.pofolTypeCd}">
                                     <figure class="animated-overlay overlay-alt">
-                                        <img src="${mainImageUrl}" class="attachment-full" style="width: 100%; height: 135px;" onerror="setErrorImage(this);" />
+                                        <img src="${mainImageUrl}" class="attachment-full" style="width: 100%; height: 185px;" onerror="setErrorImage(this);" />
                                         <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post"></a>
                                         <figcaption>
                                             <div class="thumb-info thumb-info-v2"><i class="fa fa-angle-right"></i></div>

@@ -41,7 +41,7 @@
                         <c:when test="${page.pofolPageTypeCd eq '0002'}">
                             <div class="pageContentWrap">
                                 <div class="leftContent center pull-left">
-                                    <img src="/api/portfolio/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" style="height: 100%;"/>
+                                    <img src="/api/portfolio/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" style="width: 100%; height: 100%;"/>
                                 </div>
                                 <div class="rightContent pull-right">
                                     ${page.pofolPageCont}
@@ -134,7 +134,7 @@
                                         <h3>이현규</h3>
                                     </div>
                                     <div class="author-bio-text">
-                                        <p>안녕하세요 이현규입니다.</p>
+                                        <p>안녕하세요 핸드폰게임을 좋아하는 개발자입니다^^</p>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                 </div>
             </div>
         </div>
-        <div class="v-portfolio-item-content panel panel-default">
+        <%-- <div class="v-portfolio-item-content panel panel-default">
             <div class="row panel-body">
                 <div class="col-sm-8 center">
                     <figure class="media-wrap">
@@ -191,7 +191,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --%>
     </div>
 </div>
 
