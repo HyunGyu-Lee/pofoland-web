@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<script src="${ctx}/static/assets/js/user/login.js"></script>
+
 <div class="v-page-wrap no-top-spacing padding-50 body-sign">
     <div class="container">
         <div class="v-spacer col-sm-12 v-height-small"></div>
@@ -36,7 +38,7 @@
                     
                     <div class="row">
                         <div class="col-sm-4 pull-right">
-                            <button type="submit" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">로그인</button>
+                            <button type="button" id="loginBtn" class="btn v-btn v-btn-default v-small-button no-three-d pull-right no-margin-bottom no-margin-right">로그인</button>
                         </div>
                     </div>
                     

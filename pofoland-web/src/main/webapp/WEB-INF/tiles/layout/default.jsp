@@ -24,6 +24,7 @@
         <!-- Vendor CSS -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,700,800,900" rel="stylesheet" type="text/css">
+
         <link href="${vendorPath}/volvox/css/bootstrap.min.css" rel="stylesheet" />
         <link href="${vendorPath}/volvox/css/style.css" rel="stylesheet" />
         <link href="${vendorPath}/volvox/css/font-awesome.min.css" rel="stylesheet" />
@@ -66,6 +67,7 @@
         <link href="${assetPath}/css/app.css" rel="stylesheet" />
         
         <!-- App Commons -->
+
         <script src="${assetPath}/js/app.js"></script>
         <script src="${assetPath}/js/utils/AjaxUtils.js"></script>        
         <script src="${assetPath}/js/utils/MessageBox.js"></script>
@@ -73,11 +75,13 @@
     </head>
     <body>
         <div id="wrapper">
+        
             <!-- 페이지 헤더 -->
             <tiles:insertAttribute name="header" />
     
             <div id="container">
-                <!-- 페이지 본문 -->            
+            
+                <!-- 페이지 본문 -->
                 <tiles:insertAttribute name="body" />
             
                 <!-- 페이지 푸터 -->        

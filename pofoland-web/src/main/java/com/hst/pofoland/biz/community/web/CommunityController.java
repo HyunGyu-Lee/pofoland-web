@@ -30,6 +30,7 @@ import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.code.service.CodeService;
 import com.hst.pofoland.biz.community.domain.Community;
 import com.hst.pofoland.biz.community.service.CommunityService;
+import com.hst.pofoland.common.constant.CommonConstant;
 import com.hst.pofoland.constant.CmmConstant;
 import com.hst.pofoland.constant.CmmConstant.BoardSeCd;
 
@@ -67,20 +68,20 @@ public class CommunityController {
 		/** 게시판 타입별 게시판구분코드 세팅 */
 		switch (boardSeNm) {
 			// 공지사항(notice)
-			case CmmConstant.BoardSeNm.NOTI : 
-				boardSeCd = CmmConstant.BoardSeCd.NOTI; // 게시판구분코드 (공지사항, 0001) 세팅
+			case CommonConstant.BoardSeNm.NOTI : 
+				boardSeCd = CommonConstant.BoardSeCd.NOTI; // 게시판구분코드 (공지사항, 0001) 세팅
 				break;
 			// Q&A(qna)
-			case CmmConstant.BoardSeNm.QNA :
-				boardSeCd = CmmConstant.BoardSeCd.QNA;	// 게시판구분코드 (Q&A, 0002) 세팅
+			case CommonConstant.BoardSeNm.QNA :
+				boardSeCd = CommonConstant.BoardSeCd.QNA;	// 게시판구분코드 (Q&A, 0002) 세팅
 				break;
 			// 포럼(frum)
-			case CmmConstant.BoardSeNm.FRUM :
-				boardSeCd = CmmConstant.BoardSeCd.FRUM;	// 게시판구분코드 (포럼, 0003) 세팅
+			case CommonConstant.BoardSeNm.FRUM :
+				boardSeCd = CommonConstant.BoardSeCd.FRUM;	// 게시판구분코드 (포럼, 0003) 세팅
 				break;
 			// 구직(jobs)
-			case CmmConstant.BoardSeNm.JOBS :
-				boardSeCd = CmmConstant.BoardSeCd.JOBS;	// 게시판구분코드 (구직, 0004) 세팅
+			case CommonConstant.BoardSeNm.JOBS :
+				boardSeCd = CommonConstant.BoardSeCd.JOBS;	// 게시판구분코드 (구직, 0004) 세팅
 				break;
 		}
 		param.setBoardSeCd(boardSeCd);
@@ -101,7 +102,7 @@ public class CommunityController {
 	public String selectNoticeList(Model model) {
 		List<Community> resultList = new ArrayList<Community>();
 		Community param = new Community();
-		param.setBoardSeCd(CmmConstant.BoardSeCd.NOTI); // 게시판구분(공지사항, 0001) 세팅
+		param.setBoardSeCd(CommonConstant.BoardSeCd.NOTI); // 게시판구분(공지사항, 0001) 세팅
 		
 		*//** 게시글 목록 조회 *//*
 		resultList = communityService.selectCommunityList(param);
@@ -171,20 +172,20 @@ public class CommunityController {
 		/** 게시판 타입별 게시판구분코드 세팅 */
 		switch (boardSeCd) {
 			// 공지사항(notice)
-			case CmmConstant.BoardSeCd.NOTI : 
-				boardSeNm = CmmConstant.BoardSeNm.NOTI; // 게시판구분코드 (공지사항, 0001) 세팅
+			case CommonConstant.BoardSeCd.NOTI : 
+				boardSeNm = CommonConstant.BoardSeNm.NOTI; // 게시판구분코드 (공지사항, 0001) 세팅
 				break;
 			// Q&A(qna)
-			case CmmConstant.BoardSeCd.QNA :
-				boardSeNm = CmmConstant.BoardSeNm.QNA;	// 게시판구분코드 (Q&A, 0002) 세팅
+			case CommonConstant.BoardSeCd.QNA :
+				boardSeNm = CommonConstant.BoardSeNm.QNA;	// 게시판구분코드 (Q&A, 0002) 세팅
 				break;
 			// 포럼(frum)
-			case CmmConstant.BoardSeCd.FRUM :
-				boardSeNm = CmmConstant.BoardSeNm.FRUM;	// 게시판구분코드 (포럼, 0003) 세팅
+			case CommonConstant.BoardSeCd.FRUM :
+				boardSeNm = CommonConstant.BoardSeNm.FRUM;	// 게시판구분코드 (포럼, 0003) 세팅
 				break;
 			// 구직(jobs)
-			case CmmConstant.BoardSeCd.JOBS :
-				boardSeNm = CmmConstant.BoardSeNm.JOBS;	// 게시판구분코드 (구직, 0004) 세팅
+			case CommonConstant.BoardSeCd.JOBS :
+				boardSeNm = CommonConstant.BoardSeNm.JOBS;	// 게시판구분코드 (구직, 0004) 세팅
 				break;
 		}
 		

@@ -11,7 +11,7 @@
     z-index: 1006;
     position: absolute;
     width: 100%; 
-    background-color:rgba(255, 255, 255, 0.64);
+    background-color: rgba(255,255,255,.92);
     border-bottom: 1px solid rgba(0,0,0,.07);
     border-top-color: #a0a0a0
 }
@@ -112,27 +112,22 @@ header {
     background: #FFF; 
     top: 0;
     width: 100%;
-        /*border-bottom: 1px solid #e1e1e1;*/
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
-    position:relative;
-    z-index:1001;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
-.transparent-header header{
-    box-shadow:none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.19)!important;
-}
+ 
 
 .v-header-shadow {
     background: url(../img/base/shadow-top.png) no-repeat;
     position: absolute;
     -moz-background-size: 100% 100%;
     -o-background-size: 100% 100%;
+    -webkit-background-size:100% 100%;
     background-size: 100% 100%;
     left: 0;
     right: 0;
-    height: 30px;
+    height: 40px;
     width: 80%;
-    /*bottom: -40px;*/
+    bottom: -40px;
     margin-left: auto;
     opacity: 0.6;
     margin-right: auto;
@@ -213,7 +208,7 @@ nav.std-menu .menu li > a {
     padding: 2px 5px;
     display: inline-block;
     font-size: 11px;
-    line-height: 13px;
+    line-height: 14px;
 }
 
 .bg-warning {
@@ -282,7 +277,6 @@ header > .container {
     -o-transition: all 0.2s;
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
-    position: initial;
 }
 
 .header-container .header-top p {
@@ -371,7 +365,7 @@ button.btn-responsive-nav {
 header div.logo {
     display: table;
     position: absolute;
-    height: 90px;
+    height: 94px;
 }
 
 header div.logo a {
@@ -415,7 +409,7 @@ header div.search a {
     z-index: 9999;
     display: block;
     font-size: 14px;
-    padding: 35px 5px;
+    padding: 37px 5px;
     -webkit-transition: none;
     -o-transition: none;
     transition: none;
@@ -522,7 +516,7 @@ header nav.nav-main {
 }
 
 header .nav > li > a {
-    padding: 35px 15px;
+    padding: 37px 15px;
 }
 
 header .nav-pills > li {
@@ -551,7 +545,7 @@ header nav ul.nav-main i.fa-caret-down {
     position: relative;
     text-align: center;
     top: -1px;
-    width: 10px;
+    width: 15px;
 }
 
 header nav ul.nav-main > li + li {
@@ -574,7 +568,6 @@ header nav ul.nav-main .dropdown-submenu > .dropdown-menu {
 
 header nav ul.nav-main .dropdown-submenu:hover > .dropdown-menu {
     display: block;
-    transition: all .2s ease-in-out;
 }
 
 header nav ul.nav-main .dropdown-submenu > a:after {
@@ -630,15 +623,16 @@ header nav ul.nav-main ul.dropdown-menu {
     border: 0;
     border-radius: 2px;
     margin: 0 0 0 3px;
-    padding: 0px 0px;
+    padding: 10px 0px;
     top: auto;
     background: #FFFFFF;
-    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    -moz-box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+    -webkit-box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
     border-right-color: rgb(235, 235, 235);
 
-    border-top-width:2px;
-    border-top-style:solid;  
+    border-top-width:3px;
+    border-top-style:solid; 
 }
 
 header nav ul.nav-main ul.dropdown-menu ul.dropdown-menu {
@@ -652,19 +646,16 @@ header nav ul.nav-main ul.dropdown-menu ul.dropdown-menu {
 header nav ul.nav-main ul.dropdown-menu li:hover > a {
     filter: none;
     background: #F5F5F5;
-        transition: all .2s ease-in-out;
 }
 
 header nav ul.nav-main ul.dropdown-menu > li > a {
-    color: #444;
+    color: #333;
     font-weight: 400;
     text-transform: none;
     position: relative;
-    padding: 6px 18px 6px 19px;
+    padding: 7px 18px 7px 19px;
     font-size: 12px;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid #efefef; 
-    transition: all .2s ease-in-out;
+    border-bottom: 1px solid #f7f7f7;
 }
 
 header nav ul.nav-main ul.dropdown-menu li:last-child > a {
@@ -678,18 +669,17 @@ header nav ul.nav-main li a {
     background: none;
     text-transform: none;
     display: block;
-    color: #444;
+    color: #565656;
     /*font-size: 13px;
     font-weight: 500; */
     letter-spacing: 0px;
     text-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
     font-size: 13px;
-    font-weight: 500; 
-    letter-spacing: 0px;
+    font-weight: 600; 
+    letter-spacing: -0.2px;
     -webkit-transition: none;
     -o-transition: none;
     transition: none;
-        font-family: Raleway !important;
 }
  
 
@@ -812,7 +802,6 @@ nav.std-menu.header-top-menu ul.nav-main ul.dropdown-menu li > a {
 
 .header-container nav.header-top-menu ul.nav-main ul.dropdown-menu {
     min-width: 120px;
-        z-index: 1002;
 }
 
 nav.std-menu.header-top-menu .menu li > a {
@@ -898,9 +887,10 @@ nav.std-menu.header-top-menu .menu li > a {
         padding: 0px 15px;
         padding-left: 15px;
         margin: 0 15px;
-        -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-        box-shadow: 0 6px 8px rgba(0,0,0,.175);
-        border-top-width:2px;
+        -moz-box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+        -webkit-box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.13);
+        border-top-width:3px;
         border-top-style:solid; 
     }
     
@@ -913,12 +903,9 @@ nav.std-menu.header-top-menu .menu li > a {
     header nav.mega-menu ul.nav-main li.mega-menu-item .mega-menu-sub-title {
         color: #444;
         display: block;
-        font-size: 13px;
-        font-weight: 400 !important;
-        padding-bottom: 5px;
-        text-transform: uppercase;
-        font-family: source_sans_probold, Arial, Helvetica, Tahoma, sans-serif;
-        letter-spacing: 1.5px;
+        font-size: 17px;
+        /*font-weight: 600 !important;*/
+        padding-bottom: 10px;
         cursor: default;
         padding-left: 25px;
     }
@@ -938,7 +925,7 @@ nav.std-menu.header-top-menu .menu li > a {
     }
     
     header nav.mega-menu ul.nav-main li.mega-menu-item ul.sub-menu a {
-        color: #444;
+        color: #333;
         text-shadow: none;
         margin: 0;
         padding: 3px 12px;
@@ -1029,12 +1016,11 @@ nav.std-menu.header-top-menu .menu li > a {
     }
     
     nav.mega-menu ul.nav-main li ul.dropdown-menu ul.dropdown-menu {
-        padding-top: 0px;
-        padding-bottom: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         padding-left: 0;
         padding-right: 0;
-        margin-top: -1px;
-        border-radius: 2px;
+        margin-top: -10px;
     }
     
     nav.mega-menu ul.sub-menu li.dropdown-submenu ul.dropdown-menu {
