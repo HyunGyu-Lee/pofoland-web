@@ -43,7 +43,7 @@ public class UserRestController extends CommonController {
         if (result > 0) {
             return ok(result);
         } else {
-            return badRequest(result);
+            return badRequest("회원가입 오류", result);
         }
     }
     
