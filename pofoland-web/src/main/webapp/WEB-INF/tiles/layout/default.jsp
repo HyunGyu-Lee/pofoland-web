@@ -8,7 +8,7 @@
 <c:set var="vendorPath" value="${ctx}/static/vendor" scope="application"></c:set>
  
 <!-- UI 테스트용 변수 --> 
- <c:set var="containerOption" value="container" scope="application"></c:set>
+ <c:set var="containerOption" value="container-fluid" scope="application"></c:set>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,6 +22,9 @@
         <meta name="ctx" content="${ctx}" />
         
         <!-- Vendor CSS -->
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css"> -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+        
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,700,800,900" rel="stylesheet" type="text/css">
 

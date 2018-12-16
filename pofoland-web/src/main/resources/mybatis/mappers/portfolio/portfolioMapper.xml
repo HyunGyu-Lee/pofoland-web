@@ -41,7 +41,7 @@
                (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
           FROM PF_POFOL
        <where>
-           <if test="@com.hst.pofoland.common.utils.StringUtils@isNotEmpty(pofolTypeCd)">
+           <if test="@com.hst.pofoland.common.utils.MybatisFunctions@isNotEmpty(pofolTypeCd)">
 	           <choose>
 	               <when test="rangeSearch == true">
                        AND POFOL_TYPE_CD IN (SELECT COMM_CD FROM CO_COMM_CD WHERE UP_COMM_CD = #{pofolTypeCd})
@@ -77,7 +77,7 @@
         UPDATE PF_POFOL
         <set >
             <if test="mainImageFileNo != 0"> MAIN_IMAGE_FILE_NO = #{mainImageFileNo}, </if>
-            <if test="@org.apache.commons.lang3.StringUtils@isEmpty(mainImageAutoYn) == false"> MAIN_IMAGE_AUTO_YN = #{mainImageAutoYn},</if>
+            <if test="@com.hst.pofoland.common.utils.MybatisFunctions@isNotEmpty(mainImageAutoYn)"> MAIN_IMAGE_AUTO_YN = #{mainImageAutoYn},</if>
         </set>
          WHERE POFOL_NO = #{pofolNo}           
     </update>
@@ -117,6 +117,19 @@
           FROM PF_POFOL_HASH_TAG
          WHERE POFOL_NO = #{pofolNo}
       ORDER BY TAG_ORDER ASC
+    </select>
+    
+    <!-- 카테고리별 해시태그 조회 -->
+    <select id="findHashTagsByCategory" resultType="PortfolioHashTag">
+        SELECT TAG_NM,
+               POFOL_TYPE_CD
+          FROM PF_POFOL_HASH_TAG A INNER JOIN PF_POFOL B
+            ON A.POFOL_NO = B.POFOL_NO
+       <where>
+           <if test="@com.hst.pofoland.common.utils.MybatisFunctions@isNotEmpty(pofolTypeCd)">
+               B.POFOL_TYPE_CD = #{pofolTypeCd}
+           </if>
+       </where>
     </select>
     
     <!-- 포트폴리오 페이지 목록조회 -->

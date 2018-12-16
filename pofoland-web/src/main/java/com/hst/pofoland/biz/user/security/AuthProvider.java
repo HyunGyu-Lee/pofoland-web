@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.hst.pofoland.biz.user.service.UserService;
 
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Component("authProvider")
