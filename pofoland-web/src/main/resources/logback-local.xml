@@ -7,7 +7,8 @@
     <logger name="org.h2.server.web" level="INFO" />
     <logger name="com.zaxxer.hikari" level="INFO" />
     <logger name="com.hst.pofoland" level="DEBUG"  />
-
+    <logger name="org.mybatis" level="DEBUG" />
+    
     <root level="INFO">
         <appender-ref ref="COLOR_CONSOLE" />
         <!-- <appender-ref ref="CONSOLE" /> -->
