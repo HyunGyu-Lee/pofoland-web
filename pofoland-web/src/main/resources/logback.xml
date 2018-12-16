@@ -34,6 +34,6 @@
         </rollingPolicy>
     </appender>
     
-    <include resource="logback-default.xml" />
+    <include resource="logback-${ACTIVE_PROFILE}.xml" />
     
 </configuration>

@@ -25,4 +25,14 @@ public class CareerController {
 		}
 		return "career/career";
 	}
+	@RequestMapping("/career/search")
+	public String careerSearch2(String s, Model model) {
+		try {
+			model.addAttribute("careerSearch", careerService.careerSearch(s));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "career/career";
+	}
 }

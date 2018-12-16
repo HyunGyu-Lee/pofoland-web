@@ -31,6 +31,7 @@
         INSERT INTO CO_COMM_CD (
             COMM_GRP_CD,
             COMM_CD,
+            UP_COMM_CD,
             COMM_CD_NM,
             COMM_CD_CONT,
             USE_YN,
@@ -41,6 +42,7 @@
         ) VALUES (
             #{commGrpCd},
             #{commCd},
+            #{upCommCd},
             #{commCdNm},
             #{commCdCont},
             #{useYn},
@@ -57,6 +59,7 @@
     <select id="findList" resultType="Code">
         SELECT COMM_GRP_CD,
                COMM_CD,
+               UP_COMM_CD,
                COMM_CD_NM,
                COMM_CD_CONT,
                USE_YN,
@@ -65,10 +68,35 @@
                UPD_DTM,
                UPD_USER_NO
           FROM CO_COMM_CD
-         WHERE USE_YN = 'Y'
-           <if test="commGrpCd != null and commGrpCd != ''">
+       <where>
+           <if test="@com.hst.pofoland.common.utils.StringUtils@isNotEmpty(commGrpCd)">
            AND COMM_GRP_CD = #{commGrpCd}
            </if>
+           <if test="@com.hst.pofoland.common.utils.StringUtils@isNotEmpty(upCommCd)">
+           AND UP_COMM_CD = #{upCommCd}
+           </if>
+           <if test="@com.hst.pofoland.common.utils.StringUtils@isNotEmpty(useYn)">
+           AND USE_YN = #{useYn}
+           </if>
+       </where>           
+      ORDER BY COMM_CD    
+    </select>
+    
+    <!-- 공통코드 조회 -->
+    <select id="findCode" resultType="Code">
+        SELECT COMM_GRP_CD,
+               COMM_CD,
+               UP_COMM_CD,
+               COMM_CD_NM,
+               COMM_CD_CONT,
+               USE_YN,
+               REG_DTM,
+               REG_USER_NO,
+               UPD_DTM,
+               UPD_USER_NO
+          FROM CO_COMM_CD
+         WHERE COMM_GRP_CD = #{commGrpCd}
+           AND COMM_CD = #{commCd}          
     </select>
     
 </mapper>

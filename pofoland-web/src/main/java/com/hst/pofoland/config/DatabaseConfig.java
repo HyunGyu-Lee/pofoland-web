@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.hst.pofoland.config.properties.DatabaseProperties;
@@ -26,6 +27,7 @@ public class DatabaseConfig {
     private DatabaseProperties databaseProperties;
     
     @Bean
+    @Profile("local")
     public DataSource dataSource() {
         HikariConfig config = new HikariConfig();
         config.setDriverClassName(databaseProperties.getDriverClassName());

@@ -24,10 +24,10 @@ import lombok.NoArgsConstructor;
  * @see
  *
  */
-@Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class Portfolio extends PagableDomain implements Serializable {
 
@@ -74,9 +74,19 @@ public class Portfolio extends PagableDomain implements Serializable {
     private String mainImageAutoYn;
     
     /**
+     * 포트폴리오 유형 범위검색
+     */
+    private Boolean rangeSearch;
+    
+    /**
      * 포트폴리오 페이지 목록
      */
     private List<PortfolioPage> portfolioPages;
+    
+    /**
+     * 포트폴리오 해시태그 목록
+     */
+    private List<PortfolioHashTag> portfolioHashTags;
     
     public Portfolio(Integer pofolNo) {
         this.pofolNo = pofolNo;

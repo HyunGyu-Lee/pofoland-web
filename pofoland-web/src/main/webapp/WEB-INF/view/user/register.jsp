@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<script src="${ctx}/static/assets/js/user/register.js"></script>
+<script src="${assetPath}/js/user/register.js"></script>
 
 <div class="padding-100 body-sign">
     <div class="container">

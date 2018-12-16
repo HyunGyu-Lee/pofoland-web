@@ -5,15 +5,19 @@
  */
 package com.hst.pofoland.biz.portfolio.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.portfolio.dao.PortfolioDAO;
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
+import com.hst.pofoland.biz.portfolio.domain.PortfolioHashTag;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioPage;
 import com.hst.pofoland.biz.storage.domain.StoreResult;
 import com.hst.pofoland.common.constant.CommonConstant;
@@ -49,19 +53,26 @@ public class PortfolioService extends CommonService {
      * @param portfolio
      */
     public void create(Portfolio portfolio) {
-        // 1. 포트폴리오 기본정보 등록
         portfolioDao.create(portfolio);
         
-        log.debug("포트폴리오 기본정보 등록 완료");
-        
-        // 2. 각 페이지 등록
-        for (PortfolioPage portfolioPage : portfolio.getPortfolioPages()) {
-            portfolioPage.setPofolNo(portfolio.getPofolNo());
-            
-            createPortfolioPage(portfolioPage);
+        for (PortfolioHashTag tag : portfolio.getPortfolioHashTags()) {
+            tag.setPofolNo(portfolio.getPofolNo());
+            createPortfolioHashTag(tag);
         }
         
-        log.debug("포트폴리오 등록 완료");
+        for (PortfolioPage portfolioPage : portfolio.getPortfolioPages()) {
+            portfolioPage.setPofolNo(portfolio.getPofolNo());
+            createPortfolioPage(portfolioPage);
+        }
+    }
+    
+    /**
+     * 포트폴리오 해시태그 등록
+     * 
+     * @param tag
+     */
+    public void createPortfolioHashTag(PortfolioHashTag tag) {
+        portfolioDao.createHashTag(tag);
     }
     
     /**
@@ -107,11 +118,12 @@ public class PortfolioService extends CommonService {
      * @return
      */
     public Portfolio findByPofolNo(Integer pofolNo) {
-        // 1. 포트폴리오 상세 조회
         Portfolio portfolio = portfolioDao.findOne(pofolNo);
         
-        // 2. 포트폴리오 페이지 목록 조회
         if (portfolio != null) {
+            List<PortfolioHashTag> portfolioHashTags = portfolioDao.findPortfolioHashTags(pofolNo);
+            portfolio.setPortfolioHashTags(portfolioHashTags);
+            
             List<PortfolioPage> portfolioPages = portfolioDao.findPortfolioPageList(pofolNo);
             portfolio.setPortfolioPages(portfolioPages);
         }
@@ -192,6 +204,31 @@ public class PortfolioService extends CommonService {
         pfFile.setPofolFileExtNm(result.getExtention());
         
         return pfFile;
+    }
+    
+    /**
+     * 포트폴리오 카테고리 코드 기준 수직 카테고리 목록 반환
+     * 
+     * @param pofolTypeCd
+     * @return
+     */
+    public List<Code> getCategoryCodeList(String pofolTypeCd) {
+        List<Code> codeList = new ArrayList<Code>();
+        
+        if (StringUtils.isEmpty(pofolTypeCd)) {
+            return codeList;
+        }
+        
+        // XXX 포트폴리오 카테고리 구조가 2뎁스 이상 늘어날 경우, 조회방식 변경할 것
+        Code currentCode = codeService.findCode(CmmConstant.PortfolioTypeCd.COMM_GRP_CD, pofolTypeCd);
+        
+        if (StringUtils.isNotEmpty(currentCode.getUpCommCd())) {
+            codeList.add(codeService.findCode(CmmConstant.PortfolioTypeCd.COMM_GRP_CD, currentCode.getUpCommCd()));
+        }
+        
+        codeList.add(currentCode);
+        
+        return codeList;
     }
     
 }

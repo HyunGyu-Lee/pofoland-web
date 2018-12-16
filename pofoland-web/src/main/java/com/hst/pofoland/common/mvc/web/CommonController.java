@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 import com.hst.pofoland.biz.code.service.CodeService;
+import com.hst.pofoland.common.framework.ApplicationContextProvider;
 import com.hst.pofoland.common.mvc.domain.CommonApiResponse;
 
 /**
@@ -25,6 +26,9 @@ public class CommonController {
      */
     @Autowired    
     protected CodeService codeService;
+    
+    @Autowired
+    protected ApplicationContextProvider contextProvider;
     
     /**
      * dest로 리다이렉트
@@ -53,7 +57,7 @@ public class CommonController {
      * @return
      */
     public CommonApiResponse ok() {
-        return responseForApi(HttpStatus.OK, null);
+        return responseForApi(HttpStatus.OK, null, null);
     }
     
     /**
@@ -63,7 +67,17 @@ public class CommonController {
      * @return
      */
     public CommonApiResponse ok(Object payloads) {
-        return responseForApi(HttpStatus.OK, payloads);
+        return responseForApi(HttpStatus.OK, null, payloads);
+    }
+    
+    /**
+     * AJAX요청에 대해 200 응답 반환
+     * 
+     * @param payloads
+     * @return
+     */
+    public CommonApiResponse ok(String message, Object payloads) {
+        return responseForApi(HttpStatus.OK, message, payloads);
     }
     
     /**
@@ -72,8 +86,8 @@ public class CommonController {
      * @param payloads
      * @return
      */
-    public CommonApiResponse notFound(Object payloads) {
-        return responseForApi(HttpStatus.NOT_FOUND, payloads);
+    public CommonApiResponse notFound(String message, Object payloads) {
+        return responseForApi(HttpStatus.NOT_FOUND, message, payloads);
     }
     
     /**
@@ -82,8 +96,8 @@ public class CommonController {
      * @param payloads
      * @return
      */
-    public CommonApiResponse badRequest(Object payloads) {
-        return responseForApi(HttpStatus.BAD_REQUEST, payloads);
+    public CommonApiResponse badRequest(String message, Object payloads) {
+        return responseForApi(HttpStatus.BAD_REQUEST, message, payloads);
     }
     
     /**
@@ -92,8 +106,8 @@ public class CommonController {
      * @param payloads
      * @return
      */
-    public CommonApiResponse responseForApi(HttpStatus status, Object payloads) {
-        return CommonApiResponse.builder().responseCode(status).payloads(payloads).build();
+    public CommonApiResponse responseForApi(HttpStatus status, String message, Object payloads) {
+        return CommonApiResponse.builder().responseCode(status).message(message).payloads(payloads).build();
     }
     
 }

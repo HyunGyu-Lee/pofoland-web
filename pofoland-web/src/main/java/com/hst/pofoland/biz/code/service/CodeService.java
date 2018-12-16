@@ -7,6 +7,7 @@ package com.hst.pofoland.biz.code.service;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,6 +17,7 @@ import com.hst.pofoland.biz.code.dao.CodeDAO;
 import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.code.domain.GroupCode;
 import com.hst.pofoland.common.mvc.service.CommonService;
+import com.hst.pofoland.common.utils.CollectionUtils;
 
 /**
  * 공통코드 서비스
@@ -63,7 +65,27 @@ public class CodeService extends CommonService {
      */
     @Cacheable(value="codes", key="#commGrpCd")
     public List<Code> findByGroupCode(String commGrpCd) {
-        return codeDao.findList(Code.builder().commGrpCd(commGrpCd).build());
+        return CollectionUtils.flatToHierarchy(codeDao.findList(Code.builder().commGrpCd(commGrpCd).build()), null, 1);
     }
     
+    /**
+     * 코드 목록 조회
+     * 
+     * @param code
+     * @return
+     */
+    public List<Code> findCodeList(Code code) {
+        return codeDao.findList(code);
+    }
+    
+    /**
+     * 코드 조회
+     * 
+     * @param code
+     * @return
+     */
+    public Code findCode(String commGrpCd, String commCd) {
+        return codeDao.findCode(Code.builder().commGrpCd(commGrpCd).commCd(commCd).build());
+    }
+
 }

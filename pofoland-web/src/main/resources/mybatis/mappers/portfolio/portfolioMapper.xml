@@ -40,11 +40,23 @@
                MAIN_IMAGE_AUTO_YN,
                (SELECT COMM_CD_NM FROM CO_COMM_CD WHERE COMM_GRP_CD = 'PF001' AND COMM_CD = POFOL_TYPE_CD) AS POFOL_TYPE_NM
           FROM PF_POFOL
-      ORDER BY REG_DTM DESC    
+       <where>
+           <if test="@com.hst.pofoland.common.utils.StringUtils@isNotEmpty(pofolTypeCd)">
+	           <choose>
+	               <when test="rangeSearch == true">
+                       AND POFOL_TYPE_CD IN (SELECT COMM_CD FROM CO_COMM_CD WHERE UP_COMM_CD = #{pofolTypeCd})
+	               </when>
+	               <when test="rangeSearch == false">
+                       AND POFOL_TYPE_CD = #{pofolTypeCd}
+	               </when>
+	           </choose>
+           </if>
+       </where>   
+      ORDER BY REG_DTM DESC
     </select>
     
     <!-- 포트폴리오 상세 조회 -->
-    <select id="findOne" resultType="Portfolio">
+    <select id="findOne"  resultType="Portfolio">
         SELECT POFOL_NO,
                REG_USER_NO,
                REG_DTM,
@@ -70,6 +82,19 @@
          WHERE POFOL_NO = #{pofolNo}           
     </update>
     
+    <!-- 포트폴리오 해시태그 등록 -->
+    <insert id="createHashTag">
+        INSERT INTO PF_POFOL_HASH_TAG (
+            POFOL_NO,
+            TAG_NM,
+            TAG_ORDER
+        ) VALUES (
+            #{pofolNo},
+            #{tagNm},
+            #{tagOrder}
+        )
+    </insert>
+    
     <!-- 포트폴리오 페이지 등록 -->
     <insert id="createPage">
         INSERT INTO PF_POFOL_PAGE (
@@ -84,6 +109,15 @@
             #{sortOrder}
         )
     </insert>
+    
+    <!-- 포트폴리오 해시태그 조회 -->
+    <select id="findPortfolioHashTags" resultType="PortfolioHashTag">
+        SELECT POFOL_NO,
+               TAG_NM
+          FROM PF_POFOL_HASH_TAG
+         WHERE POFOL_NO = #{pofolNo}
+      ORDER BY TAG_ORDER ASC
+    </select>
     
     <!-- 포트폴리오 페이지 목록조회 -->
     <select id="findPortfolioPageList" resultType="PortfolioPage">

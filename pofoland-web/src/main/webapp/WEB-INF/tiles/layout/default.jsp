@@ -3,7 +3,12 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <!-- ContextPath 정의 -->    
-<c:set var="ctx" value="<%= request.getContextPath()%>"></c:set>
+<c:set var="ctx" value="<%= request.getContextPath()%>" scope="application"></c:set>
+<c:set var="assetPath" value="${ctx}/static/assets" scope="application"></c:set>
+<c:set var="vendorPath" value="${ctx}/static/vendor" scope="application"></c:set>
+ 
+<!-- UI 테스트용 변수 --> 
+ <c:set var="containerOption" value="container" scope="application"></c:set>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,53 +24,54 @@
         <!-- Vendor CSS -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,700,800,900" rel="stylesheet" type="text/css">
-        <link href="${ctx}/static/vendor/volvox/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/style.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/streamline-icon.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-nav-menu.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-portfolio.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-blog.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-animation.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-bg-stylish.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-shortcodes.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/theme-responsive.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/v-form-element.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/alertify/css/alertify.min.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/custom.css" rel="stylesheet" />
-        
-        <link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
+
+        <link href="${vendorPath}/volvox/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/style.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/streamline-icon.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-nav-menu.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-portfolio.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-blog.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-animation.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-bg-stylish.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-shortcodes.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/theme-responsive.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/custom.css" rel="stylesheet" />
+        <link href="${vendorPath}/volvox/css/v-form-element.css" rel="stylesheet" />
+        <link href="${vendorPath}/alertify/css/alertify.min.css" rel="stylesheet" />
+        <link href="${vendorPath}/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
         
         <!-- Vendor JS -->
-        <script src="${ctx}/static/vendor/volvox/js/jquery.min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/bootstrap.min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery-ui-1.10.2.custom.min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery.flexslider-min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery.easing.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery.fitvids.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery.carouFredSel.min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery.validate.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/theme-plugins.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/jquery.isotope.min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/imagesloaded.js"></script>
-        <script src="${ctx}/static/vendor/volvox/js/view.min.js?auto"></script>
-        <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-        <script src="${ctx}/static/vendor/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-        <script src="${ctx}/static/vendor/lodash/lodash.min.js"></script>
-        <script src="${ctx}/static/vendor/alertify/alertify.min.js"></script>
-        <script src="${ctx}/static/vendor/oLoader/js/jquery.oLoader.min.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.min.js"></script>
+        <script src="${vendorPath}/volvox/js/bootstrap.min.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery-ui-1.10.2.custom.min.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.flexslider-min.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.easing.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.fitvids.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.carouFredSel.min.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.validate.js"></script>
+        <script src="${vendorPath}/volvox/js/theme-plugins.js"></script>
+        <script src="${vendorPath}/volvox/js/jquery.isotope.min.js"></script>
+        <script src="${vendorPath}/volvox/js/imagesloaded.js"></script>
+        <script src="${vendorPath}/volvox/js/view.min.js?auto"></script>
+        <script src="${vendorPath}/volvox/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+        <script src="${vendorPath}/volvox/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="${vendorPath}/lodash/lodash.min.js"></script>
+        <script src="${vendorPath}/alertify/alertify.min.js"></script>
+        <script src="${vendorPath}/oLoader/js/jquery.oLoader.min.js"></script>
+        <script src="${vendorPath}/bootstrap-select/js/bootstrap-select.min.js"></script>
         
         <!-- Our Custom CSS -->
-        <link href="${ctx}/static/assets/css/app.css" rel="stylesheet" />
+        <link href="${assetPath}/css/app.css" rel="stylesheet" />
         
         <!-- App Commons -->
-        <script src="${ctx}/static/assets/js/app.js"></script>
-        <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>
-        <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>
-        <script src="${ctx}/static/assets/js/utils/LoadingUtils.js"></script>
+
+        <script src="${assetPath}/js/app.js"></script>
+        <script src="${assetPath}/js/utils/AjaxUtils.js"></script>        
+        <script src="${assetPath}/js/utils/MessageBox.js"></script>
+        <script src="${assetPath}/js/utils/LoadingUtils.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -89,6 +95,6 @@
         <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
         
         <!-- Template Core -->
-        <script src="${ctx}/static/vendor/volvox/js/theme-core.js"></script>
+        <script src="${vendorPath}/volvox/js/theme-core.js"></script>
     </body>
 </html>

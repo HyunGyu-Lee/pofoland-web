@@ -62,6 +62,7 @@ public class CodeTest {
     }
     
     @Test
+    @Ignore    
     public void 공통코드_등록테스트() {
         List<Code> codeList = new ArrayList<Code>();
         

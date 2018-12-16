@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <logger name="org.springframework.web" level="INFO" />
+    <!-- <logger name="org.springframework.security" level="INFO" /> -->
+    <logger name="org.hibernate.SQL" level="INFO" />
+    <logger name="org.quartz.core" level="INFO" />
+    <logger name="org.h2.server.web" level="INFO" />
+    <logger name="com.zaxxer.hikari" level="INFO" />
+    <logger name="com.hst.pofoland" level="DEBUG"  />
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</included>
