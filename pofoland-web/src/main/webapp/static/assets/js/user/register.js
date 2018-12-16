@@ -51,7 +51,7 @@ var service = {
             registerData,
             function(result){
                 MessageBox.success(registerData.userNickNm + '님 회원가입을 축하드립니다.', function () {
-                    location.href = '/portfolios/management';
+                    location.href = '/portfolio/portfolios';
                 });
             },
             function(error){
