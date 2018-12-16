@@ -3,7 +3,7 @@
  * Copyright (c)2018, HST Inc.
  * All rights reserved.
  */
-package com.hst.pofoland.constant;
+package com.hst.pofoland.common.constant;
 
 /**
  * 공통 Constant
@@ -12,7 +12,7 @@ package com.hst.pofoland.constant;
  * @since 2018. 8. 19.
  * @see
  */
-public final class CmmConstant {
+public final class CommonConstant {
     /** YES */
     public static final String YES = "Y";
     /** NO */
@@ -68,4 +68,26 @@ public final class CmmConstant {
         public static final String MOVIE = "0003";
     }
     
+    /** 유저 코드 MB */
+    public final class User {
+        /** 유저 가입 구분 코드 (MB001)*/
+        public final class JoinCode {
+            /** 일반 가입 사용자 */
+            public static final String GENERAL = "0001";
+            /** 네이버 가입 사용자*/
+            public static final String NAVER = "0002";
+            /** HST 관리자  */
+            public static final String ADMIN = "0003";
+        }
+        
+        /** 유저 상태 코드  (MB002)*/
+        public final class SttsCode {
+            /** 정상 */
+            public static final String NOMAL = "0001";
+            /** 정지 */
+            public static final String STOP = "0002";
+            /** 탈퇴 */
+            public static final String DROP = "0003";
+        }
+    }
 }

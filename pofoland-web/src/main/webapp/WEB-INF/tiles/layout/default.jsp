@@ -32,9 +32,12 @@
         <link href="${ctx}/static/vendor/volvox/css/theme-responsive.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/plugins/owl-carousel/owl.theme.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
-        <link href="${ctx}/static/vendor/volvox/css/custom.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/volvox/css/v-form-element.css" rel="stylesheet" />
         <link href="${ctx}/static/vendor/alertify/css/alertify.min.css" rel="stylesheet" />
+        <link href="${ctx}/static/vendor/volvox/css/custom.css" rel="stylesheet" />
+        
+        <link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/settings.css" rel="stylesheet" />
+        <link href="${ctx}/static/vendor/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
         
         <!-- Vendor JS -->
         <script src="${ctx}/static/vendor/volvox/js/jquery.min.js"></script>
@@ -60,17 +63,19 @@
         
         <!-- App Commons -->
         <script src="${ctx}/static/assets/js/app.js"></script>
-        <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>        
+        <script src="${ctx}/static/assets/js/utils/AjaxUtils.js"></script>
         <script src="${ctx}/static/assets/js/utils/MessageBox.js"></script>
         <script src="${ctx}/static/assets/js/utils/LoadingUtils.js"></script>
     </head>
     <body>
         <div id="wrapper">
+        
             <!-- 페이지 헤더 -->
             <tiles:insertAttribute name="header" />
     
             <div id="container">
-                <!-- 페이지 본문 -->            
+            
+                <!-- 페이지 본문 -->
                 <tiles:insertAttribute name="body" />
             
                 <!-- 페이지 푸터 -->        

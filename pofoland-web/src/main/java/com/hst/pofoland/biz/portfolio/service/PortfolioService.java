@@ -16,8 +16,8 @@ import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioPage;
 import com.hst.pofoland.biz.storage.domain.StoreResult;
+import com.hst.pofoland.common.constant.CommonConstant;
 import com.hst.pofoland.common.mvc.service.CommonService;
-import com.hst.pofoland.constant.CmmConstant;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -153,7 +153,7 @@ public class PortfolioService extends CommonService {
             portfolioDao.createPortfolioFile(pofolFile);
             
             portfolio.setMainImageFileNo(pofolFile.getPofolFileNo());
-            portfolio.setMainImageAutoYn(CmmConstant.NO);
+            portfolio.setMainImageAutoYn(CommonConstant.NO);
         }
         // 1-2. 대표이미지를 업로드하지 않은 경우 (자동선택)
         else {
@@ -161,14 +161,14 @@ public class PortfolioService extends CommonService {
             
             Portfolio targetPortfolio = this.findByPofolNo(pofolNo);
             Optional<PortfolioPage> selectedPage = targetPortfolio.getPortfolioPages().stream()
-                    .filter(page -> CmmConstant.PortfolioPageTypeCd.PICTURE.equals(page.getPofolPageTypeCd()))
+                    .filter(page -> CommonConstant.PortfolioPageTypeCd.PICTURE.equals(page.getPofolPageTypeCd()))
                     .findFirst();
             
             if (selectedPage.isPresent()) {
                 portfolio.setMainImageFileNo(selectedPage.get().getPofolFileNo());
             }
             
-            portfolio.setMainImageAutoYn(CmmConstant.YES);
+            portfolio.setMainImageAutoYn(CommonConstant.YES);
         }
         
         log.debug("{}", portfolio);

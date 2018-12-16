@@ -37,19 +37,11 @@ public class UserService {
 	public UserService() {
 	}
 	
-	public User create(User user) {
-		
-		log.info(user.toString()); 
+	public int create(User user) {
 		
 		// 유저 패스워드 인코딩
 		user.setUserPwd(passwordEncoder.encode(user.getUserPwd()));
 		
-		userDAO.create(user);
-		
-		// return 값 확인 no 들어오는지
-		log.info("userService! =========={}", user.toString());
-		
-		
-		return null;
+		return userDAO.create(user);
 	}
 }

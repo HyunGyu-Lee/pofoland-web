@@ -158,6 +158,13 @@
              <artifactId>commons-io</artifactId>
              <version>2.6</version>
          </dependency>
+         
+         <!-- Spring reload -->
+         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>springloaded</artifactId>
+            <version>1.2.5.RELEASE</version>
+         </dependency>
 	</dependencies>
 
 	<build>
