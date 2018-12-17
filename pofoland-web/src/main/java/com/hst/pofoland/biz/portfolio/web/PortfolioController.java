@@ -81,6 +81,11 @@ public class PortfolioController extends CommonController {
         return "portfolio/create";
     }
     
+    @GetMapping("create-reveal")
+    public String newRevealPortfolio() {
+        return "portfolio/revealCreate";
+    }
+    
     @GetMapping("{pofolNo}")
     public String detail(@PathVariable("pofolNo") Integer pofolNo, Model model) {
         model.addAttribute("portfolio", portfolioService.findByPofolNo(pofolNo));
