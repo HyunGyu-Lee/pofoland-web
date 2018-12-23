@@ -3,19 +3,18 @@
  */
 package com.hst.pofoland.common.batch.jobs.career;
 
-import org.springframework.batch.core.ChunkListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.JobScope;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.scope.context.ChunkContext;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import com.hst.pofoland.biz.career.domain.Career;
+import com.hst.pofoland.biz.careers.domain.CareerInfo;
 import com.hst.pofoland.common.batch.jobs.JobConfigurer;
 
 /**
@@ -35,6 +34,9 @@ public class CareerInfoCrawlBatch extends JobConfigurer {
     @Autowired
     private CareerInfoItemWriter writer;
     
+    @Autowired
+    private CareerInfoItemProcessor processor;
+    
     @Bean("careerInfoCrawlBatchJob")
     public Job careerInfoCrawlBatch() {
         return jobBuilderFactory.get("")
@@ -46,23 +48,14 @@ public class CareerInfoCrawlBatch extends JobConfigurer {
     @JobScope
     public Step step() {
         return stepBuilderFactory.get("step")
-                   .chunk(5)
+                   .<Career, CareerInfo>chunk(5)
                    .reader(reader)
-                   .writer(writer)
-                   .listener(new ChunkListener() {
-                       @Override
-                       public void beforeChunk(ChunkContext arg0) {
-                       }
-                   
-                       @Override
-                       public void afterChunkError(ChunkContext arg0) {
-                       }
-                   
-                       @Override
-                       public void afterChunk(ChunkContext arg0) {
-                           reader.stop();
-                       }
-                   }).build();
+                   .processor(processor)
+                   .build();
+    }
+    
+    public ItemWriter<CareerInfo> testWriter() {
+    	return items -> {};
     }
     
     public JobParameters buildBatchParameters(JobParametersBuilder jobParameterBuilder) {

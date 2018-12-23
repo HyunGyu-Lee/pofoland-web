@@ -10,6 +10,9 @@ import java.util.List;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
 
+import com.hst.pofoland.biz.careers.dao.CareersDAO;
+import com.hst.pofoland.biz.careers.domain.CareerInfo;
+
 /**
  * 클래스에 설명을 적는다.
  *
@@ -19,11 +22,14 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class CareerInfoItemWriter implements ItemWriter<Object> {
+public class CareerInfoItemWriter implements ItemWriter<CareerInfo> {
 
-    @Override
-    public void write(List<? extends Object> e) throws Exception {
-        
+	private CareersDAO careersDao;	
+
+	@Override
+	@SuppressWarnings("unchecked")
+    public void write(List<? extends CareerInfo> e) throws Exception {
+        careersDao.batchInsert((List<CareerInfo>) e);
     }
 
 }

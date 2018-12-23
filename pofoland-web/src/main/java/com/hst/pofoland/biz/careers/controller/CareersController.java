@@ -1,19 +1,20 @@
-package com.hst.pofoland.biz.job.controller;
+package com.hst.pofoland.biz.careers.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.hst.pofoland.biz.job.service.JobService;
+
+import com.hst.pofoland.biz.careers.service.CareersService;
 
 @Controller
-public class JobController {
+public class CareersController {
 	@Autowired
-	JobService jobService;
+	CareersService careersService;
 	
 	@RequestMapping("/jobtest")
 	public String jobList(Model model) {
-		model.addAttribute("job", jobService.selectAll());
+		model.addAttribute("job", careersService.selectAll());
 		return "job/job";
 	}
 }

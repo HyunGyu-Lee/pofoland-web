@@ -3,8 +3,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.hst.pofoland.biz.job.dao.JobDAO">
-    <select id="selectAll" resultType="com.hst.pofoland.biz.job.domain.Job">
-    	select * from JOB_INFO
+<mapper namespace="com.hst.pofoland.biz.careers.dao.CareersDAO">
+    <select id="selectAll" resultType="com.hst.pofoland.biz.careers.domain.Careers">
+    	select * from CAREER_INFO
     </select>
 </mapper>
