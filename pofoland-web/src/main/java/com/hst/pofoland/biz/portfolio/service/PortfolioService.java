@@ -5,18 +5,23 @@
  */
 package com.hst.pofoland.biz.portfolio.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.portfolio.dao.PortfolioDAO;
 import com.hst.pofoland.biz.portfolio.domain.Portfolio;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioFile;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioHashTag;
 import com.hst.pofoland.biz.portfolio.domain.PortfolioPage;
 import com.hst.pofoland.biz.storage.domain.StoreResult;
+import com.hst.pofoland.common.constant.CommonConstant;
+
 import com.hst.pofoland.common.mvc.service.CommonService;
 import com.hst.pofoland.constant.CmmConstant;
 
@@ -162,7 +167,7 @@ public class PortfolioService extends CommonService {
             portfolioDao.createPortfolioFile(pofolFile);
             
             portfolio.setMainImageFileNo(pofolFile.getPofolFileNo());
-            portfolio.setMainImageAutoYn(CmmConstant.NO);
+            portfolio.setMainImageAutoYn(CommonConstant.NO);
         }
         // 1-2. 대표이미지를 업로드하지 않은 경우 (자동선택)
         else {
@@ -170,14 +175,14 @@ public class PortfolioService extends CommonService {
             
             Portfolio targetPortfolio = this.findByPofolNo(pofolNo);
             Optional<PortfolioPage> selectedPage = targetPortfolio.getPortfolioPages().stream()
-                    .filter(page -> CmmConstant.PortfolioPageTypeCd.PICTURE.equals(page.getPofolPageTypeCd()))
+                    .filter(page -> CommonConstant.PortfolioPageTypeCd.PICTURE.equals(page.getPofolPageTypeCd()))
                     .findFirst();
             
             if (selectedPage.isPresent()) {
                 portfolio.setMainImageFileNo(selectedPage.get().getPofolFileNo());
             }
             
-            portfolio.setMainImageAutoYn(CmmConstant.YES);
+            portfolio.setMainImageAutoYn(CommonConstant.YES);
         }
         
         log.debug("{}", portfolio);
@@ -201,6 +206,31 @@ public class PortfolioService extends CommonService {
         pfFile.setPofolFileExtNm(result.getExtention());
         
         return pfFile;
+    }
+    
+    /**
+     * 포트폴리오 카테고리 코드 기준 수직 카테고리 목록 반환
+     * 
+     * @param pofolTypeCd
+     * @return
+     */
+    public List<Code> getCategoryCodeList(String pofolTypeCd) {
+        List<Code> codeList = new ArrayList<Code>();
+        
+        if (StringUtils.isEmpty(pofolTypeCd)) {
+            return codeList;
+        }
+        
+        // XXX 포트폴리오 카테고리 구조가 2뎁스 이상 늘어날 경우, 조회방식 변경할 것
+        Code currentCode = codeService.findCode(CmmConstant.PortfolioTypeCd.COMM_GRP_CD, pofolTypeCd);
+        
+        if (StringUtils.isNotEmpty(currentCode.getUpCommCd())) {
+            codeList.add(codeService.findCode(CmmConstant.PortfolioTypeCd.COMM_GRP_CD, currentCode.getUpCommCd()));
+        }
+        
+        codeList.add(currentCode);
+        
+        return codeList;
     }
     
 }

@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 
 <tiles:importAttribute name="menus" />
 
 <div class="header-container">
     <header class="header fixed clearfix">
-        <div class="container">
+        <div class="${containerOption}">
             <!--Site Logo-->
             <div class="logo">
                 <a href="${ctx}/">
@@ -31,28 +32,7 @@
                     </div>
                 </div>
                 <!--End Header Search-->
-                <!--Main Menu-->
-                <nav class="nav-main mega-menu">
-                    <ul class="nav nav-pills nav-main" id="mainMenu">
-                        <!-- TODO Child메뉴 recursive하게 호출하는 방법찾아 변경할 것 -->
-                        <c:forEach var="oneDepthMenu" items="${menus}">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" href="${oneDepthMenu.menuUrl}">${oneDepthMenu.menuNm}</a>
-                                <ul class="dropdown-menu">
-                                    <c:forEach var="twoDepthMenu" items="${oneDepthMenu.child}">
-                                        <c:if test="${requestScope['javax.servlet.forward.request_uri'] eq twoDepthMenu.menuUrl}">
-                                            <c:set var="currentOneDepth" value="${oneDepthMenu.menuNm}" scope="request"/>
-                                            <c:set var="currentTwoDepth" value="${twoDepthMenu.menuNm}" scope="request"/>
-                                        </c:if>
-                                        <li><a href="${twoDepthMenu.menuUrl}">${twoDepthMenu.menuNm}</a></li>
-                                    </c:forEach>
-                                </ul>
-                            </li>
-                        </c:forEach>
-                        <li><a href="/user/login">로그인</a></li>
-                    </ul>
-                </nav>
-                <!--End Main Menu-->
+                <ui:menu menuList="${menus}" />
             </div>
             <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
                 <i class="fa fa-bars"></i>

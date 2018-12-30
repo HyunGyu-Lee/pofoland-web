@@ -24,28 +24,33 @@ const summernoteSettings = {
 }
 
 var services = {
+    validatePortfolio : function (data) {
+        // TODO Validation 처리 추가
+        return true;
+    },
     // 포트폴리오 등록
     createPortfolio : function () {
-        LoadingUtils.loading();
-        
-        var pageInfo = gatheringPageInfo();
-        
         var data = $("#createForm").serializeObject();
+        var pageInfo = gatheringPageInfo();
         data["portfolioHashTags"] = gatheringHashTagInfo();
         data["portfolioPages"] = pageInfo.pages;
         
-        AjaxUtils.post('/api/portfolios', data, function (response) {
-            var pofolNo = response.payloads;
+        if (services.validatePortfolio(data)) {
+            LoadingUtils.loading();
             
-            services.uploadPageFile(pofolNo, pageInfo.files);
-            
-            services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
-            
-            MessageBox.success("등록됌", function () {
-                LoadingUtils.closeLoading();
-                location.href = '/portfolios/' + pofolNo;
+            AjaxUtils.post('/api/portfolio', data, function (response) {
+                var pofolNo = response.payloads;
+                
+                services.uploadPageFile(pofolNo, pageInfo.files);
+                
+                services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
+                
+                MessageBox.success("등록됌", function () {
+                    LoadingUtils.closeLoading();
+                    location.href = ctx + '/portfolio/' + pofolNo;
+                });
             });
-        });
+        }
     },
     // 포트폴리오 메인 이미지 변경
     changeMainImage: function (pofolNo, imgFile) {
@@ -54,7 +59,7 @@ var services = {
         formData.append('mainImage', imgFile);
         
         $.ajax({
-            url: '/api/portfolios/' + pofolNo + '/main-image',
+            url: '/api/portfolio/' + pofolNo + '/main-image',
             type: 'PUT',
             enctype: 'multipart/form-data',
             processData: false,
@@ -73,7 +78,7 @@ var services = {
             formData.append('file', pageFileInfo.fileData);
             
             $.ajax({
-                url: '/api/portfolios/' + pofolNo + '/' + pageFileInfo.pageNo + '/file',
+                url: '/api/portfolio/' + pofolNo + '/' + pageFileInfo.pageNo + '/file',
                 type: 'POST',
                 enctype: 'multipart/form-data',
                 processData: false,
@@ -91,6 +96,10 @@ $(function () {
     TemplateUtils.load();
     
     initPageTypeChooser();
+    
+/*    $('#createForm').validate({
+        
+    });*/
     
     $("#btnAddPortfolioPage").on("click", function () {
         alertify.chooser($("#chooseTemplate").html());

@@ -3,7 +3,7 @@
 <div class="footer-wrap">
     <!-- footer area -->
     <footer>
-        <div class="container">
+        <div class="${containerOption }">
             <div class="row">
                 <div class="col-sm-3">
                     <section class="widget">

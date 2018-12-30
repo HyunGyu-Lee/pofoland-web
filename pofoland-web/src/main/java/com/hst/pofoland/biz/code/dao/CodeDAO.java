@@ -29,4 +29,11 @@ public interface CodeDAO extends CommonDAO<String, Code> {
      */
     public void createGroupCode(GroupCode groupCode);
     
+    /**
+     * 코드 조회
+     * 
+     * @param code
+     */
+    public Code findCode(Code code);
+    
 }

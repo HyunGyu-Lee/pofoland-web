@@ -46,6 +46,8 @@ public final class CmmConstant {
     
     /** 포트폴리오 유형 (PF001) */
     public final class PortfolioTypeCd {
+        /** 공통그룹코드 */
+        public static final String COMM_GRP_CD = "PF001";
         /** 경영 */
         public static final String OPERATION = "0001";
         /** 마케팅 */

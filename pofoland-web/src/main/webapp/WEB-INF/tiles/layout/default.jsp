@@ -7,6 +7,9 @@
 <c:set var="assetPath" value="${ctx}/static/assets" scope="application"></c:set>
 <c:set var="vendorPath" value="${ctx}/static/vendor" scope="application"></c:set>
  
+<!-- UI 테스트용 변수 --> 
+ <c:set var="containerOption" value="container-fluid" scope="application"></c:set>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -19,8 +22,12 @@
         <meta name="ctx" content="${ctx}" />
         
         <!-- Vendor CSS -->
+        <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css"> -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+        
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,700,800,900" rel="stylesheet" type="text/css">
+
         <link href="${vendorPath}/volvox/css/bootstrap.min.css" rel="stylesheet" />
         <link href="${vendorPath}/volvox/css/style.css" rel="stylesheet" />
         <link href="${vendorPath}/volvox/css/font-awesome.min.css" rel="stylesheet" />
@@ -37,6 +44,7 @@
         <link href="${vendorPath}/volvox/css/custom.css" rel="stylesheet" />
         <link href="${vendorPath}/volvox/css/v-form-element.css" rel="stylesheet" />
         <link href="${vendorPath}/alertify/css/alertify.min.css" rel="stylesheet" />
+        <link href="${vendorPath}/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
         
         <!-- Vendor JS -->
         <script src="${vendorPath}/volvox/js/jquery.min.js"></script>
@@ -56,11 +64,13 @@
         <script src="${vendorPath}/lodash/lodash.min.js"></script>
         <script src="${vendorPath}/alertify/alertify.min.js"></script>
         <script src="${vendorPath}/oLoader/js/jquery.oLoader.min.js"></script>
+        <script src="${vendorPath}/bootstrap-select/js/bootstrap-select.min.js"></script>
         
         <!-- Our Custom CSS -->
         <link href="${assetPath}/css/app.css" rel="stylesheet" />
         
         <!-- App Commons -->
+
         <script src="${assetPath}/js/app.js"></script>
         <script src="${assetPath}/js/utils/AjaxUtils.js"></script>        
         <script src="${assetPath}/js/utils/MessageBox.js"></script>
@@ -68,11 +78,13 @@
     </head>
     <body>
         <div id="wrapper">
+        
             <!-- 페이지 헤더 -->
             <tiles:insertAttribute name="header" />
     
             <div id="container">
-                <!-- 페이지 본문 -->            
+            
+                <!-- 페이지 본문 -->
                 <tiles:insertAttribute name="body" />
             
                 <!-- 페이지 푸터 -->        

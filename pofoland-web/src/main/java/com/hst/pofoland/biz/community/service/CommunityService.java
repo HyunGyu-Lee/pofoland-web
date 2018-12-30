@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.hst.pofoland.biz.code.service.CodeService;
 import com.hst.pofoland.biz.community.dao.CommunityDAO;
 import com.hst.pofoland.biz.community.domain.Community;
+import com.hst.pofoland.common.constant.CommonConstant;
 
 /**
  * 커뮤니티 Service

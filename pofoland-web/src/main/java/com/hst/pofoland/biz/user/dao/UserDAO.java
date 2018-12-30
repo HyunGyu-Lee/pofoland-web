@@ -5,6 +5,11 @@
  */
 package com.hst.pofoland.biz.user.dao;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.hst.pofoland.biz.user.domain.User;
+import com.hst.pofoland.common.mvc.dao.CommonDAO;
+
 /**
  * class comment
  *
@@ -12,11 +17,14 @@ package com.hst.pofoland.biz.user.dao;
  * @since 2018. 7. 1. 
  * @see
  */
-public class UserDAO {
+@Mapper
+public interface UserDAO extends CommonDAO<String, User> {
 	
-	/**
-	 * 생성자
-	 */
-	public UserDAO() {
-	}
+    /**
+     * 유저 정보 조회
+     * 
+     * @param user (유저 정보)
+     * @return
+     */
+    public User findUserInfo(User user);
 }

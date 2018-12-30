@@ -20,9 +20,18 @@
                 </div>
                 <div class="col-sm-6">
                     <h5>카테고리</h5>
-                    <select class="form-control" name="pofolTypeCd">
+                    <%-- <select class="form-control" name="pofolTypeCd">
                         <c:forEach var="category" items="${categoryList}">
                             <option value="${category.commCd}">${category.commCdNm}</option>
+                        </c:forEach>
+                    </select> --%>
+                    <select class="selectpicker form-control" data-live-search="true" title="포트폴리오 카테고리 선택" name="pofolTypeCd">
+                        <c:forEach var="category" items="${categoryList}">
+                            <optgroup label="${category.commCdNm}">
+                                <c:forEach var="subCategory" items="${category.child}">
+                                    <option value="${subCategory.commCd}">${subCategory.commCdNm}<%-- - ${subCategory.commCdCont} --%></option>
+                                </c:forEach>
+                            </optgroup>
                         </c:forEach>
                     </select>
                 </div>

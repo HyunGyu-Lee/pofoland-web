@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
 
 <script src="${assetPath}/js/user/register.js"></script>
-
+<script>
+	let userJoinSeCd = '${userJoinSeCd}';
+</script>
 
 <div class="padding-100 body-sign">
     <div class="container">
@@ -27,25 +30,25 @@
                     
                     <div class="form-group">
                         <label>이메일 <span class="required">*</span></label>
-                        <input type="text" id="email" class="form-control" name="email" value=""  placeholder="이메일을 입력하여 주세요." maxlength="100" />
+                        <input type="text" id="userEmail" class="form-control" name="email" value=""  placeholder="이메일을 입력하여 주세요." maxlength="100" />
                     </div>
                     
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
                                 <label>비밀번호 <span class="required">*</span></label>
-                                <input type="password" id="password" class="form-control input-lg" name="pwd"  placeholder="비밀번호를 입력하여 주세요." />
+                                <input type="password" id="userPwd" class="form-control input-lg" name="pwd"  placeholder="비밀번호를 입력하여 주세요." />
                             </div>
                             <div class="col-sm-6">
                                 <label>비밀번호 확인 <span class="required">*</span></label>
-                                <input type="password" id="passwordConfirm" class="form-control input-lg" name="pwd_confirm" placeholder="비밀번호를 한번 더 입력하주세요." />
+                                <input type="password" id="userPwdConfirm" class="form-control input-lg" name="pwd_confirm" placeholder="비밀번호를 한번 더 입력하주세요." />
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label>닉네임<span class="required">*</span></label>
-                        <input type="text" id="nickName" class="form-control" name="name" value="" placeholder="닉네임을 입력하여 주세요." maxlength="100" />
+                        <input type="text" id="userNickNm" class="form-control" name="name" value="" placeholder="닉네임을 입력하여 주세요." maxlength="100" />
                     </div>
 
                     <div class="row">

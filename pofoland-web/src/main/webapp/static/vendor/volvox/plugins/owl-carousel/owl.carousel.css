@@ -73,9 +73,9 @@
 .owl-item { height: 720px !important; }
 .owl-item > .item { height: 720px; }
 .owl-item > .item > .pageContentWrap { height: 95%; }
-.owl-item > .item > .pageContentWrap > .leftContent { width: 65%; height: 100%; /* border: 1px dashed black; */}
-.owl-item > .item > .pageContentWrap > .rightContent { width: 35%; height: 100%; /* border: 1px dashed black; */}
+.owl-item > .item > .pageContentWrap > .leftContent { width: 65%; height: 100%; border: 1px dashed black; }
+.owl-item > .item > .pageContentWrap > .rightContent { width: 30%; height: 100%; border: 1px dashed black; }
 .owl-item > .item-video { height: 720px; }
 .owl-item > .item-video > .pageContentWrap { height: 95%; }
-.owl-item > .item-video > .pageContentWrap > .leftContent { width: 65%; height: 100%; /* border: 1px dashed black; */}
-.owl-item > .item-video > .pageContentWrap > .rightContent { width: 35%; height: 100%; /* border: 1px dashed black; */}
+.owl-item > .item-video > .pageContentWrap > .leftContent { width: 65%; height: 100%;  border: 1px dashed black; }
+.owl-item > .item-video > .pageContentWrap > .rightContent { width: 30%; height: 100%; border: 1px dashed black;}
