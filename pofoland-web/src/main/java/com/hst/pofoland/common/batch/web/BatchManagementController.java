@@ -6,6 +6,12 @@
 package com.hst.pofoland.common.batch.web;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +39,25 @@ public class BatchManagementController extends CommonController {
 
     @Autowired
     private BatchManagementService batchManagementService;
+
+    @Autowired
+    private JobLauncher launcher;
     
     @GetMapping("/launch")
     public CommonApiResponse runTestJob(@RequestParam String jobName) {
-        Job batchJob = contextProvider.getApplicationContext().getBean("jobName", Job.class);
+        Job batchJob = contextProvider.getApplicationContext().getBean(jobName, Job.class);
         
         log.debug("getBean {} - {}", jobName, batchJob);
         
+        JobParametersBuilder builder = new JobParametersBuilder();
+        builder.addString("JobID", String.valueOf(System.currentTimeMillis())).toJobParameters();
+        
+        try {
+			launcher.run(batchJob, builder.toJobParameters());
+		} catch (Exception e) {
+			// TODO 예외처리
+			e.printStackTrace();
+		}
         return ok("launch success", null);
     }
 

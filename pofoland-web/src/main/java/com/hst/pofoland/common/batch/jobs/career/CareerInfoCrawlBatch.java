@@ -17,6 +17,8 @@ import com.hst.pofoland.biz.career.domain.Career;
 import com.hst.pofoland.biz.careers.domain.CareerInfo;
 import com.hst.pofoland.common.batch.jobs.JobConfigurer;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Note class information
  *
@@ -26,6 +28,7 @@ import com.hst.pofoland.common.batch.jobs.JobConfigurer;
  *
  */
 @Component
+@Slf4j
 public class CareerInfoCrawlBatch extends JobConfigurer {
 
     @Autowired
@@ -39,7 +42,7 @@ public class CareerInfoCrawlBatch extends JobConfigurer {
     
     @Bean("careerInfoCrawlBatchJob")
     public Job careerInfoCrawlBatch() {
-        return jobBuilderFactory.get("")
+        return jobBuilderFactory.get("careerInfoCrawlBatchJob")
                 .start(step())
                 .build();
     }
@@ -51,11 +54,8 @@ public class CareerInfoCrawlBatch extends JobConfigurer {
                    .<Career, CareerInfo>chunk(5)
                    .reader(reader)
                    .processor(processor)
+                   .writer(writer)
                    .build();
-    }
-    
-    public ItemWriter<CareerInfo> testWriter() {
-    	return items -> {};
     }
     
     public JobParameters buildBatchParameters(JobParametersBuilder jobParameterBuilder) {

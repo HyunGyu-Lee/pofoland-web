@@ -14,7 +14,7 @@ public class CareerInfo {
 	private String careerRcYn;
 	private int careerMinSalary;
 	private int careerMaxSalary;
-	private String careerLocation;
+	private String careerCompanyLocation;
 	private int careerMinCareer;
 	private int careerMaxCareer;
 	private String careerKeyword;

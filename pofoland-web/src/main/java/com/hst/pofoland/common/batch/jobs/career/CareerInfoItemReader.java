@@ -19,6 +19,8 @@ import org.springframework.stereotype.Component;
 import com.hst.pofoland.biz.career.domain.Career;
 import com.hst.pofoland.biz.career.service.CareerService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 클래스에 설명을 적는다.
  *
@@ -28,8 +30,9 @@ import com.hst.pofoland.biz.career.service.CareerService;
  *
  */
 @Component
+@Slf4j
 public class CareerInfoItemReader implements ItemReader<Career>, InitializingBean {
-
+	
     private boolean stopSignal = false;
     
     private List<Career> careerList;
@@ -41,7 +44,7 @@ public class CareerInfoItemReader implements ItemReader<Career>, InitializingBea
     
     @Override
     public Career read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
-        if (stopSignal) {
+    	if (stopSignal) {
             return null;
         }
         
@@ -49,7 +52,10 @@ public class CareerInfoItemReader implements ItemReader<Career>, InitializingBea
         	return null;
         }
         
-        return careerList.get(index.getAndIncrement());
+        Career career = careerList.get(index.getAndIncrement());
+    	log.debug("Reader > read 호출 {}", career);
+        
+        return career;
     }
     
     public void stop() {
@@ -59,6 +65,8 @@ public class CareerInfoItemReader implements ItemReader<Career>, InitializingBea
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		careerList =  careerService.careerSearch("").getCareers().getCareer();
+		
+    	log.debug("Reader 초기화 대상 데이터 : {}", careerList);
 	}
     
 }

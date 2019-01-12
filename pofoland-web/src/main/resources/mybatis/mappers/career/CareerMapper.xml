@@ -4,7 +4,40 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.hst.pofoland.biz.careers.dao.CareersDAO">
-    <select id="selectAll" resultType="com.hst.pofoland.biz.careers.domain.Careers">
+    <select id="selectAll" resultType="Careers">
     	select * from CAREER_INFO
     </select>
+    
+    <insert id="create" parameterType="Careers">
+    	insert into CAREER_INFO (
+    			CAREER_TTL,
+    			CAREER_COMPANY_NM,
+    			CAREER_CATEGORY_CD,
+    			CAREER_NOTI_START_DT,
+    			CAREER_NOTI_END_DT,
+    			CAREER_NOTI_LINK,
+    			CAREER_RC_YN,
+    			CAREER_MIN_SALARY,
+    			CAREER_MAX_SALARY,
+    			CAREER_COMPANY_LOCATION,
+    			CAREER_MIN_CAREER,
+    			CAREER_MAX_CAREER,
+    			CAREER_KEYWORD
+    		)
+    		values(
+    			#{careerTtl}, 
+    			#{careerCompanyNm},
+    			#{careerCategoryCd},
+    			#{careerNotiStartDt},
+    			#{careerNotiEndDt},
+    			#{careerNotiLink},
+    			#{careerRcYn},
+    			#{careerMinSalary},
+    			#{careerMaxSalary},
+    			#{careerCompanyLocation},
+    			#{careerMinCareer},
+    			#{careerMaxCareer},
+    			#{careerKeyword}
+    		)
+    </insert>
 </mapper>

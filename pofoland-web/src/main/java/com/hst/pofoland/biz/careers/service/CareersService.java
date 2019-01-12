@@ -23,7 +23,4 @@ public class CareersService extends CommonService{
 		return careersDao.selectAll();
 	}
 	
-	public void batchInsert(List<CareerInfo> e) {
-		careersDao.batchInsert(e);
-	}
 }

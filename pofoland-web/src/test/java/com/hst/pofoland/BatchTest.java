@@ -5,7 +5,6 @@
  */
 package com.hst.pofoland;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.test.JobLauncherTestUtils;
@@ -13,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.hst.pofoland.biz.career.service.CareerService;
 import com.hst.pofoland.common.batch.jobs.career.CareerInfoCrawlBatch;
+import com.hst.pofoland.common.batch.jobs.career.CareerInfoItemProcessor;
 import com.hst.pofoland.common.batch.jobs.career.CareerInfoItemReader;
 import com.hst.pofoland.common.batch.jobs.career.CareerInfoItemWriter;
 import com.hst.pofoland.config.BatchJobConfig;
@@ -31,7 +32,9 @@ import com.hst.pofoland.config.BatchJobConfig;
         CareerInfoItemReader.class,
         CareerInfoItemWriter.class,
         BatchJobConfig.class,
-        JobLauncherTestUtils.class
+        JobLauncherTestUtils.class,
+        CareerService.class,
+        CareerInfoItemProcessor.class
 })
 @RunWith(SpringRunner.class)
 public class BatchTest {
@@ -40,7 +43,7 @@ public class BatchTest {
     private JobLauncherTestUtils jobLauncherTestUtils;
     
     @Test
-    @Ignore
+    //@Ignore
     public void 직업정보_수집배치_테스트() {
         try {
             jobLauncherTestUtils.launchJob();
