@@ -28,6 +28,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hst.pofoland.biz.code.domain.Code;
 import com.hst.pofoland.biz.code.service.CodeService;
+import com.hst.pofoland.biz.community.domain.CmReply;
 import com.hst.pofoland.biz.community.domain.Community;
 import com.hst.pofoland.biz.community.service.CommunityService;
 import com.hst.pofoland.common.constant.CommonConstant;
@@ -102,7 +103,7 @@ public class CommunityController {
 	public String selectNoticeList(Model model) {
 		List<Community> resultList = new ArrayList<Community>();
 		Community param = new Community();
-		param.setBoardSeCd(CommonConstant.BoardSeCd.NOTI); // 게시판구분(공지사항, 0001) 세팅
+		param.setBoardSeCd(CmmConstant.BoardSeCd.NOTI); // 게시판구분(공지사항, 0001) 세팅
 		
 		*//** 게시글 목록 조회 *//*
 		resultList = communityService.selectCommunityList(param);
@@ -154,6 +155,10 @@ public class CommunityController {
 		model.addAttribute("community", community);
 		
 		/* 게시글 댓글 목록 조회 */
+		List<CmReply> replyList = communityService.getReplyList(param);
+		if (replyList != null) {
+			model.addAttribute("replyList", replyList);
+		}
 		
 		LOG.info("================== Detail Cont Result : {}", community);
 		

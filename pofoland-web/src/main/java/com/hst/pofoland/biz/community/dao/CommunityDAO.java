@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.hst.pofoland.biz.community.domain.CmReply;
 import com.hst.pofoland.biz.community.domain.Community;
 import com.hst.pofoland.common.mvc.dao.CommonDAO;
 
@@ -52,4 +53,11 @@ public interface CommunityDAO extends CommonDAO<Integer, Community> {
 	 * @return Integer
 	 */
 	public int boardRfncCnt(Community community);
+	
+	/**
+	 * 댓글 목록 조회
+	 * @param community
+	 * @return
+	 */
+	public List<CmReply> getReplyList(Community community);
 }

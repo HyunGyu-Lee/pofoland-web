@@ -103,7 +103,7 @@
 
                     <div class="author-info-wrap clearfix">
                         <div class="author-avatar">
-                            <img src="img/avatar.png" class="avatar photo" />
+                            <img src="img/avatar.png" class="avatar photo" onerror="setErrorImage(this);"/>
                         </div>
                         <div class="author-bio">
                             <div class="author-name">
@@ -125,59 +125,71 @@
                         </div>
                     </div>
                 </section>
-
+<c:if test='${not empty replyList}'>
                 <div class="comments-wrap">
-
-                    <h3 class="v-heading"><span>3 Comments</span></h3>
-
+                    <h3 class="v-heading"><span><c:out value="${fn:length(replyList) }"/> Comments</span></h3>
                     <ul class="media-list">
-                        <li class="media">
+	<c:forEach var="reply" items="${replyList }" varStatus="status">
+	<c:set var="nextReply" value="${replyList[status.index+1] }" />
+		<c:if test="${reply.upReplyNo eq 0 }">
+			<c:choose>
+				<c:when test="${nextReply.upReplyNo eq 0 }">
+						<li class="media">
                             <a class="pull-left" href="#">
-                                <img class="media-object" src="img/avatar.png">
+                                <img class="media-object" src="img/avatar.png" onerror="setErrorImage(this);">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading">Volvox <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                <p>Cras sit amet nibh libero, in gravida nulla Cras purus odio, in vulputate at, tempus viverra turpis.</p>
-
-                                <hr>
-
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="img/avatar.png">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Admin <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                        Cras sit amet nibh libero, Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="img/avatar.png">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Admin <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante commodo.
-                                    </div>
-                                </div>
-
-                                <hr>
+                                <h4 class="media-heading">${reply.userNickNm } <span class="date">${reply.regDtmStr }</span> <span><a class="reply-link" href="javascript:createReplyForm(this);">Reply</a> </span></h4>
+                                <p>${reply.replyCont }</p>
                             </div>
                         </li>
-                        <li class="media">
+				</c:when>
+				<c:when test="${nextReply.upReplyNo ne 0 }">
+					<li class="media">
                             <a class="pull-left" href="#">
-                                <img class="media-object" src="img/avatar.png">
+                                <img class="media-object" src="img/avatar.png" onerror="setErrorImage(this);">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading">Volvox <span class="date">5 months ago</span> <span><a class="reply-link" href="#">Reply</a> </span></h4>
-                                Cras sit amet nibh libero Nulla vel metus vestibulum in vulputate at, tempus viverra turpis.
-                            </div>
-                        </li>
+                                <h4 class="media-heading">${reply.userNickNm } <span class="date">${reply.regDtmStr }</span> <span><a class="reply-link" href="javascript:createReplyForm(this);">Reply</a> </span></h4>
+                                <p>${reply.replyCont }</p>
+				</c:when>
+			</c:choose>
+		</c:if>
+		<c:if test="${reply.upReplyNo ne 0 }">
+			<c:choose>
+				<c:when test="${nextReply.upReplyNo eq 0 }">
+												<hr>
+								<div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="img/avatar.png" onerror="setErrorImage(this);">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">${reply.userNickNm } <span class="date">${reply.regDtmStr }</span></h4>
+                                        ${reply.replyCont }
+                                    </div>
+								</div>
+								<hr>
+							</div>
+						</li>
+				</c:when>
+				<c:when test="${nextReply.upReplyNo ne 0 }">
+								<hr>
+								<div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="img/avatar.png" onerror="setErrorImage(this);">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">${reply.userNickNm } <span class="date">${reply.regDtmStr }</span></h4>
+                                        ${reply.replyCont }
+                                    </div>
+								</div>
+				</c:when>
+			</c:choose>
+		</c:if>
+	</c:forEach>
                     </ul>
                 </div>
-
+</c:if>
                 <div class="post-block-wrap">
 
                     <h3 class="v-heading"><span>Leave a comment</span></h3>
@@ -360,3 +372,5 @@
             <!--End Sidebar-->
         </div>
     </div>
+<script src="${ctx}/static/assets/js/community/communityConstant.js"></script>
+<script src="${ctx}/static/assets/js/community/readDtlCont.js"></script>

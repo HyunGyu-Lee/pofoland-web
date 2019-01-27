@@ -15,7 +15,15 @@ $(function() {
 });
 
 /**
- *
+ * Content List Page
+ */
+$('#btnContList').on('click', function() {
+	// 페이지이동(공통함수)로 처리하기
+	alert('개발 중입니다.');
+})
+
+/**
+ * Insert Content
  */
 $('#btnInsertCont').on('click', function() {
 	/** Validation Check */

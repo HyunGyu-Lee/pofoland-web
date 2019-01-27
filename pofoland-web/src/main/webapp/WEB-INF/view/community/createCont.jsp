@@ -58,7 +58,8 @@
 	 	<div class="row center">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <button type="button" id="btnInsertCont" class="btn v-btn v-nephritis no-three-d">등록</button>                    
+                <button type="button" id="btnInsertCont" class="btn v-btn v-nephritis no-three-d">등록</button>
+                <button type="button" id="btnContList" class="btn v-btn v-nephritis no-three-d">목록</button>                    
             </div>
             <div class="col-sm-4"></div>
         </div>

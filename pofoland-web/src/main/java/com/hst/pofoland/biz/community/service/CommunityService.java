@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import com.hst.pofoland.biz.code.service.CodeService;
 import com.hst.pofoland.biz.community.dao.CommunityDAO;
+import com.hst.pofoland.biz.community.domain.CmReply;
 import com.hst.pofoland.biz.community.domain.Community;
-import com.hst.pofoland.common.constant.CommonConstant;
 
 /**
  * 커뮤니티 Service
@@ -61,6 +61,14 @@ public class CommunityService {
 		updateResult = communityDao.boardRfncCnt(params);
 		
 		return updateResult;
+	}
+	
+	public List<CmReply> getReplyList(Community community) {
+		int boardNo = community.getBoardNo();
+		
+		/** 게시글 댓글 조회 */
+		List<CmReply> replyList = communityDao.getReplyList(community);
+		return replyList;
 	}
 	public int createContent(Community params) {
 		communityDao.createContent(params);

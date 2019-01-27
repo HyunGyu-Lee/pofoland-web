@@ -41,6 +41,8 @@ public class CmReply extends PagableDomain implements Serializable {
 	private String replyCont;
 	/* 등록일시 */
 	private Date regDtm;
+	/* 등록일시 문구 */
+	private String regDtmStr;
 	/* 등록사용자이메일 */
 	private String regUserEmail;
 	/* 수정일시 */
@@ -49,5 +51,8 @@ public class CmReply extends PagableDomain implements Serializable {
 	private String updUserEmail;
 	/* 삭제여부 */
 	private String delYn;
-
+	/* 댓글Level */
+	private String lvl;
+	/* 사용자닉네임 */
+	private String userNickNm;
 }
