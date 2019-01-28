@@ -65,6 +65,8 @@
                         <!-- 포트폴리오 목록 -->
                         <ul class="v-portfolio-items v-portfolio-standard filterable-items col-4 row clearfix">
                             <c:forEach var="portfolio" items="${portfolioList}">
+                                <c:set var="mainImageUrl" value=""/>
+                                
                                 <!-- 대표이미지 선택 -->
                                 <c:choose>
                                     <c:when test="${empty portfolio.mainImageFileNo}">
