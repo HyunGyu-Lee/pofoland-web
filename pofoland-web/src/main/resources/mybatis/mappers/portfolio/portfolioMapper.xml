@@ -51,7 +51,17 @@
 	               </when>
 	           </choose>
            </if>
-       </where>   
+           <if test="@com.hst.pofoland.common.utils.MybatisFunctions@isNotEmpty(searchTagNm)">
+               AND POFOL_NO IN (
+                    SELECT POFOL_NO
+                      FROM PF_POFOL_HASH_TAG
+                     WHERE TAG_NM LIKE CONCAT('%', #{searchTagNm},'%')
+               )
+           </if>
+           <if test="@com.hst.pofoland.common.utils.MybatisFunctions@isNotEmpty(pofolNm)">
+               AND POFOL_NM LIKE CONCAT('%', #{pofolNm},'%')
+           </if>
+       </where>
       ORDER BY REG_DTM DESC
     </select>
     
@@ -117,6 +127,15 @@
           FROM PF_POFOL_HASH_TAG
          WHERE POFOL_NO = #{pofolNo}
       ORDER BY TAG_ORDER ASC
+    </select>
+    
+    <!-- 인기 해시태그 조회 -->
+    <select id="findPopularityHashTag" resultType="PortfolioHashTag">
+	    SELECT TAG_NM, COUNT(*) AS APPEARANCE_CNT
+	      FROM PF_POFOL_HASH_TAG
+	  GROUP BY TAG_NM
+	  ORDER BY APPEARANCE_CNT DESC
+	     LIMIT #{rankCount}
     </select>
     
     <!-- 카테고리별 해시태그 조회 -->

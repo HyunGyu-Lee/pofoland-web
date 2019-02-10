@@ -81,7 +81,7 @@
                                         <c:set var="mainImageUrl" value="${ctx}/api/portfolio/${portfolio.pofolNo}/images/${portfolio.mainImageFileNo}"/>
                                     </c:otherwise>
                                 </c:choose>
-                                <li class="clearfix v-portfolio-item col-sm-3 standard ${portfolio.pofolTypeCd}">
+                                <li class="clearfix v-portfolio-item col-sm-3 standard ${portfolio.pofolTypeCd} card" style="margin-left: 2px; margin-right: 2px;">
                                     <figure class="animated-overlay overlay-alt">
                                         <img src="${mainImageUrl}" class="attachment-full" style="width: 100%; height: 185px;" onerror="setErrorImage(this);" />
                                         <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post"></a>
@@ -97,7 +97,12 @@
                                             </div>
                                         </div>
                                         <h3 class="v-portfolio-item-title">
-                                            <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post">${portfolio.pofolNm}</a>
+                                            <a href="${ctx}/portfolio/${portfolio.pofolNo}" class="link-to-post">
+                                                <c:if test="${empty portfolio.pofolNm}">
+                                                    제목없음
+                                                </c:if>
+                                                ${portfolio.pofolNm}
+                                            </a>
                                         </h3>
                                         <h5 class="v-portfolio-subtitle">${portfolio.pofolTypeNm}</h5>
                                     </div>
@@ -112,9 +117,9 @@
                     <div class="widget-heading clearfix">
                         <h4 class="v-heading"><span>검색</span></h4>
                     </div>
-                    <form role="search" method="get" id="searchform" class="searchform" action="#">
+                    <form role="search" method="get" id="searchform" class="searchform" action="${ctx}/portfolio/portfolios">
                         <div class="form-group">
-                            <input class="form-control" type="text" value="" name="s" id="s" placeholder="Search" />
+                            <input class="form-control" type="text" value="" name="pofolNm" id="pofolNm" placeholder="Search" />
                         </div>
                     </form>
                 </section>
@@ -179,15 +184,9 @@
                     </div>
                     <div class="tagcloud">
                         <ul class='wp-tag-cloud'>
-                            <li><a href="#">CSS 3</a></li>
-                            <li><a href="#">HTML 5</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Mobile</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">PHP</a></li>
-                            <li><a href="#">Social</a></li>
-                            <li><a href="#">video</a></li>
-                            <li><a href="#">WordPress</a></li>
+                            <c:forEach var="hashTag" items="${popularityHashTag}">
+                                <li><a href="${ctx}/portfolio/portfolios?searchTagNm=${hashTag.tagNm}">${hashTag.tagNm}</a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </section>

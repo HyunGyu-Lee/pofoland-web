@@ -233,4 +233,13 @@ public class PortfolioService extends CommonService {
         return codeList;
     }
     
+    /**
+     * 인기 해시태그 조회
+     * 
+     * @return
+     */
+    public List<PortfolioHashTag> findPopularityHashTag(int count) {
+        return portfolioDao.findPopularityHashTag(count);
+    }
+    
 }

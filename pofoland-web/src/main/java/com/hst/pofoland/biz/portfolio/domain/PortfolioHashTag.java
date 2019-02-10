@@ -33,4 +33,9 @@ public class PortfolioHashTag {
      */
     private Integer tagOrder;
     
+    /**
+     * 태그 출현빈도
+     */
+    private Integer appearanceCnt;
+    
 }

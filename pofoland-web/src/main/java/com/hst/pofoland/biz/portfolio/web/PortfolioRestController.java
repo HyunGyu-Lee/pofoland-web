@@ -7,8 +7,11 @@ package com.hst.pofoland.biz.portfolio.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,7 +78,15 @@ public class PortfolioRestController extends CommonController {
      * @return
      */
     @PostMapping
-    public CommonApiResponse createPortfolio(@RequestBody Portfolio portfolio) {
+    public CommonApiResponse createPortfolio(@RequestBody @Valid Portfolio portfolio, BindingResult result) {
+        if (result.hasErrors()) {
+            result.getFieldErrors().forEach(error -> {
+                log.debug("오류 발생 필드 : {} / 오류메시지 : {}", error.getField(), error.getDefaultMessage());
+            });
+            
+            return badRequest("parameter validation failure...", result);
+        }
+        
         portfolioService.create(portfolio);
         
         return ok(portfolio.getPofolNo());
