@@ -94,24 +94,29 @@
     </where>
     </update>
     
-    <select id="selectReplyList" parameterType="Community">
-    SELECT 
+    <select id="getReplyList" parameterType="Community" resultType="CmReply">
+        SELECT 
 		T1.REPLY_NO		AS	replyNo
 	    ,T1.UP_REPLY_NO	AS	upReplyNo
+	    ,T2.USER_NICK_NM	AS	userNickNm
 	    ,T1.BOARD_NO		AS	boardNo
 	    ,T1.REPLY_CONT		AS	replyCont
 	    ,T1.REG_DTM		AS	regDtm
+	    ,FN_DATEDIFF_TO_STR(T1.REG_DTM) AS regDtmStr
 	    ,T2.USER_EMAIL	AS	regUserEmail
 	FROM 
 		CM_REPLY	T1			/* 댓글T */
-			JOIN CM_USER	T2	/* 사용자T */
+			JOIN MB_USER	T2	/* 사용자T */
 			ON T1.REG_USER_NO = T2.USER_NO
 	<where>
 		AND BOARD_NO = #{boardNo}
 	    AND DEL_YN = 'N'	/* 삭제여부 N */
 	</where>
-	GROUP BY UP_REPLY_NO, REPLY_NO
-	ORDER BY REPLY_NO
+	GROUP BY REPLY_NO, UP_REPLY_NO
+    ORDER BY 
+        CASE WHEN UP_REPLY_NO IS NOT NULL THEN UP_REPLY_NO
+			WHEN UP_REPLY_NO IS NULL THEN REPLY_NO
+        END
     </select>
     
 </mapper>
