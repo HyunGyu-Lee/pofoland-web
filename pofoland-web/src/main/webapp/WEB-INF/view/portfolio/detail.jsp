@@ -28,22 +28,22 @@
 <div style="background-color: #eeeeee">
     <!-- 포트폴리오 슬라이드 -->
     <div class="container-fluid">
-        <div class="carousel-wrap no-padding panel panel-default" style="border-radius: 0px;">
+        <div class="carousel-wrap no-padding panel panel-default">
             <div class="owl-carousel" data-plugin-options='{"singleItem": true, video:true}'>
                 <c:forEach var="page" items="${portfolio.portfolioPages}">
                 <div class="<c:out value="${page.pofolPageTypeCd eq '0003' ? 'item-video' : 'item'} panel-body"></c:out>">
                     <c:choose>
                         <c:when test="${page.pofolPageTypeCd eq '0001'}">
-                            <div class="pageContentWrap">
+                            <div class="pageContentWrap card">
                                 ${page.pofolPageCont}
                             </div>
                         </c:when>
                         <c:when test="${page.pofolPageTypeCd eq '0002'}">
                             <div class="pageContentWrap">
-                                <div class="leftContent center pull-left">
-                                    <img src="/api/portfolio/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" style="width: 100%; height: 100%;"/>
+                                <div class="leftContent center pull-left card">
+                                    <img src="/api/portfolio/${portfolio.pofolNo}/images/${page.pofolFileNo}" onerror="setErrorImage(this);" style="height: 100%;"/>
                                 </div>
-                                <div class="rightContent pull-right">
+                                <div class="rightContent pull-right card">
                                     ${page.pofolPageCont}
                                 </div>
                                 <div class="clearfix"></div>
@@ -51,12 +51,12 @@
                         </c:when>
                         <c:when test="${page.pofolPageTypeCd eq '0003'}">
                             <div class="pageContentWrap">
-                                <div class="leftContent center pull-left">
+                                <div class="leftContent center pull-left card">
                                     <video width="100%" height="655px;" controls>
                                         <source src="/api/portfolio/${portfolio.pofolNo}/videos/${page.pofolFileNo}" type="video/mp4"></source>
                                     </video>
                                 </div>
-                                <div class="rightContent pull-right">
+                                <div class="rightContent pull-right card">
                                     ${page.pofolPageCont}
                                 </div>
                                 <div class="clearfix"></div>

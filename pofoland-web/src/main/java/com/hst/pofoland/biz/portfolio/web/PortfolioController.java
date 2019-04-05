@@ -55,7 +55,7 @@ public class PortfolioController extends CommonController {
     }
     
     /**
-     * 포트폴리오 목록 페이지
+     * 포트폴리오 목록 페이지 이동
      * 
      * @param searchCondition
      * @param model
@@ -73,6 +73,7 @@ public class PortfolioController extends CommonController {
         model.addAttribute("portfolioList", portfolioList);
         model.addAttribute("pageInfo", new PageInfo<>(portfolioList));
         model.addAttribute("categoryPath", portfolioService.getCategoryCodeList(searchCondition.getPofolTypeCd()));
+        model.addAttribute("popularityHashTag", portfolioService.findPopularityHashTag(10));
         return "portfolio/list";
     }
     

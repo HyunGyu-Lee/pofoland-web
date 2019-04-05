@@ -25,7 +25,8 @@ const summernoteSettings = {
 
 var services = {
     validatePortfolio : function (data) {
-        // TODO Validation 처리 추가
+        console.log(data);
+        
         return true;
     },
     // 포트폴리오 등록
@@ -50,6 +51,8 @@ var services = {
                     location.href = ctx + '/portfolio/' + pofolNo;
                 });
             });
+        } else {
+            MessageBox.warning("에러");
         }
     },
     // 포트폴리오 메인 이미지 변경

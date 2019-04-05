@@ -56,6 +56,13 @@ public interface PortfolioDAO extends CommonDAO<Integer, Portfolio> {
      */
     List<PortfolioHashTag> findPortfolioHashTags(Integer pofolNo);
 
+    /**
+     * 인기 해시태그 조회
+     * 
+     * @param count count번째 인기 해시태그 까지 조회
+     * @return
+     */
+    List<PortfolioHashTag> findPopularityHashTag(Integer count);
     
     /**
      * 포트폴리오 페이지 목록 조회

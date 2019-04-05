@@ -8,6 +8,11 @@ package com.hst.pofoland.biz.portfolio.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.hst.pofoland.common.mvc.domain.PagableDomain;
 
 import lombok.AllArgsConstructor;
@@ -46,6 +51,7 @@ public class Portfolio extends PagableDomain implements Serializable {
     /**
      * 포트폴리오명
      */
+    @NotEmpty(message = "포트폴리오 제목을 입력하십시오.")
     private String pofolNm;
     
     /**
@@ -77,6 +83,11 @@ public class Portfolio extends PagableDomain implements Serializable {
      * 포트폴리오 유형 범위검색
      */
     private Boolean rangeSearch;
+    
+    /**
+     * 검색 태그명
+     */
+    private String searchTagNm;
     
     /**
      * 포트폴리오 페이지 목록
