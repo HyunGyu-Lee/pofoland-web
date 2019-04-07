@@ -241,5 +241,14 @@ public class PortfolioService extends CommonService {
     public List<PortfolioHashTag> findPopularityHashTag(int count) {
         return portfolioDao.findPopularityHashTag(count);
     }
+
+    /**
+     * 포트폴리오 삭제
+     * 
+     * @param pofolNo
+     */
+    public void delete(Integer pofolNo) {
+        int cnt = portfolioDao.delete(pofolNo);
+    }
     
 }

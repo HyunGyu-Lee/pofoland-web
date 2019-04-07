@@ -10,6 +10,10 @@
 <link href="${vendorPath}/volvox/plugins/rs-plugin/css/custom-captions.css" rel="stylesheet" />
 <link href="${vendorPath}/volvox/plugins/masterslider/skins/black-2/style.css" rel="stylesheet" />
 
+<script type="text/javascript">
+    var pofolNo = ${portfolio.pofolNo};
+</script>
+
 <c:choose>
     <c:when test="${empty portfolio.mainImageFileNo}">
         <c:choose>
@@ -75,7 +79,7 @@
     </div>
     <!-- 포트폴리오 기본 정보 및 등록자 정보 -->
     <div class="container">
-        <div class="v-portfolio-item-content panel panel-default" style="border-radius: 0px;">
+        <div class="panel panel-default" style="border-radius: 0px;">
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-6">
@@ -139,6 +143,13 @@
                                 </div>
                             </div>
                         </section>
+                    </div>
+                </div>
+                <hr style="margin-top: 15px; margin-bottom: 15px;">
+                <div class="row">
+                    <div class="col-sm-12 align-right">
+                        <button type="button" id="btnEditPortfolio" class="btn v-btn v-btn-default no-three-d">수정</button>
+                        <button type="button" id="btnDelPortfolio" class="btn v-btn v-btn-danger no-three-d">삭제</button>
                     </div>
                 </div>
             </div>

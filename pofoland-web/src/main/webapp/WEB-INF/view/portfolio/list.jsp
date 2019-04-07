@@ -186,9 +186,14 @@
                     </div>
                     <div class="tagcloud">
                         <ul class='wp-tag-cloud'>
-                            <c:forEach var="hashTag" items="${popularityHashTag}">
-                                <li><a href="${ctx}/portfolio/portfolios?searchTagNm=${hashTag.tagNm}">${hashTag.tagNm}</a></li>
-                            </c:forEach>
+                            <c:if test="${empty popularityHashTag}">
+                                <p>인기 태그가 없습니다.</p>
+                            </c:if>
+                            <c:if test="${not empty popularityHashTag}">
+                                <c:forEach var="hashTag" items="${popularityHashTag}">
+                                    <li><a href="${ctx}/portfolio/portfolios?searchTagNm=${hashTag.tagNm}">${hashTag.tagNm}</a></li>
+                                </c:forEach>
+                            </c:if>
                         </ul>
                     </div>
                 </section>

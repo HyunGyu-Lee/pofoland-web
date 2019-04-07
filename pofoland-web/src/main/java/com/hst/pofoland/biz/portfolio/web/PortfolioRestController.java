@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,6 +73,23 @@ public class PortfolioRestController extends CommonController {
     }
     
     /**
+     * 포트폴리오 상세 조회 API
+     * 
+     * @param pofolNo
+     * @return
+     */
+    @GetMapping("{pofolNo}")
+    public CommonApiResponse getPortfolio(@PathVariable Integer pofolNo) {
+        Portfolio portfolio = portfolioService.findByPofolNo(pofolNo);
+        
+        if (portfolio == null) {
+            return notFound("요청하신 포트폴리오를 찾을 수 없습니다.", pofolNo);
+        }
+        
+        return ok(portfolio);
+    }
+    
+    /**
      * 포트폴리오 기본정보 + 페이지 등록 API
      * 
      * @param portfolio
@@ -90,6 +108,12 @@ public class PortfolioRestController extends CommonController {
         portfolioService.create(portfolio);
         
         return ok(portfolio.getPofolNo());
+    }
+    
+    @DeleteMapping("{pofolNo}")
+    public CommonApiResponse deletePortfolio(@PathVariable("pofolNo") Integer pofolNo) {
+        portfolioService.delete(pofolNo);
+        return ok(null);
     }
     
     /**
@@ -158,6 +182,14 @@ public class PortfolioRestController extends CommonController {
         return imageData;
     }
 
+    /**
+     * 비디오 byte데이터 반환
+     * 
+     * @param pofolNo
+     * @param pofolFileNo
+     * @return
+     * @throws Exception
+     */
     @GetMapping(value = "{pofolNo}/videos/{pofolFileNo}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public byte[] serveVideo(@PathVariable("pofolNo") Integer pofolNo, @PathVariable("pofolFileNo") Integer pofolFileNo)
             throws Exception {

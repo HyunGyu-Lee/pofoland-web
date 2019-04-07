@@ -8,6 +8,7 @@ package com.hst.pofoland.biz.portfolio.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +55,11 @@ public class PortfolioController extends CommonController {
         return codeService.findByGroupCode(CmmConstant.PortfolioTypeCd.COMM_GRP_CD);
     }
     
+    @GetMapping
+    public String portfolioIndex() {
+        return "redirect:/portfolio/portfolios";
+    }
+    
     /**
      * 포트폴리오 목록 페이지 이동
      * 
@@ -75,6 +81,23 @@ public class PortfolioController extends CommonController {
         model.addAttribute("categoryPath", portfolioService.getCategoryCodeList(searchCondition.getPofolTypeCd()));
         model.addAttribute("popularityHashTag", portfolioService.findPopularityHashTag(10));
         return "portfolio/list";
+    }
+    
+    @GetMapping("{pofolNo}/edit")
+    public String editPortfolioPage(@PathVariable("pofolNo") Integer pofolNo, Model model) throws Exception {
+        Portfolio portfolio = portfolioService.findByPofolNo(pofolNo);
+        
+        if (portfolio == null) {
+            throw new AccessDeniedException("포트폴리오를 찾을 수 없습니다.");
+        }
+        // TODO 사용자 정보 추가 시 아래 코드 조건 걸어줄 것
+        /*else if (portfolio.getRegUserNo() != 1) {
+            throw new AccessDeniedException("포트폴리오를 찾을 수 없습니다.");
+        }*/
+        
+        model.addAttribute("portfolio", portfolio);
+        
+        return "portfolio/edit";
     }
     
     @GetMapping("create")

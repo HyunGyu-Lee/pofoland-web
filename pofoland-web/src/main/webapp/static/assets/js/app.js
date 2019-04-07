@@ -78,7 +78,7 @@ function commonPreview(fileInput) {
 // Error Image 설정
 function setErrorImage(source) {
     var badImg = new Image();
-    badImg.src = ctxUrl('/static/assets/img/noImageFound.jpg');
+    badImg.src = ctxUrl('/static/assets/img/inf1.jpg');
     
     var cpyImg = new Image();
     cpyImg.src = source.src;

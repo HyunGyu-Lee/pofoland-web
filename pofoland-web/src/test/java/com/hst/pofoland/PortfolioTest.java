@@ -61,4 +61,9 @@ public class PortfolioTest {
         portfolioList.forEach(portfolio -> log.debug("{}", portfolio));
     }
     
+    @Test
+    public void 포트폴리오_삭제_테스트() {
+        portfolioService.delete(213);
+    }
+    
 }

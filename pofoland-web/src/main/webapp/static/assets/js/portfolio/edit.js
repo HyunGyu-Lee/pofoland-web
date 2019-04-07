@@ -29,9 +29,9 @@ var services = {
         
         return true;
     },
-    // 포트폴리오 등록
-    createPortfolio : function () {
-        var data = $("#createForm").serializeObject();
+    // 포트폴리오 수정
+    editPortfolio : function () {
+        var data = $("#editForm").serializeObject();
         var pageInfo = gatheringPageInfo();
         data["portfolioHashTags"] = gatheringHashTagInfo();
         data["portfolioPages"] = pageInfo.pages;
@@ -42,11 +42,15 @@ var services = {
             AjaxUtils.post('/api/portfolio', data, function (response) {
                 var pofolNo = response.payloads;
                 
+                // TODO 수정된 파일 체크해서 올리고;
                 services.uploadPageFile(pofolNo, pageInfo.files);
                 
-                services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
+                // 대표이미지를 변경한 경우
+                if ($('#mainImageFile')[0].files.length != 0) {
+                    services.changeMainImage(pofolNo, $('#mainImageFile')[0].files[0]);
+                }
                 
-                MessageBox.success("포트폴리오가 등록되었습니다.", function () {
+                MessageBox.success("포트폴리오가 수정되었습니다.", function () {
                     LoadingUtils.closeLoading();
                     location.href = ctx + '/portfolio/' + pofolNo;
                 });
@@ -100,15 +104,11 @@ $(function () {
     
     initPageTypeChooser();
     
-/*    $('#createForm').validate({
-        
-    });*/
-    
     $("#btnAddPortfolioPage").on("click", function () {
         alertify.chooser($("#chooseTemplate").html());
     });
     
-    $("#btnCreatePortfolio").on("click", services.createPortfolio);
+    $("#btnEditPortfolio").on("click", services.editPortfolio);
     
     $("#inputHashTag").on("keydown", function(e) {
         if (e.keyCode == 13) {
@@ -120,6 +120,33 @@ $(function () {
     $("#btnAddHashTag").on("click", function () {
         addHashTag($("#inputHashTag").val());
         $("#inputHashTag").val('');
+    });
+    
+    AjaxUtils.get('/api/portfolio/' + pofolNo, null, function (response) {
+        // TODO
+        // 1. Form 기본정보 세팅
+        // 2. 대표이미지 세팅
+        // 3. 포트포리오 페이지 뿌리기
+        
+        var portfolio = response.payloads;
+        
+        _.forEach(portfolio.portfolioPages, page => {
+            console.log(page);
+            console.log(page.pofolPageTypeCd)
+            switch (page.pofolPageTypeCd) {
+            case TEXT_TYPE : 
+                addPortfolioPage('text');
+                break;
+            case PICTURE_TYPE : 
+                addPortfolioPage('picture');
+                break;
+            case MOVIE_TYPE : 
+                addPortfolioPage('movie');
+                break;
+            }
+        });
+        
+        LoadingUtils.closeLoading();
     });
 });
 

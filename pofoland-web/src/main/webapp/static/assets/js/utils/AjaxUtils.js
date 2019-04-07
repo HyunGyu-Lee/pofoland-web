@@ -212,6 +212,18 @@
         callAsync();
     }
     
+    AjaxUtils.delete = function (url, data, onSuccess, onError) {
+        initialize({
+            url: url,
+            method: 'DELETE',
+            data: data,
+            onSuccess: onSuccess,
+            onError: onError
+        });
+        
+        callAsync();
+    }
+    
     AjaxUtils.callAsync = function () {
         callAsync();
     }

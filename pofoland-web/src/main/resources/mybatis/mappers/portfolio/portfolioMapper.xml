@@ -92,6 +92,12 @@
          WHERE POFOL_NO = #{pofolNo}           
     </update>
     
+    <!-- 포트폴리오 삭제 -->
+    <delete id="delete">
+        DELETE FROM PF_POFOL
+         WHERE POFOL_NO = #{pofolNo}
+    </delete>
+    
     <!-- 포트폴리오 해시태그 등록 -->
     <insert id="createHashTag">
         INSERT INTO PF_POFOL_HASH_TAG (
